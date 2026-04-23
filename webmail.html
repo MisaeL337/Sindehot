@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sindehot</title>
+<link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+ 
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — mesmos do protótipo do site
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+ 
+:root{
+  --navy:      #1E3A6E;
+  --navy-dark: #132847;
+  --navy-deep: #0D1E35;
+  --gold:      #C9A227;
+  --gold-lt:   #E8C547;
+  --gold-dim:  rgba(201,162,39,0.12);
+  --cream:     #F4F6FA;
+  --white:     #FFFFFF;
+  --text:      #1A1A2E;
+  --muted:     #64748b;
+  --muted-lt:  #94a3b8;
+  --border:    #DDE3ED;
+  --hover-bg:  #EEF2FA;
+  --unread-bg: #F0F5FF;
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --red:       #C0392B;
+  --red-dim:   rgba(192,57,43,0.10);
+}
+ 
+html,body{
+  width:100%;height:100vh;
+  background:var(--cream);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow:hidden;
+}
+ 
+/* ═══════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════ */
+.topbar{
+  height:48px;
+  background:var(--navy-deep);
+  display:flex;align-items:center;
+  padding:0 20px;
+  gap:0;
+  border-bottom:2px solid var(--gold);
+  position:relative;z-index:100;
+  flex-shrink:0;
+}
+ 
+.topbar-brand{
+  display:flex;align-items:center;gap:10px;
+  margin-right:24px;
+}
+.topbar-brasao{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),#8B6914);
+  display:grid;place-items:center;flex-shrink:0;
+  border:1.5px solid rgba(201,162,39,.4);
+}
+.topbar-brasao svg{width:14px;height:14px;fill:none;stroke:var(--navy-deep);stroke-width:2;stroke-linecap:round;}
+.topbar-name{
+  font-family:var(--font-head);font-size:.9rem;font-weight:700;
+  color:var(--white);letter-spacing:.04em;
+}
+.topbar-name span{color:var(--gold);}
+ 
+/* divider */
+.tb-div{width:1px;height:24px;background:rgba(255,255,255,.1);margin:0 16px;}
+ 
+.topbar-user{
+  display:flex;align-items:center;gap:8px;
+  font-size:.8rem;color:rgba(255,255,255,.7);
+}
+.user-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--navy);border:1.5px solid var(--gold);
+  display:grid;place-items:center;font-size:.7rem;font-weight:700;color:var(--gold);
+}
+ 
+.topbar-actions{
+  display:flex;align-items:center;gap:4px;
+  margin-left:auto;
+}
+.tb-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:5px;
+  background:transparent;border:none;cursor:pointer;
+  font-family:var(--font-body);font-size:.75rem;font-weight:500;
+  color:rgba(255,255,255,.6);
+  transition:background .18s,color .18s;
+}
+.tb-btn:hover{background:rgba(255,255,255,.08);color:var(--white);}
+.tb-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+.tb-btn.exit{color:rgba(255,100,100,.7);}
+.tb-btn.exit:hover{background:rgba(255,80,80,.1);color:#ff6464;}
+ 
+/* ═══════════════════════════════════════════
+   LAYOUT PRINCIPAL — 3 colunas
+═══════════════════════════════════════════ */
+.app{
+  display:grid;
+  grid-template-columns:220px 340px 1fr;
+  height:calc(100vh - 48px);
+  overflow:hidden;
+}
+ 
+/* ═══════════════════════════════════════════
+   SIDEBAR ESQUERDA — pastas
+═══════════════════════════════════════════ */
+.sidebar-nav{
+  background:var(--navy-dark);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+ 
+.compose-btn{
+  margin:14px 14px 10px;
+  padding:11px 16px;
+  background:var(--gold);color:var(--navy-deep);
+  border:none;border-radius:8px;cursor:pointer;
+  font-family:var(--font-body);font-size:.85rem;font-weight:700;
+  letter-spacing:.04em;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .2s,transform .18s,box-shadow .18s;
+  box-shadow:0 4px 12px rgba(201,162,39,.3);
+  flex-shrink:0;
+}
+.compose-btn:hover{background:var(--gold-lt);transform:translateY(-1px);box-shadow:0 6px 18px rgba(201,162,39,.4);}
+.compose-btn svg{width:15px;height:15px;fill:none;stroke:var(--navy-deep);stroke-width:2.5;stroke-linecap:round;}
+ 
+.folder-list{
+  overflow-y:auto;flex:1;padding:4px 8px 16px;
+}
+.folder-section-label{
+  padding:12px 8px 6px;
+  font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+}
+.folder-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 10px;border-radius:7px;
+  cursor:pointer;text-decoration:none;
+  transition:background .15s;
+  margin-bottom:1px;
+}
+.folder-item:hover{background:rgba(255,255,255,.06);}
+.folder-item.active{background:rgba(201,162,39,.15);border:1px solid rgba(201,162,39,.2);}
+.folder-item svg{width:16px;height:16px;fill:none;stroke:rgba(255,255,255,.5);stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+.folder-item.active svg{stroke:var(--gold);}
+.folder-name{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.65);flex:1;}
+.folder-item.active .folder-name{color:var(--white);font-weight:600;}
+.folder-count{
+  font-size:.68rem;font-weight:700;
+  padding:2px 7px;border-radius:999px;
+  background:var(--gold);color:var(--navy-deep);
+}
+.folder-count.subtle{background:rgba(255,255,255,.1);color:rgba(255,255,255,.5);}
+ 
+/* quota bar */
+.storage-bar{
+  padding:12px 14px;border-top:1px solid rgba(255,255,255,.06);
+  flex-shrink:0;
+}
+.storage-label{font-size:.68rem;color:rgba(255,255,255,.35);margin-bottom:6px;display:flex;justify-content:space-between;}
+.storage-label span{color:rgba(255,255,255,.55);}
+.storage-track{height:3px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;}
+.storage-fill{height:100%;width:28%;background:linear-gradient(to right,var(--gold),var(--gold-lt));border-radius:999px;}
+ 
+/* ═══════════════════════════════════════════
+   COLUNA DE MENSAGENS
+═══════════════════════════════════════════ */
+.msg-list-col{
+  display:flex;flex-direction:column;
+  background:var(--white);
+  border-right:1px solid var(--border);
+  overflow:hidden;
+}
+ 
+/* toolbar da lista */
+.list-toolbar{
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;
+  background:var(--white);
+}
+.list-toolbar-title{
+  font-family:var(--font-head);font-size:1rem;font-weight:700;
+  color:var(--navy);margin-right:auto;
+}
+.icon-btn{
+  width:32px;height:32px;border-radius:7px;
+  background:transparent;border:1px solid var(--border);
+  display:grid;place-items:center;cursor:pointer;
+  transition:background .15s,border-color .15s;
+  position:relative;
+}
+.icon-btn:hover{background:var(--hover-bg);border-color:var(--navy);}
+.icon-btn svg{width:15px;height:15px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;}
+.icon-btn:hover svg{stroke:var(--navy);}
+ 
+/* barra de busca */
+.search-bar{
+  padding:10px 14px;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.search-input-wrap{
+  display:flex;align-items:center;gap:8px;
+  background:var(--cream);border:1px solid var(--border);border-radius:8px;
+  padding:7px 12px;
+  transition:border-color .18s,box-shadow .18s;
+}
+.search-input-wrap:focus-within{border-color:var(--navy);box-shadow:0 0 0 3px rgba(30,58,110,.08);}
+.search-input-wrap svg{width:14px;height:14px;fill:none;stroke:var(--muted-lt);stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+.search-input{border:none;background:transparent;font-family:var(--font-body);font-size:.82rem;color:var(--text);width:100%;outline:none;}
+.search-input::placeholder{color:var(--muted-lt);}
+ 
+/* tabs */
+.list-tabs{
+  display:flex;border-bottom:1px solid var(--border);flex-shrink:0;
+}
+.list-tab{
+  flex:1;padding:9px;text-align:center;cursor:pointer;
+  font-size:.75rem;font-weight:600;letter-spacing:.04em;
+  color:var(--muted);border-bottom:2px solid transparent;
+  transition:color .18s,border-color .18s;
+}
+.list-tab.active{color:var(--navy);border-color:var(--gold);}
+.list-tab:hover:not(.active){color:var(--text);}
+ 
+/* lista de emails */
+.email-list{overflow-y:auto;flex:1;}
+ 
+.email-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:12px 14px;
+  border-bottom:1px solid var(--border);
+  cursor:pointer;
+  transition:background .12s;
+  position:relative;
+}
+.email-row:hover{background:var(--hover-bg);}
+.email-row.active{background:var(--gold-dim);border-left:3px solid var(--gold);}
+.email-row.unread{background:var(--unread-bg);}
+.email-row.unread .email-sender{font-weight:700;color:var(--navy);}
+.email-row.unread .email-subject{font-weight:600;color:var(--text);}
+ 
+.email-check{
+  width:16px;height:16px;border-radius:4px;
+  border:1.5px solid var(--border);
+  background:var(--white);flex-shrink:0;margin-top:2px;
+  cursor:pointer;transition:border-color .15s;
+}
+.email-row:hover .email-check{border-color:var(--navy);}
+.email-row.checked .email-check{background:var(--navy);border-color:var(--navy);}
+ 
+.email-star{
+  width:16px;height:16px;flex-shrink:0;
+  margin-top:2px;cursor:pointer;opacity:.3;
+  transition:opacity .15s;
+}
+.email-star:hover,.email-row.starred .email-star{opacity:1;}
+.email-star svg{width:16px;height:16px;fill:none;stroke:var(--gold);stroke-width:2;}
+.email-row.starred .email-star svg{fill:var(--gold);}
+ 
+.email-body{flex:1;min-width:0;}
+.email-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;}
+.email-sender{font-size:.83rem;font-weight:500;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;}
+.email-date{font-size:.72rem;color:var(--muted-lt);flex-shrink:0;margin-left:8px;}
+.email-subject{font-size:.83rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted);margin-bottom:2px;}
+.email-preview{font-size:.75rem;color:var(--muted-lt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.email-attach{display:inline-flex;align-items:center;gap:3px;font-size:.68rem;color:var(--muted-lt);margin-top:2px;}
+.email-attach svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+ 
+/* flag urgente */
+.email-flag{
+  position:absolute;top:0;right:0;
+  width:0;height:0;
+  border-left:18px solid transparent;
+  border-top:18px solid var(--gold);
+}
+ 
+/* paginação */
+.list-pagination{
+  padding:10px 14px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  flex-shrink:0;background:var(--white);
+}
+.page-btn{
+  width:28px;height:28px;border-radius:5px;
+  background:transparent;border:1px solid var(--border);
+  font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;
+  display:grid;place-items:center;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.page-btn:hover{background:var(--hover-bg);color:var(--navy);}
+.page-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.page-btn svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+ 
+/* ═══════════════════════════════════════════
+   PAINEL DE LEITURA
+═══════════════════════════════════════════ */
+.read-panel{
+  display:flex;flex-direction:column;
+  background:var(--white);
+  overflow:hidden;
+}
+ 
+/* estado vazio */
+.read-empty{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px;
+  color:var(--muted-lt);
+}
+.read-empty-icon{
+  width:64px;height:64px;border-radius:16px;
+  background:var(--cream);
+  display:grid;place-items:center;margin-bottom:4px;
+}
+.read-empty-icon svg{width:32px;height:32px;fill:none;stroke:var(--border);stroke-width:1.5;stroke-linecap:round;}
+.read-empty h3{font-size:1rem;color:var(--muted);font-weight:500;}
+.read-empty p{font-size:.82rem;text-align:center;max-width:280px;line-height:1.6;}
+ 
+/* email aberto */
+.read-header{
+  padding:20px 28px 16px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.read-subject{
+  font-family:var(--font-head);font-size:1.25rem;font-weight:700;
+  color:var(--navy);margin-bottom:12px;
+}
+.read-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.read-from{display:flex;align-items:center;gap:10px;}
+.from-avatar{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--navy),#2a4f8f);
+  display:grid;place-items:center;
+  font-size:.85rem;font-weight:700;color:var(--white);
+}
+.from-info{}
+.from-name{font-size:.88rem;font-weight:600;color:var(--text);}
+.from-addr{font-size:.75rem;color:var(--muted);}
+.read-date-full{font-size:.75rem;color:var(--muted-lt);text-align:right;margin-top:2px;}
+ 
+.read-actions{
+  padding:10px 28px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+  flex-shrink:0;
+  background:var(--cream);
+}
+.action-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:7px;
+  background:var(--white);border:1px solid var(--border);
+  font-family:var(--font-body);font-size:.78rem;font-weight:600;
+  color:var(--text);cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.action-btn:hover{background:var(--hover-bg);border-color:var(--navy);color:var(--navy);}
+.action-btn.primary{background:var(--navy);border-color:var(--navy);color:var(--white);}
+.action-btn.primary:hover{background:var(--navy-dark);}
+.action-btn.danger{color:#e53e3e;}
+.action-btn.danger:hover{background:#fff0f0;border-color:#e53e3e;}
+.action-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+ 
+.read-body{
+  flex:1;overflow-y:auto;
+  padding:28px;
+}
+.read-body-text{
+  font-size:.9rem;line-height:1.8;color:var(--text);
+  max-width:680px;
+}
+.read-body-text p{margin-bottom:12px;}
+.read-body-text strong{color:var(--navy);}
+ 
+/* anexo */
+.attachments{
+  margin-top:24px;padding-top:20px;
+  border-top:1px dashed var(--border);
+}
+.attach-label{
+  font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:10px;
+}
+.attach-files{display:flex;gap:10px;flex-wrap:wrap;}
+.attach-file{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 12px;border-radius:8px;
+  border:1px solid var(--border);background:var(--cream);
+  cursor:pointer;text-decoration:none;
+  transition:border-color .15s,background .15s;
+}
+.attach-file:hover{border-color:var(--gold);background:var(--gold-dim);}
+.attach-icon{width:28px;height:28px;border-radius:6px;background:var(--navy);display:grid;place-items:center;}
+.attach-icon svg{width:14px;height:14px;fill:none;stroke:var(--white);stroke-width:2;stroke-linecap:round;}
+.attach-name{font-size:.78rem;font-weight:600;color:var(--text);}
+.attach-size{font-size:.68rem;color:var(--muted-lt);}
+ 
+/* ═══════════════════════════════════════════
+   MODAL NOVA MENSAGEM
+═══════════════════════════════════════════ */
+.compose-modal{
+  position:fixed;bottom:0;right:24px;
+  width:520px;
+  background:var(--white);
+  border-radius:12px 12px 0 0;
+  box-shadow:0 -4px 40px rgba(0,0,0,.18);
+  border:1px solid var(--border);border-bottom:none;
+  z-index:500;
+  display:none;flex-direction:column;
+  max-height:520px;
+}
+.compose-modal.open{display:flex;}
+.compose-modal-head{
+  background:var(--navy);padding:12px 16px;border-radius:12px 12px 0 0;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--gold);
+  flex-shrink:0;
+}
+.compose-modal-head h3{font-size:.88rem;font-weight:600;color:var(--white);}
+.compose-modal-close{background:transparent;border:none;cursor:pointer;padding:4px;}
+.compose-modal-close svg{width:16px;height:16px;fill:none;stroke:rgba(255,255,255,.6);stroke-width:2.5;stroke-linecap:round;}
+.compose-modal-close:hover svg{stroke:white;}
+ 
+.compose-fields{flex:1;overflow:hidden;display:flex;flex-direction:column;}
+.compose-field{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 16px;border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.compose-field label{font-size:.75rem;font-weight:600;color:var(--muted);width:30px;flex-shrink:0;}
+.compose-field input{
+  flex:1;border:none;outline:none;font-family:var(--font-body);font-size:.85rem;color:var(--text);
+}
+.compose-textarea{
+  flex:1;padding:14px 16px;
+  border:none;outline:none;resize:none;
+  font-family:var(--font-body);font-size:.85rem;line-height:1.6;color:var(--text);
+}
+.compose-footer{
+  padding:10px 14px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;flex-shrink:0;
+}
+.compose-send{
+  padding:8px 20px;background:var(--navy);color:var(--white);
+  border:none;border-radius:7px;cursor:pointer;
+  font-family:var(--font-body);font-size:.82rem;font-weight:600;
+  display:flex;align-items:center;gap:6px;
+  transition:background .18s;
+}
+.compose-send:hover{background:var(--navy-dark);}
+.compose-send svg{width:14px;height:14px;fill:none;stroke:white;stroke-width:2.5;stroke-linecap:round;}
+.compose-footer-icon{
+  width:30px;height:30px;border-radius:6px;border:1px solid var(--border);
+  background:transparent;cursor:pointer;display:grid;place-items:center;
+  transition:background .15s;
+}
+.compose-footer-icon:hover{background:var(--hover-bg);}
+.compose-footer-icon svg{width:15px;height:15px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;}
+ 
+/* ═══════════════════════════════════════════
+   SCROLLBAR CUSTOM
+═══════════════════════════════════════════ */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:999px;}
+::-webkit-scrollbar-thumb:hover{background:var(--muted-lt);}
+</style>
+</head>
+<body>
+ 
+<!-- ════ TOPBAR ════ -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-brasao">
+      <svg viewBox="0 0 24 24"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M3 17l9 5 9-5"/><path d="M3 12l9 5 9-5"/></svg>
+    </div>
+    <div class="topbar-name">SINDEHOT<span>-SBC</span> &nbsp;·&nbsp; Webmail</div>
+  </div>
+ 
+  <div class="tb-div"></div>
+ 
+  <div class="topbar-user">
+    <div class="user-avatar">RL</div>
+    rildo@sindehot.com.br
+  </div>
+ 
+  <div class="topbar-actions">
+    <button class="tb-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+      Contatos
+    </button>
+    <button class="tb-btn">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Calendário
+    </button>
+    <div class="tb-div"></div>
+    <button class="tb-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Configurações
+    </button>
+    <a href="index.html" class="tb-btn" style="text-decoration:none;">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Voltar ao Site
+    </a>
+    <button class="tb-btn exit" id="btnSair">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sair
+    </button>
+  </div>
+</div>
+ 
+<!-- ════ APP ════ -->
+<div class="app">
+ 
+  <!-- ── Sidebar Nav ── -->
+  <aside class="sidebar-nav">
+    <button class="compose-btn" id="btnCompose">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nova Mensagem
+    </button>
+ 
+    <div class="folder-list">
+      <div class="folder-section-label">Caixas</div>
+ 
+      <a class="folder-item active" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="folder-name">Entrada</span>
+        <span class="folder-count">8</span>
+      </a>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span class="folder-name">Com estrela</span>
+        <span class="folder-count subtle">2</span>
+      </a>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <span class="folder-name">Enviados</span>
+        <span class="folder-count subtle">1</span>
+      </a>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span class="folder-name">Rascunhos</span>
+        <span class="folder-count">18</span>
+      </a>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        <span class="folder-name">Lixeira</span>
+        <span class="folder-count subtle">0</span>
+      </a>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        <span class="folder-name">Spam</span>
+        <span class="folder-count subtle">3</span>
+      </a>
+ 
+      <div class="folder-section-label" style="margin-top:8px;">Pastas</div>
+      <a class="folder-item" href="#" onclick="return false;">
+        <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+        <span class="folder-name">pixarro</span>
+        <span class="folder-count subtle">0</span>
+      </a>
+ 
+      <a href="#" class="folder-item" style="margin-top:4px;" onclick="return false;">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <span class="folder-name" style="font-size:.75rem;color:rgba(255,255,255,.4);">Gerenciar pastas</span>
+      </a>
+    </div>
+ 
+    <div class="storage-bar">
+      <div class="storage-label">
+        Armazenamento
+        <span>280 MB / 1 GB</span>
+      </div>
+      <div class="storage-track"><div class="storage-fill"></div></div>
+    </div>
+  </aside>
+ 
+  <!-- ── Lista de emails ── -->
+  <div class="msg-list-col">
+    <div class="list-toolbar">
+      <span class="list-toolbar-title">Entrada</span>
+      <button class="icon-btn" title="Selecionar todos">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <button class="icon-btn" title="Arquivar">
+        <svg viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/></svg>
+      </button>
+      <button class="icon-btn" title="Excluir">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </button>
+      <button class="icon-btn" title="Marcar como spam">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+      </button>
+      <button class="icon-btn" title="Atualizar">
+        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+      </button>
+    </div>
+ 
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" placeholder="Buscar mensagens..."/>
+      </div>
+    </div>
+ 
+    <div class="list-tabs">
+      <div class="list-tab active">Todas</div>
+      <div class="list-tab">Não lidas <span style="color:var(--gold);font-weight:700;">8</span></div>
+      <div class="list-tab">Com estrela</div>
+    </div>
+ 
+    <div class="email-list" id="emailList">
+ 
+      <!-- Emails — os marcados como unread têm classe extra -->
+      <div class="email-row unread" data-id="1" onclick="openEmail(1)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">Jose Lopes</span>
+            <span class="email-date">12:50</span>
+          </div>
+          <div class="email-subject">Fwd: Enel - Conta por email</div>
+          <div class="email-attach">
+            <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            1 anexo
+          </div>
+        </div>
+      </div>
+ 
+      <div class="email-row unread starred" data-id="2" onclick="openEmail(2)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">Jose Lopes</span>
+            <span class="email-date">Mar 27</span>
+          </div>
+          <div class="email-subject">Fwd: Enel - Conta por email</div>
+          <div class="email-attach"><svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>1 anexo</div>
+        </div>
+      </div>
+ 
+      <div class="email-row" data-id="3" onclick="openEmail(3)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">aliomar santana</span>
+            <span class="email-date">Mar 26</span>
+          </div>
+          <div class="email-subject">Re: assistencial</div>
+          <div class="email-preview">Olá, seguem as informações solicitadas sobre o plano assistencial...</div>
+        </div>
+      </div>
+ 
+      <div class="email-row unread" data-id="4" onclick="openEmail(4)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">Jose Lopes</span>
+            <span class="email-date">Mar 26</span>
+          </div>
+          <div class="email-subject">Fwd: Enel - Conta por email</div>
+          <div class="email-attach"><svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>1 anexo</div>
+        </div>
+        <div class="email-flag"></div>
+      </div>
+ 
+      <div class="email-row" data-id="5" onclick="openEmail(5)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">aliomar santana</span>
+            <span class="email-date">Mar 26</span>
+          </div>
+          <div class="email-subject">Re: Parcela do Acordo</div>
+          <div class="email-preview">Conforme combinado, segue o comprovante de pagamento da parcela...</div>
+        </div>
+      </div>
+ 
+      <div class="email-row unread starred" data-id="6" onclick="openEmail(6)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender">aliomar santana</span>
+            <span class="email-date">Mar 25</span>
+          </div>
+          <div class="email-subject">Parcela do Acordo</div>
+          <div class="email-preview">Prezado Rildo, gostaria de tratar sobre a parcela do acordo referente...</div>
+        </div>
+      </div>
+ 
+      <div class="email-row" data-id="7" onclick="openEmail(7)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="75191a051006071c19111a424745444d351c16191a00115b161a18">[email&#160;protected]</a></span>
+            <span class="email-date">Mar 25</span>
+          </div>
+          <div class="email-subject">Do retrofit ao resultado.pdf</div>
+          <div class="email-attach"><svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>1 PDF · 2.4 MB</div>
+        </div>
+      </div>
+ 
+      <div class="email-row" data-id="8" onclick="openEmail(8)">
+        <div class="email-check"></div>
+        <div class="email-star"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="email-body">
+          <div class="email-meta">
+            <span class="email-sender"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d71726d786e6f747179722a2f2d2c255d747e71726879337e7270">[email&#160;protected]</a></span>
+            <span class="email-date">Mar 21</span>
+          </div>
+          <div class="email-subject">Documentos para reunião — Abril</div>
+          <div class="email-preview">Segue em anexo a pauta e os documentos para a reunião de abril...</div>
+        </div>
+      </div>
+ 
+    </div><!-- /email-list -->
+ 
+    <div class="list-pagination">
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 3 12 9 6"/></svg></button>
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">4</button>
+      <button class="page-btn">5</button>
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/><polyline points="15 18 21 12 15 6"/></svg></button>
+    </div>
+  </div>
+ 
+  <!-- ── Painel de leitura ── -->
+  <div class="read-panel" id="readPanel">
+    <div class="read-empty" id="readEmpty">
+      <div class="read-empty-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <h3>Nenhuma mensagem selecionada</h3>
+      <p>Clique em qualquer mensagem para visualizá-la, ou use duplo clique para ver em tela cheia.</p>
+    </div>
+ 
+    <div id="readContent" style="display:none;flex:1;overflow:hidden;display:none;flex-direction:column;">
+      <div class="read-header">
+        <div class="read-subject" id="readSubject">—</div>
+        <div class="read-meta">
+          <div class="read-from">
+            <div class="from-avatar" id="readAvatar">—</div>
+            <div class="from-info">
+              <div class="from-name" id="readName">—</div>
+              <div class="from-addr" id="readAddr">—</div>
+            </div>
+          </div>
+          <div class="read-date-full" id="readDate">—</div>
+        </div>
+      </div>
+ 
+      <div class="read-actions">
+        <button class="action-btn primary">
+          <svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>
+          Responder
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24"><polyline points="15 17 20 12 15 7"/><path d="M4 18v-2a4 4 0 0 1 4-4h12"/></svg>
+          Encaminhar
+        </button>
+        <button class="action-btn">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Destacar
+        </button>
+        <button class="action-btn danger" style="margin-left:auto;">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+          Excluir
+        </button>
+      </div>
+ 
+      <div class="read-body">
+        <div class="read-body-text" id="readBody">—</div>
+        <div class="attachments" id="readAttach" style="display:none;">
+          <div class="attach-label">Anexos</div>
+          <div class="attach-files" id="attachFiles"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</div><!-- /app -->
+ 
+<!-- ════ MODAL NOVA MENSAGEM ════ -->
+<div class="compose-modal" id="composeModal">
+  <div class="compose-modal-head">
+    <h3>Nova Mensagem</h3>
+    <button class="compose-modal-close" id="composeClose">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="compose-fields">
+    <div class="compose-field">
+      <label>Para</label>
+      <input type="email" placeholder="destinatario@email.com"/>
+    </div>
+    <div class="compose-field">
+      <label>Cc</label>
+      <input type="email" placeholder=""/>
+    </div>
+    <div class="compose-field">
+      <label>Ass.</label>
+      <input type="text" placeholder="Assunto da mensagem"/>
+    </div>
+    <textarea class="compose-textarea" placeholder="Escreva sua mensagem aqui...&#10;&#10;Atenciosamente,&#10;Rildo&#10;SINDEHOT-SBC"></textarea>
+  </div>
+  <div class="compose-footer">
+    <button class="compose-send">
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Enviar
+    </button>
+    <button class="compose-footer-icon" title="Anexar arquivo">
+      <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+    </button>
+    <button class="compose-footer-icon" title="Formatação">
+      <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+    </button>
+    <button class="compose-footer-icon" title="Emoji">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+    </button>
+  </div>
+</div>
+ 
+<!-- ════ JS ════ -->
+<script>
+const emails = {
+  1: {
+    subject: 'Fwd: Enel - Conta por email',
+    sender: 'Jose Lopes',
+    addr: 'jose.lopes@empresa.com.br',
+    date: 'Hoje, 12:50',
+    body: `<p>Prezado Rildo,</p>
+           <p>Encaminho abaixo a conta de energia elétrica recebida por email conforme solicitado. Por favor, verifique se os dados estão corretos e providencie o pagamento até o vencimento.</p>
+           <p>Qualquer dúvida, estou à disposição.</p>
+           <p><strong>Atenciosamente,</strong><br/>Jose Lopes</p>`,
+    attach: [{ name: 'Enel_Conta_Mar2026.pdf', size: '324 KB', type: 'pdf' }]
+  },
+  2: {
+    subject: 'Fwd: Enel - Conta por email',
+    sender: 'Jose Lopes',
+    addr: 'jose.lopes@empresa.com.br',
+    date: '27 de março de 2026, 09:14',
+    body: `<p>Rildo, bom dia.</p>
+           <p>Segue o encaminhamento da conta de energia referente ao mês de fevereiro. Favor providenciar conforme procedimento interno.</p>
+           <p><strong>Att,</strong><br/>Jose Lopes</p>`,
+    attach: [{ name: 'Enel_Fev2026.pdf', size: '298 KB', type: 'pdf' }]
+  },
+  3: {
+    subject: 'Re: assistencial',
+    sender: 'aliomar santana',
+    addr: 'aliomar.santana@sindehot.com.br',
+    date: '26 de março de 2026, 15:32',
+    body: `<p>Rildo, boa tarde.</p>
+           <p>Conforme nossa conversa de ontem, segue o levantamento dos beneficiários do plano assistencial para o período de abril/2026.</p>
+           <p>O número total de associados cobertos é de <strong>142 trabalhadores ativos</strong>. Aguardo sua confirmação para encaminharmos à operadora.</p>
+           <p><strong>Atenciosamente,</strong><br/>Aliomar Santana<br/>Secretaria — SINDEHOT-SBC</p>`,
+    attach: null
+  },
+  4: {
+    subject: 'Fwd: Enel - Conta por email',
+    sender: 'Jose Lopes',
+    addr: 'jose.lopes@empresa.com.br',
+    date: '26 de março de 2026, 11:07',
+    body: `<p>Encaminho novamente a conta pois houve uma atualização no valor com desconto de pontualidade. Por favor, utilize este documento para o pagamento.</p>
+           <p><strong>Att,</strong><br/>Jose Lopes</p>`,
+    attach: [{ name: 'Enel_Conta_Atualizada.pdf', size: '301 KB', type: 'pdf' }]
+  },
+  5: {
+    subject: 'Re: Parcela do Acordo',
+    sender: 'aliomar santana',
+    addr: 'aliomar.santana@sindehot.com.br',
+    date: '26 de março de 2026, 08:45',
+    body: `<p>Bom dia Rildo,</p>
+           <p>Conforme combinado, segue o comprovante de pagamento da 2ª parcela do acordo firmado em fevereiro. O valor de <strong>R$ 3.200,00</strong> foi depositado na conta do sindicato.</p>
+           <p>Peço que me envie o recibo de confirmação assim que possível.</p>
+           <p><strong>Grato,</strong><br/>Aliomar Santana</p>`,
+    attach: null
+  },
+  6: {
+    subject: 'Parcela do Acordo',
+    sender: 'aliomar santana',
+    addr: 'aliomar.santana@sindehot.com.br',
+    date: '25 de março de 2026, 16:20',
+    body: `<p>Prezado Rildo,</p>
+           <p>Gostaria de tratar sobre a parcela do acordo referente ao processo trabalhista nº 0012345-26. Precisamos definir a data de pagamento da próxima parcela e os documentos necessários.</p>
+           <p>Poderia me ligar quando tiver disponibilidade?</p>
+           <p><strong>Atenciosamente,</strong><br/>Aliomar Santana</p>`,
+    attach: null
+  },
+  7: {
+    subject: 'Do retrofit ao resultado.pdf',
+    sender: 'lopesrildo72018@icloud.com',
+    addr: 'lopesrildo72018@icloud.com',
+    date: '25 de março de 2026, 14:05',
+    body: `<p>Segue o documento PDF sobre o processo de retrofit que você me pediu.</p>
+           <p>Está no anexo abaixo.</p>`,
+    attach: [{ name: 'Do_retrofit_ao_resultado.pdf', size: '2.4 MB', type: 'pdf' }]
+  },
+  8: {
+    subject: 'Documentos para reunião — Abril',
+    sender: 'lopesrildo72018@icloud.com',
+    addr: 'lopesrildo72018@icloud.com',
+    date: '21 de março de 2026, 10:30',
+    body: `<p>Rildo,</p>
+           <p>Segue em anexo a pauta e os documentos de apoio para a reunião da diretoria de abril. Por favor confirme o recebimento.</p>`,
+    attach: null
+  }
+};
+ 
+let currentEmail = null;
+ 
+function openEmail(id) {
+  const e = emails[id];
+  if(!e) return;
+  currentEmail = id;
+ 
+  // marca como lida
+  document.querySelectorAll('.email-row').forEach(r => {
+    r.classList.remove('active');
+    if(r.dataset.id == id){
+      r.classList.add('active');
+      r.classList.remove('unread');
+    }
+  });
+ 
+  // preenche painel
+  document.getElementById('readSubject').textContent = e.subject;
+  const initials = e.sender.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('readAvatar').textContent = initials;
+  document.getElementById('readName').textContent = e.sender;
+  document.getElementById('readAddr').textContent = '<' + e.addr + '>';
+  document.getElementById('readDate').textContent = e.date;
+  document.getElementById('readBody').innerHTML = e.body;
+ 
+  const attachDiv = document.getElementById('readAttach');
+  const attachFiles = document.getElementById('attachFiles');
+  if(e.attach && e.attach.length > 0){
+    attachDiv.style.display = 'block';
+    attachFiles.innerHTML = e.attach.map(a => `
+      <a href="#" class="attach-file" onclick="return false;">
+        <div class="attach-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div><div class="attach-name">${a.name}</div><div class="attach-size">${a.size}</div></div>
+      </a>
+    `).join('');
+  } else {
+    attachDiv.style.display = 'none';
+  }
+ 
+  document.getElementById('readEmpty').style.display = 'none';
+  const rc = document.getElementById('readContent');
+  rc.style.display = 'flex';
+}
+ 
+// Compose modal
+document.getElementById('btnCompose').addEventListener('click', () => {
+  document.getElementById('composeModal').classList.toggle('open');
+});
+document.getElementById('composeClose').addEventListener('click', () => {
+  document.getElementById('composeModal').classList.remove('open');
+});
+ 
+// Sair
+document.getElementById('btnSair').addEventListener('click', () => {
+  if(confirm('Deseja sair do Webmail?')) window.location.href = 'index.html';
+});
+ 
+// Folder items click
+document.querySelectorAll('.folder-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.folder-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    // Atualiza título da lista
+    const name = item.querySelector('.folder-name');
+    if(name){
+      const titleEl = document.querySelector('.list-toolbar-title');
+      if(titleEl) titleEl.textContent = name.textContent;
+    }
+  });
+});
+ 
+// Voltar ao site
+document.getElementById('btnSite') && document.getElementById('btnSite').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sindehot</title>
+  <link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+ 
+<style>
+/* ═══════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+ 
+:root{
+  --navy:      #1E3A6E;
+  --navy-dark: #132847;
+  --navy-deep: #0D1E35;
+  --gold:      #C9A227;
+  --gold-lt:   #E8C547;
+  --gold-dim:  rgba(201,162,39,0.12);
+  --gold-glow: rgba(201,162,39,0.28);
+  --cream:     #F8F5EE;
+  --white:     #FFFFFF;
+  --text:      #1A1A2E;
+  --muted:     #64748b;
+  --border:    #DDE3ED;
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --red:       #C0392B;
+  --red-dim:   rgba(192,57,43,0.10);
+}
+ 
+html,body{
+  width:100%;min-height:100%;
+  background:var(--cream);
+  color:var(--text);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+ 
+/* ═══════════════════════════════════════════
+   TOPBAR
+═══════════════════════════════════════════ */
+.topbar{
+  background:var(--navy-deep);
+  padding:7px 0;
+  position:relative;z-index:200;
+}
+.topbar-inner{
+  max-width:1140px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;justify-content:flex-end;
+}
+.topbar-date{
+  font-size:.72rem;font-weight:400;
+  letter-spacing:.06em;color:rgba(255,255,255,.45);
+}
+.topbar-webmail{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:5px 16px;
+  background:var(--gold);color:var(--navy-deep);
+  border-radius:4px;text-decoration:none;
+  font-size:.72rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;
+  transition:background .2s,transform .15s;
+}
+.topbar-webmail:hover{background:var(--gold-lt);transform:translateY(-1px);}
+.topbar-webmail svg{width:13px;height:13px;fill:none;stroke:var(--navy-deep);stroke-width:2.2;stroke-linecap:round;}
+ 
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+.site-header{
+  background:linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #2a4f8f 100%);
+  padding:22px 0 18px;
+  position:relative;overflow:hidden;
+}
+.site-header::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(201,162,39,.10), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0, rgba(255,255,255,.018) 1px, transparent 1px, transparent 60px);
+}
+.header-inner{
+  max-width:1140px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;gap:22px;
+  position:relative;z-index:1;
+}
+ 
+.brasao{
+  width:76px;height:76px;flex-shrink:0;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--gold) 0%,#8B6914 100%);
+  border:3px solid rgba(201,162,39,.35);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 4px rgba(201,162,39,.12), 0 8px 24px rgba(0,0,0,.3);
+  text-decoration:none;
+  transition:transform .2s;
+}
+.brasao:hover{transform:scale(1.04);}
+.brasao svg{width:38px;height:38px;fill:none;stroke:var(--navy-deep);stroke-width:1.6;stroke-linecap:round;}
+ 
+.header-texts{}
+.header-sigla{
+  font-family:var(--font-head);
+  font-size:1.95rem;font-weight:700;
+  color:var(--white);letter-spacing:.06em;line-height:1;
+}
+.header-sigla span{color:var(--gold);}
+.header-nome{
+  font-size:.75rem;font-weight:400;
+  color:rgba(255,255,255,.6);letter-spacing:.05em;
+  margin-top:5px;line-height:1.45;
+}
+.header-sub{
+  margin-left:auto;text-align:right;
+}
+.header-sub p{
+  font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;
+  text-transform:uppercase;margin-bottom:2px;
+}
+.header-fone{
+  font-size:1rem;font-weight:600;color:var(--gold);letter-spacing:.04em;
+}
+.header-horario{
+  font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;
+}
+ 
+/* ═══════════════════════════════════════════
+   NAV PRINCIPAL
+═══════════════════════════════════════════ */
+nav.main-nav{
+  background:var(--navy);
+  border-bottom:3px solid var(--gold);
+  position:sticky;top:0;z-index:150;
+  box-shadow:0 4px 20px rgba(0,0,0,.22);
+}
+.nav-inner{
+  max-width:1140px;margin:0 auto;
+  padding:0 24px;
+  display:flex;align-items:center;
+}
+.nav-items-wrap{
+  display:flex;align-items:center;
+}
+.nav-item{
+  position:relative;
+}
+.nav-link{
+  display:block;
+  padding:15px 18px;
+  font-size:.8rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  color:rgba(255,255,255,.72);
+  text-decoration:none;
+  transition:color .18s,background .18s;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.nav-link:hover,.nav-link.active{
+  color:var(--gold);
+  background:rgba(255,255,255,.04);
+}
+.nav-link.active{
+  position:relative;
+}
+.nav-link.active::after{
+  content:'';position:absolute;bottom:-3px;left:0;right:0;
+  height:3px;background:var(--gold);
+}
+.nav-caret{
+  display:inline-block;
+  width:0;height:0;
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-top:5px solid currentColor;
+  margin-left:5px;
+  vertical-align:middle;
+  opacity:.55;
+  transition:transform .2s;
+}
+.nav-item:hover .nav-caret{transform:rotate(180deg);opacity:.8;}
+ 
+/* dropdown */
+.nav-dropdown{
+  position:absolute;top:100%;left:0;
+  background:var(--navy-dark);
+  border:1px solid rgba(201,162,39,.18);
+  border-top:2px solid var(--gold);
+  border-radius:0 0 8px 8px;
+  min-width:210px;
+  box-shadow:0 14px 36px rgba(0,0,0,.32);
+  opacity:0;visibility:hidden;
+  transform:translateY(-6px);
+  transition:opacity .18s,transform .18s,visibility .18s;
+  z-index:200;
+}
+.nav-item:hover .nav-dropdown{
+  opacity:1;visibility:visible;transform:translateY(0);
+}
+.nav-dropdown a{
+  display:block;padding:11px 18px;
+  font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);
+  text-decoration:none;letter-spacing:.04em;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  transition:color .15s,background .15s,padding-left .15s;
+}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(255,255,255,.04);padding-left:24px;}
+.nav-dropdown a:last-child{border-bottom:none;}
+ 
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(120deg,var(--navy-dark) 0%,var(--navy) 50%,#1a3a7a 100%);
+  min-height:400px;
+  display:flex;align-items:center;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(201,162,39,.11), transparent 55%),
+    radial-gradient(ellipse at 85% 20%, rgba(201,162,39,.07), transparent 45%);
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-inner{
+  max-width:1140px;margin:0 auto;
+  padding:56px 24px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:48px;align-items:center;
+  position:relative;z-index:1;
+}
+@media(max-width:720px){.hero-inner{grid-template-columns:1fr;}}
+ 
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 14px;
+  background:rgba(201,162,39,.13);
+  border:1px solid rgba(201,162,39,.28);border-radius:999px;
+  font-size:.67rem;font-weight:600;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:18px;
+}
+.hero-eyebrow-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;
+  box-shadow:0 0 8px var(--gold);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+ 
+.hero-title{
+  font-family:var(--font-head);
+  font-size:clamp(1.9rem,3.8vw,3.1rem);
+  font-weight:700;color:var(--white);
+  line-height:1.2;margin-bottom:14px;
+}
+.hero-title em{font-style:normal;color:var(--gold);}
+.hero-sub{
+  font-size:.97rem;font-weight:400;line-height:1.78;
+  color:rgba(255,255,255,.6);margin-bottom:30px;max-width:430px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-gold{
+  padding:11px 26px;background:var(--gold);color:var(--navy-deep);
+  border:none;border-radius:6px;font-family:var(--font-body);
+  font-size:.86rem;font-weight:700;letter-spacing:.04em;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 4px 18px var(--gold-glow);
+  transition:background .2s,transform .18s,box-shadow .2s;
+  display:inline-block;
+}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 8px 28px var(--gold-glow);}
+.btn-outline{
+  padding:11px 26px;background:transparent;color:var(--white);
+  border:1px solid rgba(255,255,255,.28);border-radius:6px;
+  font-family:var(--font-body);font-size:.86rem;font-weight:600;
+  cursor:pointer;text-decoration:none;
+  transition:border-color .2s,background .2s,color .2s;
+  display:inline-block;
+}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,162,39,.08);color:var(--gold);}
+ 
+.hero-cards{display:flex;flex-direction:column;gap:11px;}
+.hero-card{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09);
+  border-left:3px solid var(--gold);
+  border-radius:8px;padding:15px 17px;
+  backdrop-filter:blur(8px);
+  cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .2s;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-card:hover{background:rgba(255,255,255,.11);transform:translateX(4px);}
+.hc-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(201,162,39,.14);
+  display:grid;place-items:center;flex-shrink:0;
+}
+.hc-icon svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;}
+.hc-label{font-size:.62rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.hc-title{font-size:.86rem;font-weight:600;color:var(--white);}
+.hc-arrow{margin-left:auto;opacity:.45;}
+.hc-arrow svg{width:14px;height:14px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;}
+ 
+/* ═══════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════ */
+.stats-bar{
+  background:var(--navy-dark);
+  border-bottom:3px solid var(--gold);
+  padding:18px 0;
+}
+.stats-inner{
+  max-width:1140px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-around;
+  flex-wrap:wrap;gap:18px;
+}
+.stat-item{text-align:center;}
+.stat-num{
+  font-family:var(--font-head);font-size:1.9rem;font-weight:700;
+  color:var(--gold);line-height:1;
+}
+.stat-label{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px;}
+ 
+/* ═══════════════════════════════════════════
+   CONTEÚDO PRINCIPAL — 2 colunas
+═══════════════════════════════════════════ */
+.page-content{
+  max-width:1140px;margin:0 auto;
+  padding:44px 24px;
+  display:grid;grid-template-columns:1fr 300px;
+  gap:28px;
+}
+@media(max-width:900px){.page-content{grid-template-columns:1fr;}}
+ 
+/* ── Section head ── */
+.section-head{
+  display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  padding-bottom:13px;border-bottom:2px solid var(--border);
+}
+.section-head h2{
+  font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--navy);
+}
+.section-badge{
+  padding:3px 10px;background:var(--navy);border-radius:4px;
+  font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+}
+ 
+/* ── News / Avisos ── */
+.news-grid{display:flex;flex-direction:column;gap:14px;}
+.news-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;
+  display:flex;gap:0;
+  transition:box-shadow .22s,transform .22s;
+  cursor:pointer;text-decoration:none;
+}
+.news-card:hover{box-shadow:0 8px 28px rgba(30,58,110,.11);transform:translateY(-2px);}
+.news-card-accent{width:5px;flex-shrink:0;background:var(--navy);}
+.news-card.destaque .news-card-accent{background:var(--gold);}
+.news-card.assembleia .news-card-accent,.news-card.urgente .news-card-accent{background:#C0392B;}
+.news-card-body{padding:15px 17px;flex:1;}
+.news-meta{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.news-tag{
+  padding:2px 8px;border-radius:3px;
+  font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+}
+.news-tag.conv{background:rgba(201,162,39,.13);color:#8B6914;}
+.news-tag.info{background:rgba(30,58,110,.09);color:var(--navy);}
+.news-tag.urgente,.news-tag.assembleia{background:rgba(192,57,43,0.12);color:#C0392B;}
+.tipo-assembleia{border-left:3px solid #C0392B;}
+.news-date{font-size:.7rem;color:var(--muted);}
+.news-title{font-size:.93rem;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:5px;}
+.news-card.destaque .news-title{color:var(--navy);font-size:.97rem;}
+.news-excerpt{font-size:.78rem;color:var(--muted);line-height:1.55;}
+.news-link{display:inline-flex;align-items:center;gap:4px;margin-top:9px;font-size:.76rem;font-weight:600;color:var(--navy);}
+.news-link svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+ 
+/* ── Sidebar ── */
+.sidebar-widget{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;margin-bottom:18px;
+}
+.widget-head{
+  background:var(--navy);padding:11px 15px;
+  display:flex;align-items:center;gap:8px;
+}
+.widget-head svg{width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
+.widget-head h3{font-family:var(--font-head);font-size:.92rem;font-weight:700;color:var(--white);}
+.widget-body{padding:14px;}
+ 
+/* acesso rápido */
+.quick-links{display:flex;flex-direction:column;gap:5px;}
+.quick-link{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 11px;border-radius:6px;
+  border:1px solid var(--border);
+  text-decoration:none;color:var(--text);
+  font-size:.8rem;font-weight:500;
+  transition:border-color .18s,background .18s,color .18s;
+}
+.quick-link:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--navy);}
+.quick-link svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;flex-shrink:0;transition:stroke .18s;}
+.quick-link:hover svg{stroke:var(--gold);}
+.quick-link span{flex:1;}
+.quick-link .arr{width:11px;height:11px;opacity:.35;}
+ 
+/* agenda */
+.agenda-items{display:flex;flex-direction:column;gap:10px;}
+.agenda-item{display:flex;gap:11px;align-items:flex-start;}
+.agenda-date{
+  width:40px;height:40px;border-radius:7px;flex-shrink:0;
+  background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.agenda-day{font-size:1.05rem;font-weight:700;color:var(--gold);line-height:1;}
+.agenda-month{font-size:.52rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.agenda-title{font-size:.8rem;font-weight:600;color:var(--text);}
+.agenda-local{font-size:.7rem;color:var(--muted);margin-top:1px;}
+ 
+/* ═══════════════════════════════════════════
+   CONVÊNIOS
+═══════════════════════════════════════════ */
+.convenios-section{
+  background:var(--white);
+  border-top:1px solid var(--border);
+  padding:48px 0;
+}
+.conv-inner{
+  max-width:1140px;margin:0 auto;padding:0 24px;
+}
+.conv-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:16px;margin-top:24px;
+}
+@media(max-width:860px){.conv-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:500px){.conv-grid{grid-template-columns:1fr;}}
+.conv-card{
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:28px 20px;
+  border:1px solid var(--border);border-radius:10px;
+  text-decoration:none;
+  transition:border-color .2s,box-shadow .2s,transform .2s;
+  background:var(--cream);
+}
+.conv-card:hover{
+  border-color:var(--gold);
+  box-shadow:0 8px 28px rgba(201,162,39,.14);
+  transform:translateY(-3px);
+}
+.conv-icon{
+  width:52px;height:52px;border-radius:12px;
+  background:rgba(30,58,110,.08);
+  display:grid;place-items:center;margin-bottom:14px;
+  transition:background .2s;
+}
+.conv-card:hover .conv-icon{background:var(--gold-dim);}
+.conv-icon svg{width:22px;height:22px;fill:none;stroke:var(--navy);stroke-width:1.7;stroke-linecap:round;transition:stroke .2s;}
+.conv-card:hover .conv-icon svg{stroke:var(--gold);}
+.conv-name{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.conv-desc{font-size:.75rem;color:var(--muted);line-height:1.45;}
+ 
+/* ═══════════════════════════════════════════
+   FAIXA CONTATO
+═══════════════════════════════════════════ */
+.contact-strip{
+  background:var(--navy);
+  padding:28px 0;
+}
+.contact-inner{
+  max-width:1140px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.contact-block{}
+.contact-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--white);}
+.contact-value a{color:var(--gold);text-decoration:none;}
+.contact-value a:hover{text-decoration:underline;}
+.contact-sub{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.contact-cta{}
+ 
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  background:var(--navy-deep);
+  border-top:3px solid var(--gold);
+  padding:44px 0 0;
+}
+.footer-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:40px;padding-bottom:36px;
+}
+@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+.footer-brand .sigla{
+  font-family:var(--font-head);font-size:1.4rem;font-weight:700;
+  color:var(--white);letter-spacing:.05em;margin-bottom:10px;
+}
+.footer-brand .sigla span{color:var(--gold);}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;max-width:280px;}
+.footer-col h4{
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{
+  font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;
+  transition:color .15s;
+}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.07);
+  padding:16px 0;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);}
+.footer-dev{font-size:.72rem;color:rgba(255,255,255,.25);}
+.footer-dev a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-dev a:hover{color:var(--gold);}
+ 
+/* ═══════════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════════ */
+.reveal{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .55s ease,transform .55s ease;
+}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.08s;}
+.rd2{transition-delay:.16s;}
+.rd3{transition-delay:.24s;}
+ 
+/* ═══════════════════════════════════════════
+   HAMBURGUER MOBILE
+═══════════════════════════════════════════ */
+.nav-toggle{
+  display:none;
+  margin-left:auto;
+  background:none;border:none;cursor:pointer;padding:6px;
+}
+.nav-toggle span{
+  display:block;width:22px;height:2px;
+  background:rgba(255,255,255,.8);border-radius:2px;
+  margin:5px 0;transition:transform .2s,opacity .2s;
+}
+@media(max-width:768px){
+  .nav-toggle{display:block;}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-items-wrap{
+    display:none;flex-direction:column;width:100%;
+    padding-bottom:8px;
+  }
+  .nav-items-wrap.open{display:flex;}
+  .nav-item{width:100%;}
+  .nav-link{padding:11px 4px;}
+  .nav-dropdown{
+    position:static;opacity:1;visibility:visible;transform:none;
+    box-shadow:none;border:none;border-left:3px solid var(--gold);
+    background:rgba(255,255,255,.04);border-radius:0;min-width:0;
+    display:none;
+  }
+  .nav-item.open .nav-dropdown{display:block;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- ════ TOPBAR ════ -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="webmail.html" class="topbar-webmail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Webmail
+    </a>
+  </div>
+</div>
+ 
+<!-- ════ HEADER ════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
+      <img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;">
+    </a>
+    <div class="header-texts">
+      <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
+      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+    </div>
+    <div class="header-sub">
+      <p>Fale conosco</p>
+      <div class="header-fone">(11) 4122-2888</div>
+      <div class="header-horario">Seg–Sex, 9h às 17h</div>
+    </div>
+  </div>
+</header>
+ 
+<!-- ════ NAV ════ -->
+<nav class="main-nav" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <div class="nav-items-wrap" id="navItems">
+ 
+      <div class="nav-item">
+        <a href="index.html" class="nav-link active">Home</a>
+      </div>
+ 
+      <div class="nav-item">
+        <a href="somos.html" class="nav-link">Quem Somos</a>
+      </div>
+
+      <div class="nav-item">
+        <a href="informacoes.html" class="nav-link">Informações</a>
+      </div>
+ 
+      <div class="nav-item">  
+        <a href="convenios.html" class="nav-link">Convênios</a>
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span>
+        <div class="nav-dropdown">
+          <a href="caragua.html">Caraguatatuba</a>
+          <a href="grande.html">Praia Grande</a>
+          <a href="ferthotel.html">Fetrhotel</a>
+          <a href="oasis.html">Oásis</a>
+        </div>
+      </div>
+
+      <div class="nav-item">
+        <a href="conoscos.html" class="nav-link">Fale Conosco</a>
+      </div>
+ 
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+ 
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Bem-vindo ao SINDEHOT-SBC
+      </div>
+      <h1 class="hero-title">
+        Defendendo os <em>direitos</em><br/>dos hoteleiros de<br/>São Bernardo
+      </h1>
+      <p class="hero-sub">
+        Há décadas representando com orgulho os trabalhadores em hotéis, apart-hotéis, flats e similares da região do ABC Paulista.
+      </p>
+      <div class="hero-actions">
+        <a href="conoscos.html" class="btn-gold">Filie-se Agora</a>
+        <a href="somos.html" class="btn-outline">Saiba Mais</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <a href="docs/convenção.pdf" target="blank" class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div>
+          <div class="hc-label">Em vigor</div>
+          <div class="hc-title">Convenção Coletiva 2024–2026</div>
+        </div>
+        <div class="hc-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+      
+      <a href="convenios.html" class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div>
+          <div class="hc-label">Benefícios</div>
+          <div class="hc-title">Convênios para Associados</div>
+        </div>
+        <div class="hc-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════ STATS ════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">30+</div><div class="stat-label">Anos de atuação</div></div>
+    <div class="stat-item reveal rd1"><div class="stat-num">3</div><div class="stat-label">Municípios representados</div></div>
+    <div class="stat-item reveal rd2"><div class="stat-num">12+</div><div class="stat-label">Convênios ativos</div></div>
+    <div class="stat-item reveal rd3"><div class="stat-num">100%</div><div class="stat-label">Comprometimento</div></div>
+  </div>
+</div>
+ 
+<!-- ════ CONTEÚDO PRINCIPAL ════ -->
+<main class="page-content">
+ 
+  <!-- Coluna principal -->
+  <div>
+    <div class="section-head">
+      <h2>Informações &amp; Avisos</h2>
+      <span class="section-badge">Atualizados</span>
+    </div>
+    <div class="news-grid">
+ 
+      <a href="docs/convenção.pdf" target="_blank" download class="news-card destaque reveal">
+        <div class="news-card-accent"></div>
+        <div class="news-card-body">
+          <div class="news-meta">
+            <span class="news-tag conv">Convenção Coletiva</span>
+            <span class="news-date">Out 2024</span>
+          </div>
+          <div class="news-title">Convenção Coletiva 2024–2026 disponível</div>
+          <div class="news-excerpt">A Convenção Coletiva de Trabalho com vigência de outubro/2024 a setembro/2026 está disponível para download. Acesse o documento completo da CCT vigente.</div>
+          <span class="news-link">Baixar documento <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="docs/Circular2526.pdf" target="_blank" download class="news-card reveal rd1">
+        <div class="news-card-accent"></div>
+        <div class="news-card-body">
+          <div class="news-meta">
+            <span class="news-tag info">Circular</span>
+            <span class="news-date">2024</span>
+          </div>
+          <div class="news-title">Circular Informativa da nova CCT 2024–2026</div>
+          <div class="news-excerpt">A circular informativa sobre a nova Convenção Coletiva 2024–2026 está disponível para consulta. Confira os principais pontos e cláusulas da CCT.</div>
+          <span class="news-link">Ler circular <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+      </a>
+
+      <a href="docs/aditivo.pdf" target="_blank"  download class="news-card reveal rd2">
+        <div class="news-card-accent"></div>
+        <div class="news-card-body">
+          <div class="news-meta">
+            <span class="news-tag info">Informação</span>
+            <span class="news-date">2023</span>
+          </div>
+          <div class="news-title">Termo Aditivo 2023/2024 — Cláusulas econômicas anteriores</div>
+          <div class="news-excerpt">O Termo Aditivo referente ao período 2023/2024 com as cláusulas econômicas anteriores está disponível para consulta dos associados.</div>
+          <span class="news-link">Baixar <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></span>
+        </div>
+      </a>
+ 
+    </div>
+  </div>
+ 
+  <!-- Sidebar -->
+  <aside class="sidebar">
+ 
+    <!-- Acesso Rápido -->
+    <div class="sidebar-widget reveal">
+      <div class="widget-head">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h3>Acesso Rápido</h3>
+      </div>
+      <div class="widget-body">
+        <div class="quick-links">
+          <a href="webmail.html" class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Webmail</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="docs/convenção.pdf" target="_blank" download class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Baixar CCT 2024–2026</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="conoscos.html" class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.69 19 19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Fale Conosco</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="convenios.html" class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Ver Convênios</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Agenda -->
+    
+
+    <!-- Contribuição Assistencial -->
+    <div class="sidebar-widget reveal rd2">
+      <div class="widget-head">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <h3>Contribuição Assistencial</h3>
+      </div>
+      <div class="widget-body">
+        <div class="quick-links">
+          <a href="https://www.sehal.com.br" target="_blank" class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Gerar Guia/Boleto</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted);margin-top:10px;line-height:1.5;">Empresários: acesse o portal do SEHAL para emitir as guias mensais da Contribuição Assistencial/Negocial.</p>
+      </div>
+    </div>
+
+  </aside>
+</main>
+ 
+<!-- ════ CONVÊNIOS ════ -->
+<section class="convenios-section">
+  <div class="conv-inner">
+    <div class="section-head reveal">
+      <h2>Convênios para Associados</h2>
+      <span class="section-badge">Benefícios exclusivos</span>
+    </div>
+    <div class="conv-grid">
+      <div class="conv-card reveal">
+        <div class="conv-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="conv-name">Saúde / Plano Médico</div>
+        <div class="conv-desc">Descontos em clínicas e laboratórios</div>
+      </div>
+      
+      <div class="conv-card reveal rd1">
+        <div class="conv-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <div class="conv-name">Educação</div>
+        <div class="conv-desc">Cursos profissionalizantes e idiomas</div>
+      </div>
+
+      <div class="conv-card reveal rd2">
+        <div class="conv-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="conv-name">Farmácias</div>
+        <div class="conv-desc">Desconto em medicamentos</div>
+      </div>
+
+      <div class="conv-card reveal rd3">
+        <div class="conv-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="conv-name">Financeiro</div>
+        <div class="conv-desc">Crédito e empréstimo facilitado</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ════ FAIXA CONTATO ════ -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div class="contact-block reveal">
+      <div class="contact-label">Telefone</div>
+      <div class="contact-value">(11) 4122-2888</div>
+      <div class="contact-sub">Seg–Sex, 9h às 17h</div>
+    </div>
+    <div class="contact-block reveal rd1">
+      <div class="contact-label">E-mail</div>
+      <div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div>
+      <div class="contact-sub">Resposta em até 24h</div>
+    </div>
+    <div class="reveal rd2">
+      <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
+    </div>
+  </div>
+</div>
+ 
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="sigla">SINDEHOT<span>-SBC</span></div>
+        <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="somos.html">Quem Somos</a></li>
+          <li><a href="convenios.html">Convênios</a></li>
+          <li><a href="conoscos.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+    <h4>Informações</h4>
+    <ul>
+        <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
+        <li><a href="informacoes.html#circulares">Circulares</a></li>
+        <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
+        <li><a href="webmail.html">Webmail</a></li>
+    </ul>
+</div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p>
+    </div>
+  </div>
+</footer>
+ 
+<!-- ════ SCRIPTS ════ -->
+<script>
+// Reveal on scroll
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  els.forEach(el=>obs.observe(el));
+})();
+ 
+// Menu mobile
+function toggleMenu(){
+  const wrap = document.getElementById('navItems');
+  wrap.classList.toggle('open');
+}
+ 
+// Dropdown mobile (click em vez de hover)
+function toggleDropdown(el){
+  if(window.innerWidth > 768) return;
+  const item = el.closest('.nav-item');
+  item.classList.toggle('open');
+}
+</script>
+ 
+</body>
+</html>
