@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
@@ -101,12 +101,12 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
 
 /* DESTAQUE — COLÔNIAS */
 .colonias-card{
-  background:linear-gradient(135deg,var(--navy) 0%,#1a3a7a 100%);
+  background:url('img/piscina-fert.png') center/cover no-repeat;
   border-radius:14px;overflow:hidden;margin-bottom:48px;
   border:1px solid rgba(201,162,39,.2);
   position:relative;
 }
-.colonias-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.13),transparent 60%),linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;}
+.colonias-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(19,40,71,.50) 0%,rgba(26,58,122,.40) 100%);}
 .colonias-inner{padding:36px 36px 32px;position:relative;z-index:1;}
 .colonias-badge{display:inline-flex;align-items:center;gap:7px;padding:4px 13px;background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.3);border-radius:999px;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
 .colonias-badge svg{width:13px;height:13px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
@@ -207,8 +207,8 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
   display:grid;grid-template-columns:1fr 1fr;
 }
 @media(max-width:700px){.odonto-card{grid-template-columns:1fr;}}
-.odonto-left{padding:32px 32px;background:linear-gradient(135deg,var(--navy) 0%,#2a4f8f 100%);position:relative;overflow:hidden;}
-.odonto-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(201,162,39,.12),transparent 55%);}
+.odonto-left{padding:32px 32px;background:url('img/odonto.jpg') center/cover no-repeat;position:relative;overflow:hidden;}
+.odonto-left::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(19,40,71,.45) 0%,rgba(30,58,110,.35) 100%);}
 .odonto-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;background:rgba(201,162,39,.18);border:1px solid rgba(201,162,39,.3);border-radius:999px;font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;position:relative;z-index:1;}
 .odonto-badge svg{width:12px;height:12px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
 .odonto-title{font-family:var(--font-head);font-size:1.35rem;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.3;position:relative;z-index:1;}
@@ -550,14 +550,14 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         </div>
       </div>
       <div class="conv-card-body">
-        <p class="conv-card-desc">Apresente seu boleto de trabalho no SESC Santo André e matricule-se já. Aproveite todas as vantagens que o SESC oferece para você e sua família.</p>
+        <p class="conv-card-desc">Apresente seu holerite ou carteira de trabalho no SESC Santo André e matricule-se já. Aproveite todas as vantagens que o SESC oferece para você e sua família.</p>
         <div class="conv-tag tag-gratis">
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
           Matrícula gratuita
         </div>
       </div>
       <div class="conv-card-footer">
-        <div class="conv-contato"><strong>SESC</strong>Av. Goiás, 342 — Sto. André</div>
+        <div class="conv-contato"><strong>SESC</strong>R. Tamarutaca, 302 - Vila Guioma — Sto. André</div>
       </div>
     </div>
 
@@ -615,7 +615,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         Consultório próprio do sindicato
       </div>
       <h2 class="odonto-title">Saúde Bucal <em>100% gratuita</em></h2>
-      <p class="odonto-sub">O SINDEHOT-SBC tem consultório odontológico próprio. Atendimento gratuito para associados, cônjuge e filhos de 0 a 18 anos, com a Dra. Cely.</p>
+      <p class="odonto-sub">O SINDEHOT-SBC tem consultório odontológico próprio. Atendimento gratuito para associados, cônjuge e filhos de 0 a 18 anos.</p>
       <div class="odonto-gratis">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         <span>Gratuito para associados + família (filhos até 18 anos)</span>
@@ -650,8 +650,8 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
       <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     </div>
     <div class="sorteio-text">
-      <h3>Sorteio mensal de estadia nas Colônias — Arcos Dorados</h3>
-      <p>O SINDEHOT promove mensalmente um sorteio exclusivo de estadia nas Colônias de Férias para funcionários da Arcos Dorados (McDonald's). O sorteado e sua família desfrutam de descanso, lazer e qualidade de vida com toda a estrutura das colônias.</p>
+      <h3>Sorteio mensal de estadia nas Colônias</h3>
+      <p>O SINDEHOT promove mensalmente um sorteio exclusivo de estadia nas Colônias de Férias para funcionários da categoria. O sorteado e sua família desfrutam de descanso, lazer e qualidade de vida com toda a estrutura das colônias.</p>
     </div>
     <div class="sorteio-badge">
       <span>Periodicidade</span>
@@ -734,6 +734,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             <div class="footer-brand">
                 <div class="sigla">SINDEHOT<span>-SBC</span></div>
                 <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+                <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
             </div>
 
             <div class="footer-col">

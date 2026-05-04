@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cadastro de Empresa — SINDEHOT-SBC</title>
+  <link rel="icon" href="img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1E3A6E;--navy-dark:#132847;--navy-deep:#0D1E35;
+  --gold:#C9A227;--gold-lt:#E8C547;--gold-dim:rgba(201,162,39,0.12);--gold-glow:rgba(201,162,39,0.28);
+  --cream:#F8F5EE;--white:#FFFFFF;--text:#1A1A2E;--muted:#64748b;--border:#DDE3ED;
+  --green:#1c7846;--green-dim:rgba(28,120,70,0.1);
+  --red:#C0392B;--red-dim:rgba(192,57,43,0.10);
+  --font-head:'Playfair Display',serif;--font-body:'Source Sans 3',sans-serif;
+}
+html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);font-family:var(--font-body);overflow-x:hidden;scroll-behavior:smooth;}
+
+/* TOPBAR */
+.topbar{background:var(--navy-deep);padding:7px 0;z-index:200;position:relative;}
+.topbar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:flex-end;}
+.topbar-webmail{display:inline-flex;align-items:center;gap:7px;padding:5px 16px;background:var(--gold);color:var(--navy-deep);border-radius:4px;text-decoration:none;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;transition:background .2s,transform .15s;}
+.topbar-webmail:hover{background:var(--gold-lt);transform:translateY(-1px);}
+.topbar-webmail svg{width:13px;height:13px;fill:none;stroke:var(--navy-deep);stroke-width:2.2;stroke-linecap:round;}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
+.brasao{width:76px;height:76px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
+.brasao:hover{transform:scale(1.04);}
+.header-sigla{font-family:var(--font-head);font-size:1.95rem;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
+.header-sigla span{color:var(--gold);}
+.header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
+.header-sub{margin-left:auto;text-align:right;}
+@media(max-width:767px){.header-sub{display:none;}}
+.header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
+.header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
+.header-horario{font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;}
+
+/* NAV */
+nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;}
+.nav-item{position:relative;}
+.nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
+.nav-link.active::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:var(--gold);}
+.nav-caret{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:5px;vertical-align:middle;opacity:.55;transition:transform .2s;}
+.nav-item:hover .nav-caret{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:100%;left:0;background:var(--navy-dark);border:1px solid rgba(201,162,39,.18);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;min-width:210px;box-shadow:0 14px 36px rgba(0,0,0,.32);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:200;}
+.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown a{display:block;padding:11px 18px;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .15s,background .15s,padding-left .15s;}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(255,255,255,.04);padding-left:24px;}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-toggle{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;margin:5px 0;}
+@media(max-width:768px){
+  .nav-toggle{display:block;}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-items-wrap{display:none;flex-direction:column;width:100%;padding-bottom:8px;}
+  .nav-items-wrap.open{display:flex;}
+  .nav-item{width:100%;}
+  .nav-link{padding:11px 4px;}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
+  .nav-item.open .nav-dropdown{display:block;}
+}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:44px 0 40px;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;}
+.page-hero-inner{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+.page-hero h1{font-family:var(--font-head);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.page-hero h1 em{font-style:normal;color:var(--gold);}
+.page-hero p{font-size:.95rem;color:rgba(255,255,255,.58);max-width:560px;line-height:1.7;}
+
+/* WRAPPER */
+.page-wrapper{max-width:860px;margin:0 auto;padding:48px 24px 64px;}
+
+/* FORM CARD */
+.form-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;margin-bottom:24px;
+}
+.form-card-head{
+  background:var(--navy);padding:18px 28px;
+  border-bottom:3px solid var(--gold);
+  display:flex;align-items:center;gap:12px;
+}
+.form-card-head svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;flex-shrink:0;}
+.form-card-head h2{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--white);}
+.form-card-head p{font-size:.75rem;color:rgba(255,255,255,.45);margin-top:2px;}
+.form-card-body{padding:28px;}
+
+/* FORM ELEMENTOS */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-row-auto{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px;}
+@media(max-width:620px){
+  .form-row,.form-row-3,.form-row-auto{grid-template-columns:1fr;}
+}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:.78rem;font-weight:600;color:var(--navy);letter-spacing:.03em;}
+.form-label span{color:#e53e3e;margin-left:2px;}
+.form-input,
+.form-select{
+  width:100%;padding:10px 14px;
+  border:1.5px solid var(--border);border-radius:7px;
+  font-family:var(--font-body);font-size:.88rem;color:var(--text);
+  background:var(--white);outline:none;
+  transition:border-color .18s,box-shadow .18s;
+}
+.form-input:focus,.form-select:focus{
+  border-color:var(--navy);
+  box-shadow:0 0 0 3px rgba(30,58,110,.08);
+}
+.form-input::placeholder{color:#b0b8c8;}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;cursor:pointer;}
+.form-hint{font-size:.7rem;color:var(--muted);margin-top:2px;}
+
+/* INPUT COM PREFIXO */
+.input-prefix-wrap{position:relative;}
+.input-prefix{
+  position:absolute;left:0;top:0;bottom:0;
+  display:flex;align-items:center;padding:0 12px;
+  font-size:.82rem;font-weight:600;color:var(--muted);
+  border-right:1.5px solid var(--border);
+  background:var(--cream);border-radius:7px 0 0 7px;
+  pointer-events:none;
+}
+.input-prefix-wrap .form-input{padding-left:52px;}
+
+/* DIVIDER */
+.form-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:8px 0 20px;
+}
+.form-divider span{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.form-divider::before,.form-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* CHECKBOX */
+.form-check-group{
+  display:flex;align-items:flex-start;gap:11px;
+  padding:16px 18px;
+  background:var(--gold-dim);
+  border:1.5px solid rgba(201,162,39,.25);
+  border-radius:8px;
+  margin-bottom:20px;
+}
+.form-check{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--navy);cursor:pointer;}
+.form-check-label{font-size:.88rem;color:var(--navy);font-weight:600;line-height:1.5;}
+.form-check-label small{display:block;font-size:.75rem;font-weight:400;color:var(--muted);margin-top:2px;}
+
+/* RADIO GROUP */
+.radio-group{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.radio-group-title{font-size:.78rem;font-weight:600;color:var(--navy);letter-spacing:.03em;margin-bottom:6px;}
+.radio-item{display:flex;align-items:center;gap:10px;cursor:pointer;}
+.radio-item input[type="radio"]{width:16px;height:16px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;}
+.radio-item label{font-size:.86rem;color:var(--text);cursor:pointer;}
+
+/* AÇÕES */
+.form-actions{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;
+  padding-top:8px;
+}
+.btn-submit{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 32px;
+  background:var(--navy);color:var(--white);
+  border:none;border-radius:8px;
+  font-family:var(--font-body);font-size:.92rem;font-weight:700;
+  letter-spacing:.04em;cursor:pointer;
+  box-shadow:0 4px 14px rgba(30,58,110,.2);
+  transition:background .2s,transform .18s,box-shadow .2s;
+}
+.btn-submit:hover{background:var(--navy-dark);transform:translateY(-1px);box-shadow:0 8px 22px rgba(30,58,110,.28);}
+.btn-submit svg{width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round;}
+.btn-clear{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:13px 22px;
+  background:transparent;color:var(--muted);
+  border:1.5px solid var(--border);border-radius:8px;
+  font-family:var(--font-body);font-size:.88rem;font-weight:600;
+  cursor:pointer;
+  transition:border-color .18s,color .18s,background .18s;
+}
+.btn-clear:hover{border-color:var(--navy);color:var(--navy);background:rgba(30,58,110,.04);}
+.btn-clear svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+
+/* SUCCESS */
+.form-success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:52px 28px;gap:16px;
+}
+.form-success.visible{display:flex;}
+.success-icon{width:68px;height:68px;border-radius:50%;background:rgba(28,120,70,.1);display:grid;place-items:center;}
+.success-icon svg{width:32px;height:32px;fill:none;stroke:#1c7846;stroke-width:2.2;stroke-linecap:round;}
+.form-success h3{font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--navy);}
+.form-success p{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:400px;}
+.btn-back{margin-top:8px;padding:10px 24px;background:transparent;border:1.5px solid var(--navy);border-radius:7px;font-family:var(--font-body);font-size:.86rem;font-weight:600;color:var(--navy);cursor:pointer;transition:background .18s,color .18s;}
+.btn-back:hover{background:var(--navy);color:var(--white);}
+
+/* AVISO INFO */
+.info-box{
+  background:rgba(30,58,110,.05);border:1px solid rgba(30,58,110,.12);
+  border-radius:8px;padding:14px 18px;margin-bottom:28px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.info-box svg{width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:1px;}
+.info-box p{font-size:.82rem;color:var(--navy);line-height:1.6;}
+.info-box a{color:var(--gold);font-weight:600;text-decoration:none;}
+
+/* CONTACT STRIP */
+.contact-strip{background:var(--navy);padding:28px 0;}
+.contact-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.contact-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--white);}
+.contact-value a{color:var(--gold);text-decoration:none;}
+.contact-sub{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy-deep);border:none;border-radius:6px;font-family:var(--font-body);font-size:.86rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .18s;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+
+/* FOOTER */
+footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px 0 0;}
+.footer-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:36px;}
+@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+.footer-brand .sigla{font-family:var(--font-head);font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:.05em;margin-bottom:10px;}
+.footer-brand .sigla span{color:var(--gold);}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;max-width:280px;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);}
+.footer-dev{font-size:.72rem;color:rgba(255,255,255,.25);}
+.footer-dev a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-dev a:hover{color:var(--gold);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="webmail.html" class="topbar-webmail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Webmail
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
+      <img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;">
+    </a>
+    <div class="header-texts">
+      <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
+      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+    </div>
+    <div class="header-sub">
+      <p>Fale conosco</p>
+      <div class="header-fone">(11) 4122-2888</div>
+      <div class="header-horario">Seg–Sex, 9h às 17h</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <div class="nav-items-wrap" id="navItems">
+      <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+      <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
+      <div class="nav-item"><a href="informacoes.html" class="nav-link">Informações</a></div>
+      <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
+      <div class="nav-item">
+        <span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span>
+        <div class="nav-dropdown">
+          <a href="caragua.html">Caraguatatuba</a>
+          <a href="grande.html">Praia Grande</a>
+          <a href="ferthotel.html">Fetrhotel</a>
+          <a href="oasis.html">Oásis</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Cadastro de <em>Empresa</em></h1>
+    <p>Preencha os dados abaixo para registrar ou atualizar o cadastro da sua empresa junto ao SINDEHOT-SBC.</p>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="page-wrapper">
+
+  <div class="info-box reveal">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p>Campos marcados com <strong>*</strong> são obrigatórios. Em caso de dúvidas, entre em contato pelo <strong>(11) 4122-2888</strong> ou pelo <a href="conoscos.html">Fale Conosco</a>.</p>
+  </div>
+
+  <div id="formWrapper">
+
+    <!-- ═══ DADOS DA EMPRESA ═══ -->
+    <div class="form-card reveal rd1">
+      <div class="form-card-head">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <div>
+          <h2>Dados da Empresa</h2>
+          <p>Informações do estabelecimento hoteleiro</p>
+        </div>
+      </div>
+      <div class="form-card-body">
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="razaoSocial">Razão Social <span>*</span></label>
+          <input type="text" class="form-input" id="razaoSocial" placeholder="Nome jurídico completo da empresa"/>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="nomeFantasia">Nome Fantasia</label>
+          <input type="text" class="form-input" id="nomeFantasia" placeholder="Nome comercial (se diferente da razão social)"/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="cnpj">CNPJ <span>*</span></label>
+            <input type="text" class="form-input" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dataAbertura">Data de Abertura</label>
+            <input type="text" class="form-input" id="dataAbertura" placeholder="dd/mm/aaaa" maxlength="10"/>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="ramoAtividade">Ramo de Atividade <span>*</span></label>
+          <input type="text" class="form-input" id="ramoAtividade" placeholder="Ex: Hotel, Apart-Hotel, Flat, Similares..."/>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="enderecoEmpresa">Endereço <span>*</span></label>
+          <input type="text" class="form-input" id="enderecoEmpresa" placeholder="Rua, Avenida, número..."/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="bairroEmpresa">Bairro</label>
+            <input type="text" class="form-input" id="bairroEmpresa" placeholder="Bairro"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cidadeEmpresa">Cidade <span>*</span></label>
+            <select class="form-select" id="cidadeEmpresa">
+              <option value="">Selecione a cidade...</option>
+              <option value="sbc">São Bernardo do Campo</option>
+              <option value="diadema">Diadema</option>
+              <option value="rgs">Rio Grande da Serra</option>
+              <option value="outra">Outra</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="complementoEmpresa">Complemento</label>
+            <input type="text" class="form-input" id="complementoEmpresa" placeholder="Sala, andar, bloco..."/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cepEmpresa">CEP</label>
+            <input type="text" class="form-input" id="cepEmpresa" placeholder="00000-000" maxlength="9"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="telefoneEmpresa">Telefone <span>*</span></label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">0xx</span>
+              <input type="text" class="form-input" id="telefoneEmpresa" placeholder="(11) 0000-0000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="qtdFuncionarios">Quant. de Funcionários</label>
+            <input type="number" class="form-input" id="qtdFuncionarios" placeholder="0" min="0"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="responsavel">Responsável</label>
+            <input type="text" class="form-input" id="responsavel" placeholder="Nome do responsável pela empresa"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="admissaoPrimeiro">Admissão do 1º Funcionário</label>
+            <input type="text" class="form-input" id="admissaoPrimeiro" placeholder="dd/mm/aaaa" maxlength="10"/>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ DADOS DO ESCRITÓRIO ═══ -->
+    <div class="form-card reveal rd2">
+      <div class="form-card-head">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div>
+          <h2>Dados do Escritório Contábil</h2>
+          <p>Responsável pelo recolhimento das contribuições</p>
+        </div>
+      </div>
+      <div class="form-card-body">
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="nomeEscritorio">Nome do Escritório</label>
+          <input type="text" class="form-input" id="nomeEscritorio" placeholder="Nome do escritório contábil"/>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="enderecoEscritorio">Endereço</label>
+          <input type="text" class="form-input" id="enderecoEscritorio" placeholder="Rua, Avenida, número..."/>
+        </div>
+
+        <div class="form-row-3">
+          <div class="form-group">
+            <label class="form-label" for="bairroEscritorio">Bairro</label>
+            <input type="text" class="form-input" id="bairroEscritorio" placeholder="Bairro"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cidadeEscritorio">Cidade</label>
+            <input type="text" class="form-input" id="cidadeEscritorio" placeholder="Cidade"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ufEscritorio">UF</label>
+            <select class="form-select" id="ufEscritorio">
+              <option value="SP" selected>SP</option>
+              <option value="AC">AC</option><option value="AL">AL</option><option value="AM">AM</option>
+              <option value="AP">AP</option><option value="BA">BA</option><option value="CE">CE</option>
+              <option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option>
+              <option value="MA">MA</option><option value="MG">MG</option><option value="MS">MS</option>
+              <option value="MT">MT</option><option value="PA">PA</option><option value="PB">PB</option>
+              <option value="PE">PE</option><option value="PI">PI</option><option value="PR">PR</option>
+              <option value="RJ">RJ</option><option value="RN">RN</option><option value="RO">RO</option>
+              <option value="RR">RR</option><option value="RS">RS</option><option value="SC">SC</option>
+              <option value="SE">SE</option><option value="TO">TO</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="complementoEscritorio">Complemento</label>
+            <input type="text" class="form-input" id="complementoEscritorio" placeholder="Sala, andar, bloco..."/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cepEscritorio">CEP</label>
+            <input type="text" class="form-input" id="cepEscritorio" placeholder="00000-000" maxlength="9"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="telefoneEscritorio">Telefone</label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">0xx</span>
+              <input type="text" class="form-input" id="telefoneEscritorio" placeholder="(11) 0000-0000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contatoEscritorio">Contato</label>
+            <input type="text" class="form-input" id="contatoEscritorio" placeholder="Nome da pessoa de contato"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="emailEscritorio">E-mail</label>
+            <input type="email" class="form-input" id="emailEscritorio" placeholder="email@escritorio.com.br"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email2Escritorio">E-mail (2)</label>
+            <input type="email" class="form-input" id="email2Escritorio" placeholder="email2@escritorio.com.br"/>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label" for="siteEscritorio">Site</label>
+          <input type="url" class="form-input" id="siteEscritorio" placeholder="https://www.escritorio.com.br"/>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══ FINALIZAÇÃO ═══ -->
+    <div class="form-card reveal">
+      <div class="form-card-head">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <div>
+          <h2>Finalização do Cadastro</h2>
+          <p>Opções e tipo de solicitação</p>
+        </div>
+      </div>
+      <div class="form-card-body">
+
+        <!-- Checkbox solicitação de guias -->
+        <div class="form-check-group">
+          <input type="checkbox" class="form-check" id="solicitacaoGuias"/>
+          <label class="form-check-label" for="solicitacaoGuias">
+            Solicitação de Guias (exceto GRCSU)
+            <small>Marque esta opção caso deseje receber as guias de contribuição por e-mail mensalmente.</small>
+          </label>
+        </div>
+
+        <!-- Tipo de operação -->
+        <div class="form-divider"><span>Tipo de Operação</span></div>
+
+        <div class="radio-group">
+          <div class="radio-group-title">Selecione o que deseja realizar <span style="color:#e53e3e">*</span></div>
+          <div class="radio-item">
+            <input type="radio" name="tipoOperacao" id="soInclusao" value="inclusao" checked/>
+            <label for="soInclusao">Somente Inclusão no Cadastro</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="tipoOperacao" id="soAlteracao" value="alteracao"/>
+            <label for="soAlteracao">Somente Alteração do Cadastro</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="tipoOperacao" id="exclusaoEmpresa" value="exclusao_empresa"/>
+            <label for="exclusaoEmpresa">Exclusão da Empresa no Cadastro</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="tipoOperacao" id="exclusaoEscritorio" value="exclusao_escritorio"/>
+            <label for="exclusaoEscritorio">Exclusão do Escritório no Cadastro</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="tipoOperacao" id="exclusaoAmbos" value="exclusao_ambos"/>
+            <label for="exclusaoAmbos">Exclusão de Ambos</label>
+          </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="form-actions">
+          <button class="btn-clear" type="button" onclick="limparFormulario()">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+            Limpar formulário
+          </button>
+          <button class="btn-submit" type="button" onclick="enviarCadastro()">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar Cadastro
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /formWrapper -->
+
+  <!-- SUCESSO -->
+  <div class="form-card" id="formSuccess" style="display:none;">
+    <div class="form-success visible">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Cadastro enviado!</h3>
+      <p>Recebemos as informações da sua empresa. Nossa equipe entrará em contato em até <strong>2 dias úteis</strong> para confirmar o cadastro.</p>
+      <button class="btn-back" onclick="voltarForm()">Fazer novo cadastro</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div>
+    <div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div><div class="contact-sub">Resposta em até 24h</div></div>
+    <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="sigla">SINDEHOT<span>-SBC</span></div>
+        <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="somos.html">Quem Somos</a></li>
+          <li><a href="convenios.html">Convênios</a></li>
+          <li><a href="conoscos.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
+          <li><a href="informacoes.html#circulares">Circulares</a></li>
+          <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
+          <li><a href="webmail.html">Webmail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.06});
+  els.forEach(el=>obs.observe(el));
+})();
+
+function toggleMenu(){document.getElementById('navItems').classList.toggle('open');}
+function toggleDropdown(el){if(window.innerWidth>768)return;el.closest('.nav-item').classList.toggle('open');}
+
+// Máscara CNPJ
+document.getElementById('cnpj').addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length<=14){
+    v=v.replace(/^(\d{2})(\d)/,'$1.$2');
+    v=v.replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3');
+    v=v.replace(/\.(\d{3})(\d)/,'.$1/$2');
+    v=v.replace(/(\d{4})(\d)/,'$1-$2');
+  }
+  this.value=v;
+});
+
+// Máscara datas
+['dataAbertura','admissaoPrimeiro'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'');
+    if(v.length>2) v=v.slice(0,2)+'/'+v.slice(2);
+    if(v.length>5) v=v.slice(0,5)+'/'+v.slice(5,9);
+    this.value=v;
+  });
+});
+
+// Máscara CEP
+['cepEmpresa','cepEscritorio'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'');
+    if(v.length>5) v=v.slice(0,5)+'-'+v.slice(5,8);
+    this.value=v;
+  });
+});
+
+// Enviar
+function enviarCadastro(){
+  const razao=document.getElementById('razaoSocial').value.trim();
+  const cnpj=document.getElementById('cnpj').value.trim();
+  const ramo=document.getElementById('ramoAtividade').value.trim();
+  const end=document.getElementById('enderecoEmpresa').value.trim();
+  const cidade=document.getElementById('cidadeEmpresa').value;
+  const tel=document.getElementById('telefoneEmpresa').value.trim();
+  const tipo=document.querySelector('input[name="tipoOperacao"]:checked');
+
+  if(!razao){alert('Por favor, informe a Razão Social.');document.getElementById('razaoSocial').focus();return;}
+  if(!cnpj){alert('Por favor, informe o CNPJ.');document.getElementById('cnpj').focus();return;}
+  if(!ramo){alert('Por favor, informe o Ramo de Atividade.');document.getElementById('ramoAtividade').focus();return;}
+  if(!end){alert('Por favor, informe o Endereço da empresa.');document.getElementById('enderecoEmpresa').focus();return;}
+  if(!cidade){alert('Por favor, selecione a Cidade.');document.getElementById('cidadeEmpresa').focus();return;}
+  if(!tel){alert('Por favor, informe o Telefone da empresa.');document.getElementById('telefoneEmpresa').focus();return;}
+  if(!tipo){alert('Por favor, selecione o tipo de operação.');return;}
+
+  document.getElementById('formWrapper').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+  window.scrollTo({top:document.querySelector('.page-wrapper').offsetTop-80,behavior:'smooth'});
+}
+
+// Limpar
+function limparFormulario(){
+  if(!confirm('Deseja limpar todos os campos do formulário?')) return;
+  document.querySelectorAll('.form-input,.form-select').forEach(el=>{
+    if(el.tagName==='SELECT') el.selectedIndex=0;
+    else el.value='';
+  });
+  document.getElementById('solicitacaoGuias').checked=false;
+  document.getElementById('soInclusao').checked=true;
+}
+
+// Voltar
+function voltarForm(){
+  document.getElementById('formWrapper').style.display='block';
+  document.getElementById('formSuccess').style.display='none';
+  limparFormulario();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
