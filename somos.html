@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sindehot</title>
+<title>SINDEHOT-SBC</title>
   <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -115,7 +115,20 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
   .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
   .nav-item.open .nav-dropdown{display:block;}
 }
- 
+/* Aumento de 2px na fonte do corpo */
+html{font-size:18px;}
+.header-sigla{font-size:31px;}
+.stat-num{font-size:30px;}
+.stat-card-num{font-size:35px;}
+.section-title{font-size:clamp(22px,2.5vw,32px);}
+.section-head h2{font-size:20px;}
+.page-hero h1{font-size:clamp(27px,3vw,42px);}
+.footer-brand .sigla{font-size:22px;}
+/* Botão voltar ao topo */
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
 /* ── PAGE HERO ── */
 .page-hero{
   background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);
@@ -347,7 +360,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <a href="webmail.html" class="topbar-webmail">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Webmail
     </a>
@@ -362,16 +375,17 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
       <div class="header-fone">(11) 4122-2888</div>
       <div class="header-horario">Seg–Sex, 9h às 17h</div>
     </div>
   </div>
 </header>
- 
+
 <!-- NAV -->
 <nav class="main-nav" aria-label="Navegação principal">
   <div class="nav-inner">
@@ -423,8 +437,9 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- ÂNCORAS -->
 <div class="anchor-nav">
   <div class="anchor-nav-inner">
-    <a href="#historia" class="anchor-link active" id="anc-historia">História &amp; Missão</a> 
-    <a href="#estatuto" class="anchor-link" id="anc-estatuto">Estatuto &amp; Filiação</a>
+    <a href="#historia" class="anchor-link active" id="anc-historia">História &amp; Missão</a>
+    <a href="#odonto" class="anchor-link" id="anc-odonto">Depto. Odontológico</a>
+    <a href="#juridico" class="anchor-link" id="anc-juridico">Depto. Jurídico</a>
   </div>
 </div>
  
@@ -444,7 +459,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
  
     <div class="historia-grid">
       <div class="historia-texto reveal rd1">
-        <p>O <strong>SINDEHOT-SBC</strong> — Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra — nasceu da necessidade de organizar e proteger os trabalhadores de um setor que, por muito tempo, operou sem garantias suficientes de direitos trabalhistas.</p>
+        <p>O <strong>SINDEHOT-SBC</strong> — Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região — nasceu da necessidade de organizar e proteger os trabalhadores de um setor que, por muito tempo, operou sem garantias suficientes de direitos trabalhistas.</p>
         <p>Ao longo de mais de três décadas de atuação, o sindicato consolidou sua presença na região, conquistando benefícios expressivos por meio das Convenções Coletivas de Trabalho negociadas diretamente com o <strong>SEHAL</strong> (Sindicato das Empresas de Hotéis, Apart-Hotéis e Similares).</p>
         <p>Hoje, o SINDEHOT-SBC representa trabalhadores em <strong>três municípios</strong>: São Bernardo do Campo, Diadema e Rio Grande da Serra, abrangendo todas as categorias do setor — de recepcionistas e governantas a auxiliares de limpeza e profissionais de manutenção.</p>
         <p>Nossa atuação vai além da negociação coletiva. Oferecemos suporte jurídico, convênios de saúde, educação e farmácia, além de um canal permanente de comunicação com os trabalhadores para garantir que seus direitos sejam sempre respeitados.</p>
@@ -503,48 +518,120 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
   <!-- ═══ DIRETORIA ═══ -->
   
  
-  <!-- ═══ ESTATUTO & FILIAÇÃO ═══ -->
-  <section class="section-block" id="estatuto">
+  <!-- ═══ DEPTO. ODONTOLÓGICO ═══ -->
+  <section class="section-block" id="odonto">
     <div class="reveal">
       <div class="section-label">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        Documentos oficiais
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 2.8 1.2 3.8C8 12 8 13 8 14c0 2 .8 4 4 4s4-2 4-4c0-1 0-2 .8-3.2C17.5 9.8 18 8.5 18 7c0-2.5-2.5-5-6-5z"/></svg>
+        Consultório Próprio do Sindicato
       </div>
-      <h2 class="section-title">Estatuto &amp; <em>Filiação</em></h2>
-      <p class="section-sub"></p>
-    </div>
- 
-    <div class="estatuto-intro">
-      <div class="estatuto-texto reveal rd1">
-        <p>O <strong>Estatuto Social do SINDEHOT-SBC</strong> é o documento que rege o funcionamento do sindicato, estabelecendo seus objetivos, estrutura organizacional, direitos e deveres dos filiados, bem como as normas para eleição da diretoria e realização de assembleias.</p>
-        <p>Todo trabalhador do setor hoteleiro — em hotéis, apart-hotéis, flats e estabelecimentos similares — dos municípios de São Bernardo do Campo, Diadema e Rio Grande da Serra tem direito à filiação ao SINDEHOT-SBC.</p>
-        <p>A filiação garante representação nas negociações coletivas, acesso aos convênios exclusivos, suporte jurídico trabalhista e participação nas assembleias e decisões do sindicato.</p>
-      </div>
- 
-      <div class="download-card reveal rd2">
-        <div class="download-card-top">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          <h4>Documentos para Download</h4>
-          <p>Acesse os documentos oficiais do sindicato</p>
-        </div>
-        <div class="download-card-body">
-          <a href="docs/filiação.pdf" target="_blank" class="download-item" download>
-            <div class="dl-icon">
-              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </div>
-            <div class="dl-info">
-              <div class="dl-nome">Ficha de Filiação</div>
-              <div class="dl-meta">PDF · Preencha e entregue na sede</div>
-            </div>
-            <span class="dl-btn">
-              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Baixar
-            </span>
-          </a>
-        </div>
-      </div>
+      <h2 class="section-title">Saúde Bucal <em>100% gratuita</em></h2>
+      <p class="section-sub">O SINDEHOT-SBC tem consultório odontológico próprio. Atendimento gratuito para associados, cônjuge e filhos de 0 a 18 anos.</p>
     </div>
 
+    <div class="estatuto-intro">
+      <div class="estatuto-texto reveal rd1">
+        <div style="background:var(--gold-dim);border:1.5px solid rgba(201,162,39,.3);border-radius:8px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+          <span style="font-size:.88rem;font-weight:600;color:var(--navy);">Gratuito para associados + família (filhos até 18 anos)</span>
+        </div>
+        <p>O SINDEHOT-SBC disponibiliza aos seus filiados um <strong>consultório odontológico próprio</strong>, oferecendo atendimento completo e totalmente gratuito para o trabalhador associado, seu cônjuge e filhos de até 18 anos.</p>
+        <p>Para utilizar o benefício, basta estar com a filiação em dia e agendar o atendimento previamente. O agendamento é <strong>obrigatório</strong> e pode ser feito pelo WhatsApp abaixo.</p>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:8px;padding:16px 18px;margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span style="font-size:.85rem;color:var(--text);">WhatsApp <span style="color:var(--muted);font-size:.78rem;">(só mensagem)</span>: <strong>(11) 94725-2825</strong></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;flex-shrink:0;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span style="font-size:.85rem;color:var(--text);"><strong>Seg–Sex, 8h às 17h</strong> <span style="color:var(--muted);">— Agendamento obrigatório</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-card reveal rd2">
+        <div class="download-card-top">
+          <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <h4>Serviços oferecidos</h4>
+          <p>Procedimentos disponíveis no consultório</p>
+        </div>
+        <div class="download-card-body">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;padding-top:4px;">
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Restaurações
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Extrações
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Raspagem
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Tratamento de canal
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Limpeza
+            </li>
+            <li style="display:flex;align-items:center;gap:10px;font-size:.88rem;color:var(--text);">
+              <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1c7846;stroke-width:2.5;stroke-linecap:round;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>Extração do siso <span style="color:var(--muted);font-size:.8rem;">(avaliação)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ DEPTO. JURÍDICO ═══ -->
+  <section class="section-block" id="juridico">
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Apoio Jurídico
+      </div>
+      <h2 class="section-title">Depto. <em>Jurídico</em></h2>
+      <p class="section-sub">Orientação e defesa jurídica trabalhista para todos os filiados ao SINDEHOT-SBC.</p>
+    </div>
+
+    <div class="estatuto-intro">
+      <div class="estatuto-texto reveal rd1">
+        <p>O <strong>Departamento Jurídico do SINDEHOT-SBC</strong> atua na defesa dos direitos trabalhistas dos filiados, oferecendo orientação e acompanhamento em questões relacionadas à relação de emprego, rescisões, horas extras, assédio, desvio de função e demais demandas da categoria.</p>
+        <p>Nossa equipe jurídica presta assistência em casos individuais e coletivos, representando os trabalhadores junto às empresas e, quando necessário, nas instâncias da Justiça do Trabalho.</p>
+        <p>O atendimento é <strong>gratuito e exclusivo para filiados</strong> em dia com suas obrigações sindicais. Para agendar uma consulta ou obter orientação, entre em contato com a sede do sindicato.</p>
+        <p>Atendimento presencial: <strong>Seg–Sex, 9h às 17h</strong>. Também é possível solicitar informações pelos telefones <strong>(11) 4123-5598</strong> ou <strong>(11) 4122-2888</strong>.</p>
+      </div>
+
+      <div class="missao-card reveal rd2" style="align-self:start;text-align:left;padding:28px;">
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="missao-icon" style="margin:0;flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--navy);">Consulta Trabalhista</div>
+              <div style="font-size:.75rem;color:var(--muted);">Orientação sobre direitos e deveres</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="missao-icon" style="margin:0;flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--navy);">Representação Coletiva</div>
+              <div style="font-size:.75rem;color:var(--muted);">Defesa da categoria nas negociações</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="missao-icon" style="margin:0;flex-shrink:0;">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--navy);">Acompanhamento Processual</div>
+              <div style="font-size:.75rem;color:var(--muted);">Suporte em ações na Justiça do Trabalho</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
  
 </div><!-- /page-wrapper -->
@@ -554,13 +641,12 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
   <div class="contact-inner">
     <div>
       <div class="contact-label">Telefone</div>
-      <div class="contact-value">(11) 4122-2888</div>
+      <div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div>
       <div class="contact-sub">Seg–Sex, 9h às 17h</div>
     </div>
     <div>
       <div class="contact-label">E-mail</div>
-      <div class="contact-value"><a href="mailto:contato@sindehot.com.br">sindehot@uol.com.br</a></div>
-      <div class="contact-sub">Resposta em até 24h</div>
+      <div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div>
     </div>
     <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
   </div>
@@ -572,7 +658,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     <div class="footer-top">
       <div class="footer-brand">
         <div class="sigla">SINDEHOT<span>-SBC</span></div>
-        <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
         <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
       </div>
       <div class="footer-col">
@@ -590,7 +676,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
         <li><a href="informacoes.html#circulares">Circulares</a></li>
         <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
-        <li><a href="webmail.html">Webmail</a></li>
+        <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
     </ul>
 </div>
     </div>
@@ -620,7 +706,7 @@ function toggleDropdown(el){
  
 // Âncoras — destaca link conforme scroll
 (function(){
-  const sections = ['historia','diretoria','estatuto'];
+  const sections = ['historia','odonto','juridico'];
   const offset = 130;
   function update(){
     const pos = window.scrollY + offset;
@@ -637,6 +723,14 @@ function toggleDropdown(el){
   update();
 })();
 </script>
- 
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+})();
+</script>
 </body>
 </html>

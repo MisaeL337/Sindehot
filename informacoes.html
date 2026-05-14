@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sindehot</title>
+<title>SINDEHOT-SBC</title>
   <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -196,11 +196,24 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:none;}
 .rd1{transition-delay:.07s;}.rd2{transition-delay:.14s;}.rd3{transition-delay:.21s;}.rd4{transition-delay:.28s;}.rd5{transition-delay:.35s;}
+/* Aumento de 2px na fonte do corpo */
+html{font-size:18px;}
+.header-sigla{font-size:31px;}
+.stat-num{font-size:30px;}
+.section-title{font-size:clamp(22px,2.5vw,32px);}
+.section-head h2{font-size:20px;}
+.page-hero h1{font-size:clamp(27px,3vw,42px);}
+.footer-brand .sigla{font-size:22px;}
+/* Botão voltar ao topo */
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
 </style>
 </head>
 <body>
-<div class="topbar"><div class="topbar-inner"><a href="webmail.html" class="topbar-webmail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Webmail</a></div></div>
-<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
+<div class="topbar"><div class="topbar-inner"><a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Webmail</a></div></div>
+<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4123-5598</div><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
 <nav class="main-nav"><div class="nav-inner"><button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="nav-items-wrap" id="navItems">
 <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
 <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
@@ -239,7 +252,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <a href="docs/CCT 2023-2024.pdf" target="_blank" class="doc-item reveal rd2" download><div class="doc-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">CCT 2023–2024</div><div class="doc-meta"><span class="tag cct">CCT</span><span class="tag enc">Encerrada</span><span>Out/2022 a Set/2024</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 <a href="docs/CCT-SBC-19-21.pdf" target="_blank" class="doc-item reveal rd4" download><div class="doc-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">CCT 2019–2021 — São Bernardo do Campo</div><div class="doc-meta"><span class="tag cct">CCT</span><span class="tag enc">Encerrada</span><span>Histórico</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 </div>
-<div class="aviso-box reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p><strong>Dúvidas sobre a CCT?</strong> Entre em contato pelo <strong>(11) 4122-2888</strong> ou pelo <a href="conoscos.html">Fale Conosco</a>. Nossa equipe esclarece qualquer cláusula.</p></div>
+<div class="aviso-box reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><p><strong>Dúvidas sobre a CCT?</strong> Entre em contato pelo <strong>(11) 4123-5598 / (11) 4122-2888</strong> ou pelo <a href="conoscos.html">Fale Conosco</a>. Nossa equipe esclarece qualquer cláusula.</p></div>
 </section>
 
 <!-- CIRCULARES -->
@@ -309,10 +322,10 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 
 </div>
 
-<div class="contact-strip"><div class="contact-inner"><div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div><div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:contato@sindehot.com.br">sindehot@uol.com.br</a></div><div class="contact-sub">Resposta em até 24h</div></div><a href="conoscos.html" class="btn-gold">Fale Conosco</a></div></div>
+<div class="contact-strip"><div class="contact-inner"><div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div><div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div></div><a href="conoscos.html" class="btn-gold">Fale Conosco</a></div></div>
 
-<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="sigla">SINDEHOT<span>-SBC</span></div><p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
-<p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p></div><div class="footer-col"><h4>Navegação</h4><ul><li><a href="index.html">Home</a></li><li><a href="somos.html">Quem Somos</a></li><li><a href="convenios.html">Convênios</a></li><li><a href="conoscos.html">Fale Conosco</a></li></ul></div><div class="footer-col"><h4>Informações</h4><ul><li><a href="#cct">Convenções Coletivas</a></li><li><a href="#circulares">Circulares</a></li><li><a href="#legislacao">Legislação Trabalhista</a></li><li></li><li><a href="webmail.html">Webmail</a></li></ul></div></div><div class="footer-bottom"><p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p><p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p></div></div></footer>
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="sigla">SINDEHOT<span>-SBC</span></div><p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+<p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p></div><div class="footer-col"><h4>Navegação</h4><ul><li><a href="index.html">Home</a></li><li><a href="somos.html">Quem Somos</a></li><li><a href="convenios.html">Convênios</a></li><li><a href="conoscos.html">Fale Conosco</a></li></ul></div><div class="footer-col"><h4>Informações</h4><ul><li><a href="#cct">Convenções Coletivas</a></li><li><a href="#circulares">Circulares</a></li><li><a href="#legislacao">Legislação Trabalhista</a></li><li></li><li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li></ul></div></div><div class="footer-bottom"><p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p><p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p></div></div></footer>
 
 <script>
 (function(){
@@ -336,5 +349,7 @@ function toggleDropdown(el){if(window.innerWidth>768)return;el.closest('.nav-ite
   update();
 })();
 </script>
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script>(function(){var btn=document.getElementById('back-to-top');window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});})();</script>
 </body>
 </html>

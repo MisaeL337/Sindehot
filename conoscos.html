@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sindehot</title>
+<title>SINDEHOT-SBC</title>
   <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -126,7 +126,18 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
   .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
   .nav-item.open .nav-dropdown{display:block;}
 }
- 
+/* Aumento de 2px na fonte do corpo */
+html{font-size:18px;}
+.header-sigla{font-size:31px;}
+.stat-num{font-size:30px;}
+.section-head h2{font-size:20px;}
+.page-hero h1{font-size:clamp(27px,3vw,42px);}
+.footer-brand .sigla{font-size:22px;}
+/* Botão voltar ao topo */
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
 /* ── PAGE HERO ── */
 .page-hero{
   background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);
@@ -246,7 +257,10 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
   cursor:pointer;transition:background .18s,color .18s;
 }
 .btn-back:hover{background:var(--navy);color:var(--white);}
- 
+.form-error-card{display:none;align-items:center;gap:12px;background:#fdf3f3;border:1px solid #f5c6cb;border-left:4px solid #c0392b;border-radius:8px;padding:14px 18px;margin-top:16px;color:#922b21;font-size:.9rem;line-height:1.5;}
+.form-error-card.visible{display:flex;}
+.form-error-card svg{width:22px;height:22px;flex-shrink:0;fill:none;stroke:#c0392b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
 /* ── SIDEBAR CONTATO ── */
 .contact-sidebar{display:block;}
  
@@ -409,7 +423,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <a href="webmail.html" class="topbar-webmail">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Webmail
     </a>
@@ -424,16 +438,17 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
       <div class="header-fone">(11) 4122-2888</div>
       <div class="header-horario">Seg–Sex, 9h às 17h</div>
     </div>
   </div>
 </header>
- 
+
 <!-- NAV -->
 <nav class="main-nav" aria-label="Navegação principal">
   <div class="nav-inner">
@@ -478,7 +493,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
       <strong>Fale Conosco</strong>
     </div>
     <h1>Entre em <em>contato</em> conosco</h1>
-    <p>Estamos aqui para atender trabalhadores e empresas do setor hoteleiro. Envie sua mensagem e retornaremos em até 24 horas.</p>
+    <p>Estamos aqui para atender trabalhadores e empresas do setor hoteleiro.</p>
   </div>
 </div>
  
@@ -501,7 +516,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           </div>
           <div class="form-group">
             <label class="form-label">Telefone</label>
-            <input type="tel" class="form-input" id="fTel" placeholder="(11) 90000-0000"/>
+            <input type="tel" class="form-input" id="fTel" placeholder="(11) 90000-0000" maxlength="15" oninput="maskPhone(this)"/>
           </div>
         </div>
  
@@ -539,6 +554,10 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Enviar Mensagem
         </button>
+        <div id="formError" class="form-error-card" role="alert">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="form-error-msg"></span>
+        </div>
       </div>
  
       <!-- Sucesso -->
@@ -547,7 +566,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h3>Mensagem enviada!</h3>
-        <p>Recebemos sua mensagem e retornaremos em até <strong>24 horas úteis</strong> pelo e-mail ou telefone informado.</p>
+        <p>Recebemos sua mensagem. <strong></strong>Responderemos assim que possível</p>
         <button class="btn-back" onclick="voltarForm()">Enviar outra mensagem</button>
       </div>
     </div>
@@ -570,7 +589,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           </div>
           <div>
             <div class="ci-label">Telefone</div>
-            <div class="ci-value"><a href="tel:1141222888">(11) 4122-2888</a></div>
+            <div class="ci-value"><a href="tel:1141235598">(11) 4123-5598</a> / <a href="tel:1141222888">(11) 4122-2888</a></div>
             <div class="ci-sub">Seg–Sex, 9h às 17h</div>
           </div>
         </div>
@@ -582,7 +601,6 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           <div>
             <div class="ci-label">E-mail</div>
             <div class="ci-value"><a href="mailto:contato@sindehot.com.br">sindehot@uol.com.br</a></div>
-            <div class="ci-sub">Resposta em até 24h úteis</div>
           </div>
         </div>
  
@@ -679,13 +697,12 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
   <div class="contact-inner">
     <div class="contact-block">
       <div class="contact-label">Telefone</div>
-      <div class="contact-value">(11) 4122-2888</div>
+      <div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div>
       <div class="contact-sub">Seg–Sex, 9h às 17h</div>
     </div>
     <div class="contact-block">
       <div class="contact-label">E-mail</div>
-      <div class="contact-value"><a href="mailto:contato@sindehot.com.br">sindehot@uol.com.br</a></div>
-      <div class="contact-sub">Resposta em até 24h</div>
+      <div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div>
     </div>
   </div>
 </div>
@@ -696,7 +713,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="sigla">SINDEHOT<span>-SBC</span></div>
-                <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+                <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
                 <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
             </div>
 
@@ -716,7 +733,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
             <li><a href="informacoes.html#circulares">Circulares</a></li>
             <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
-            <li><a href="webmail.html">Webmail</a></li>
+            <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
             </ul>
           </div>
         </div>
@@ -756,24 +773,73 @@ function toggleDropdown(el){
   el.closest('.nav-item').classList.toggle('open');
 }
  
+// Máscara telefone
+function maskPhone(el){
+  let v=el.value.replace(/\D/g,'').slice(0,11);
+  if(!v){el.value='';return;}
+  if(v.length<=2){el.value='('+v;return;}
+  if(v.length<=6){el.value='('+v.slice(0,2)+') '+v.slice(2);return;}
+  if(v.length<=10){el.value='('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return;}
+  el.value='('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+}
+
+// Card de erro
+function showError(msg,focusEl){
+  const c=document.getElementById('formError');
+  c.querySelector('.form-error-msg').textContent=msg;
+  c.classList.add('visible');
+  c.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if(focusEl) setTimeout(()=>focusEl.focus(),300);
+}
+function hideError(){document.getElementById('formError').classList.remove('visible');}
+
 // Formulário
 function enviarFormulario(){
+  hideError();
   const nome    = document.getElementById('fNome').value.trim();
   const email   = document.getElementById('fEmail').value.trim();
   const assunto = document.getElementById('fAssunto').value;
   const msg     = document.getElementById('fMsg').value.trim();
   const priv    = document.getElementById('fPriv').checked;
- 
-  if(!nome){alert('Por favor, informe seu nome.');document.getElementById('fNome').focus();return;}
-  if(!email || !email.includes('@')){alert('Por favor, informe um e-mail válido.');document.getElementById('fEmail').focus();return;}
-  if(!assunto){alert('Por favor, selecione o assunto.');document.getElementById('fAssunto').focus();return;}
-  if(!msg){alert('Por favor, escreva sua mensagem.');document.getElementById('fMsg').focus();return;}
-  if(!priv){alert('Por favor, aceite a política de privacidade para continuar.');return;}
- 
-  // Mostra sucesso
-  document.getElementById('formWrapper').style.display = 'none';
-  document.getElementById('formSuccess').classList.add('visible');
-  window.scrollTo({top: document.querySelector('.form-card').offsetTop - 100, behavior:'smooth'});
+
+  if(!nome){showError('Por favor, informe seu nome.',document.getElementById('fNome'));return;}
+  if(!email||!email.includes('@')){showError('Por favor, informe um e-mail válido.',document.getElementById('fEmail'));return;}
+  if(!assunto){showError('Por favor, selecione o assunto.',document.getElementById('fAssunto'));return;}
+  if(!msg){showError('Por favor, escreva sua mensagem.',document.getElementById('fMsg'));return;}
+  if(!priv){showError('Por favor, aceite a política de privacidade para continuar.');return;}
+
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  fetch('https://formspree.io/f/mpqbevjz', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify({
+      nome: nome,
+      email: email,
+      telefone: document.getElementById('fTel').value.trim() || '—',
+      assunto: assunto,
+      mensagem: msg
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.ok){
+      document.getElementById('formWrapper').style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+      window.scrollTo({top: document.querySelector('.form-card').offsetTop - 100, behavior:'smooth'});
+    } else {
+      showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
+    }
+  })
+  .catch(() => {
+    showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
+  });
 }
  
 function voltarForm(){
@@ -786,6 +852,15 @@ function voltarForm(){
   document.getElementById('fMsg').value = '';
   document.getElementById('fPriv').checked = false;
 }
+</script>
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+})();
 </script>
 </body>
 </html>

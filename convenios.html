@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sindehot</title>
+<title>SINDEHOT-SBC</title>
   <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -243,14 +243,14 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
 .sorteio-banner{
   background:linear-gradient(135deg,#1c7846 0%,#0f5233 100%);
   border-radius:12px;padding:28px 32px;margin-bottom:48px;
-  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  display:flex;align-items:center;gap:24px;
   border:1px solid rgba(28,120,70,.3);
   position:relative;overflow:hidden;
 }
 .sorteio-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 90% 50%,rgba(255,255,255,.06),transparent 60%);}
 .sorteio-icon{width:56px;height:56px;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;flex-shrink:0;position:relative;z-index:1;}
 .sorteio-icon svg{width:26px;height:26px;fill:none;stroke:white;stroke-width:1.8;stroke-linecap:round;}
-.sorteio-text{flex:1;position:relative;z-index:1;}
+.sorteio-text{flex:1;min-width:0;position:relative;z-index:1;}
 .sorteio-text h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:5px;}
 .sorteio-text p{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.6;}
 .sorteio-badge{
@@ -260,6 +260,13 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
 }
 .sorteio-badge span{display:block;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px;}
 .sorteio-badge strong{display:block;font-size:.95rem;font-weight:700;color:var(--white);}
+@media(max-width:600px){
+  .sorteio-banner{flex-direction:column;align-items:flex-start;padding:22px 20px;gap:16px;}
+  .sorteio-icon{width:48px;height:48px;}
+  .sorteio-badge{width:100%;display:flex;align-items:center;gap:12px;padding:10px 14px;text-align:left;}
+  .sorteio-badge span{margin-bottom:0;white-space:nowrap;}
+  .sorteio-badge strong{font-size:.88rem;}
+}
 
 /* COMO FUNCIONA */
 .como-section{
@@ -333,6 +340,19 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:none;}
 .rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}.rd3{transition-delay:.24s;}.rd4{transition-delay:.32s;}.rd5{transition-delay:.40s;}
+/* Aumento de 2px na fonte do corpo */
+html{font-size:18px;}
+.header-sigla{font-size:31px;}
+.stat-num{font-size:30px;}
+.section-title{font-size:clamp(22px,2.5vw,32px);}
+.section-head h2{font-size:20px;}
+.page-hero h1{font-size:clamp(27px,3vw,42px);}
+.footer-brand .sigla{font-size:22px;}
+/* Botão voltar ao topo */
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
 </style>
 </head>
 <body>
@@ -340,7 +360,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <a href="webmail.html" class="topbar-webmail">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Webmail
     </a>
@@ -355,10 +375,11 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
       <div class="header-fone">(11) 4122-2888</div>
       <div class="header-horario">Seg–Sex, 9h às 17h</div>
     </div>
@@ -684,7 +705,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <div class="step-num">3</div>
         <div class="step-text">
           <h4>Dúvidas? Fale conosco</h4>
-          <p>Ligue para (11) 4122-2888 ou envie mensagem. Estamos aqui para ajudar.</p>
+          <p>Ligue para (11) 4123-5598 / (11) 4122-2888 ou envie mensagem. Estamos aqui para ajudar.</p>
         </div>
       </div>
     </div>
@@ -715,13 +736,12 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
   <div class="contact-inner">
     <div>
       <div class="contact-label">Telefone</div>
-      <div class="contact-value">(11) 4122-2888</div>
+      <div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div>
       <div class="contact-sub">Seg–Sex, 9h às 17h</div>
     </div>
     <div>
       <div class="contact-label">E-mail</div>
-      <div class="contact-value"><a href="mailto:contato@sindehot.com.br">sindehot@uol.com.br</a></div>
-      <div class="contact-sub">Resposta em até 24h</div>
+      <div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div>
     </div>
     <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
   </div>
@@ -733,7 +753,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="sigla">SINDEHOT<span>-SBC</span></div>
-                <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+                <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
                 <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
             </div>
 
@@ -753,7 +773,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
             <li><a href="informacoes.html#circulares">Circulares</a></li>
             <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
-            <li><a href="webmail.html">Webmail</a></li>
+            <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
             </ul>
           </div>
         </div>
@@ -778,6 +798,15 @@ function toggleDropdown(el){
   if(window.innerWidth>768)return;
   el.closest('.nav-item').classList.toggle('open');
 }
+</script>
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+(function(){
+  var btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+})();
 </script>
 </body>
 </html>

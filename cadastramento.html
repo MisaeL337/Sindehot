@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Cadastro de Empresa — SINDEHOT-SBC</title>
+<title>SINDEHOT-SBC</title>
   <link rel="icon" href="img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -205,6 +205,9 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
 .form-success p{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:400px;}
 .btn-back{margin-top:8px;padding:10px 24px;background:transparent;border:1.5px solid var(--navy);border-radius:7px;font-family:var(--font-body);font-size:.86rem;font-weight:600;color:var(--navy);cursor:pointer;transition:background .18s,color .18s;}
 .btn-back:hover{background:var(--navy);color:var(--white);}
+.form-error-card{display:none;align-items:center;gap:12px;background:#fdf3f3;border:1px solid #f5c6cb;border-left:4px solid #c0392b;border-radius:8px;padding:14px 18px;margin-top:16px;color:#922b21;font-size:.9rem;line-height:1.5;}
+.form-error-card.visible{display:flex;}
+.form-error-card svg{width:22px;height:22px;flex-shrink:0;fill:none;stroke:#c0392b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* AVISO INFO */
 .info-box{
@@ -249,6 +252,17 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
 .reveal.visible{opacity:1;transform:none;}
 .rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}
+/* Aumento de 2px na fonte do corpo */
+html{font-size:18px;}
+.header-sigla{font-size:31px;}
+.form-card-head h2{font-size:1.05rem;}
+.page-hero h1{font-size:clamp(27px,3vw,42px);}
+.footer-brand .sigla{font-size:22px;}
+/* Botão Voltar ao Topo */
+#back-to-top{position:fixed;bottom:28px;right:28px;width:44px;height:44px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.28);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,visibility .3s,transform .3s;z-index:999;}
+#back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);}
+#back-to-top svg{width:20px;height:20px;fill:none;stroke:var(--navy-deep);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+#back-to-top:hover{background:var(--gold-lt);transform:translateY(-2px);}
 </style>
 </head>
 <body>
@@ -256,7 +270,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-inner">
-    <a href="webmail.html" class="topbar-webmail">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
       <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Webmail
     </a>
@@ -271,10 +285,11 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
       <div class="header-fone">(11) 4122-2888</div>
       <div class="header-horario">Seg–Sex, 9h às 17h</div>
     </div>
@@ -286,7 +301,9 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
   <div class="nav-inner">
     <div class="nav-items-wrap" id="navItems">
       <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
-      <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
+      <div class="nav-item">
+        <a href="somos.html" class="nav-link">Quem Somos</a>
+      </div>
       <div class="nav-item"><a href="informacoes.html" class="nav-link">Informações</a></div>
       <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
       <div class="nav-item">
@@ -319,7 +336,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 
   <div class="info-box reveal">
     <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    <p>Campos marcados com <strong>*</strong> são obrigatórios. Em caso de dúvidas, entre em contato pelo <strong>(11) 4122-2888</strong> ou pelo <a href="conoscos.html">Fale Conosco</a>.</p>
+    <p>Campos marcados com <strong>*</strong> são obrigatórios. Em caso de dúvidas, entre em contato pelo <strong>(11) 4123-5598 / (11) 4122-2888</strong> ou pelo <a href="conoscos.html">Fale Conosco</a>.</p>
   </div>
 
   <div id="formWrapper">
@@ -399,7 +416,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             <label class="form-label" for="telefoneEmpresa">Telefone <span>*</span></label>
             <div class="input-prefix-wrap">
               <span class="input-prefix">0xx</span>
-              <input type="text" class="form-input" id="telefoneEmpresa" placeholder="(11) 0000-0000"/>
+              <input type="tel" class="form-input" id="telefoneEmpresa" placeholder="(11) 0000-0000" maxlength="15" oninput="maskPhone(this)"/>
             </div>
           </div>
           <div class="form-group">
@@ -485,7 +502,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             <label class="form-label" for="telefoneEscritorio">Telefone</label>
             <div class="input-prefix-wrap">
               <span class="input-prefix">0xx</span>
-              <input type="text" class="form-input" id="telefoneEscritorio" placeholder="(11) 0000-0000"/>
+              <input type="tel" class="form-input" id="telefoneEscritorio" placeholder="(11) 0000-0000" maxlength="15" oninput="maskPhone(this)"/>
             </div>
           </div>
           <div class="form-group">
@@ -571,6 +588,10 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
             Enviar Cadastro
           </button>
         </div>
+        <div id="formError" class="form-error-card" role="alert">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span class="form-error-msg"></span>
+        </div>
 
       </div>
     </div>
@@ -584,7 +605,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h3>Cadastro enviado!</h3>
-      <p>Recebemos as informações da sua empresa. Nossa equipe entrará em contato em até <strong>2 dias úteis</strong> para confirmar o cadastro.</p>
+      <p>Recebemos as informações da sua empresa.<strong></strong> Responderemos assim que Possível.</p>
       <button class="btn-back" onclick="voltarForm()">Fazer novo cadastro</button>
     </div>
   </div>
@@ -594,8 +615,8 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 <!-- CONTACT STRIP -->
 <div class="contact-strip">
   <div class="contact-inner">
-    <div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div>
-    <div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div><div class="contact-sub">Resposta em até 24h</div></div>
+    <div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div>
+    <div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div></div>
     <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
   </div>
 </div>
@@ -606,7 +627,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     <div class="footer-top">
       <div class="footer-brand">
         <div class="sigla">SINDEHOT<span>-SBC</span></div>
-        <p>Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares de São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
         <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
       </div>
       <div class="footer-col">
@@ -624,7 +645,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
           <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
           <li><a href="informacoes.html#circulares">Circulares</a></li>
           <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
-          <li><a href="webmail.html">Webmail</a></li>
+          <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
         </ul>
       </div>
     </div>
@@ -679,8 +700,29 @@ document.getElementById('cnpj').addEventListener('input',function(){
   });
 });
 
+// Máscara telefone
+function maskPhone(el){
+  let v=el.value.replace(/\D/g,'').slice(0,11);
+  if(!v){el.value='';return;}
+  if(v.length<=2){el.value='('+v;return;}
+  if(v.length<=6){el.value='('+v.slice(0,2)+') '+v.slice(2);return;}
+  if(v.length<=10){el.value='('+v.slice(0,2)+') '+v.slice(2,6)+'-'+v.slice(6);return;}
+  el.value='('+v.slice(0,2)+') '+v.slice(2,7)+'-'+v.slice(7);
+}
+
+// Card de erro
+function showError(msg,focusEl){
+  const c=document.getElementById('formError');
+  c.querySelector('.form-error-msg').textContent=msg;
+  c.classList.add('visible');
+  c.scrollIntoView({behavior:'smooth',block:'nearest'});
+  if(focusEl) setTimeout(()=>focusEl.focus(),300);
+}
+function hideError(){document.getElementById('formError').classList.remove('visible');}
+
 // Enviar
 function enviarCadastro(){
+  hideError();
   const razao=document.getElementById('razaoSocial').value.trim();
   const cnpj=document.getElementById('cnpj').value.trim();
   const ramo=document.getElementById('ramoAtividade').value.trim();
@@ -689,17 +731,63 @@ function enviarCadastro(){
   const tel=document.getElementById('telefoneEmpresa').value.trim();
   const tipo=document.querySelector('input[name="tipoOperacao"]:checked');
 
-  if(!razao){alert('Por favor, informe a Razão Social.');document.getElementById('razaoSocial').focus();return;}
-  if(!cnpj){alert('Por favor, informe o CNPJ.');document.getElementById('cnpj').focus();return;}
-  if(!ramo){alert('Por favor, informe o Ramo de Atividade.');document.getElementById('ramoAtividade').focus();return;}
-  if(!end){alert('Por favor, informe o Endereço da empresa.');document.getElementById('enderecoEmpresa').focus();return;}
-  if(!cidade){alert('Por favor, selecione a Cidade.');document.getElementById('cidadeEmpresa').focus();return;}
-  if(!tel){alert('Por favor, informe o Telefone da empresa.');document.getElementById('telefoneEmpresa').focus();return;}
-  if(!tipo){alert('Por favor, selecione o tipo de operação.');return;}
+  if(!razao){showError('Por favor, informe a Razão Social.',document.getElementById('razaoSocial'));return;}
+  if(!cnpj){showError('Por favor, informe o CNPJ.',document.getElementById('cnpj'));return;}
+  if(!ramo){showError('Por favor, informe o Ramo de Atividade.',document.getElementById('ramoAtividade'));return;}
+  if(!end){showError('Por favor, informe o Endereço da empresa.',document.getElementById('enderecoEmpresa'));return;}
+  if(!cidade){showError('Por favor, selecione a Cidade.',document.getElementById('cidadeEmpresa'));return;}
+  if(!tel){showError('Por favor, informe o Telefone da empresa.',document.getElementById('telefoneEmpresa'));return;}
+  if(!tipo){showError('Por favor, selecione o tipo de operação.');return;}
 
-  document.getElementById('formWrapper').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-  window.scrollTo({top:document.querySelector('.page-wrapper').offsetTop-80,behavior:'smooth'});
+  const btn=document.querySelector('.btn-submit');
+  btn.disabled=true;
+  btn.textContent='Enviando...';
+
+  const g=id=>document.getElementById(id);
+  const v=id=>(g(id)?g(id).value.trim():'') || '—';
+  const solicitacao=g('solicitacaoGuias')&&g('solicitacaoGuias').checked?'Sim':'Não';
+
+  const body=new URLSearchParams({
+    _subject:'Cadastro de Empresa — SINDEHOT-SBC',
+    _captcha:'false',
+    'Razão Social':razao,
+    'Nome Fantasia':v('nomeFantasia'),
+    'CNPJ':cnpj,
+    'Data de Abertura':v('dataAbertura'),
+    'Ramo de Atividade':ramo,
+    'Endereço':end,
+    'Bairro':v('bairroEmpresa'),
+    'Cidade':cidade,
+    'CEP':v('cepEmpresa'),
+    'Telefone':tel,
+    'Qtd. Funcionários':v('qtdFuncionarios'),
+    'Responsável':v('responsavel'),
+    'Admissão do 1º Funcionário':v('admissaoPrimeiro'),
+    'Escritório Contábil':v('nomeEscritorio'),
+    'Endereço Escritório':v('enderecoEscritorio'),
+    'Tel. Escritório':v('telefoneEscritorio'),
+    'Contato Escritório':v('contatoEscritorio'),
+    'E-mail Escritório':v('emailEscritorio'),
+    'Solicitar Guias':solicitacao,
+    'Tipo de Operação':tipo.value
+  });
+
+  fetch('https://formsubmit.co/maraujolopes89@gmail.com',{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:body.toString()
+  })
+  .then(()=>{
+    document.getElementById('formWrapper').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+    window.scrollTo({top:document.querySelector('.page-wrapper').offsetTop-80,behavior:'smooth'});
+  })
+  .catch(()=>{
+    showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
+    btn.disabled=false;
+    btn.textContent='Enviar Cadastro';
+  });
 }
 
 // Limpar
@@ -720,6 +808,16 @@ function voltarForm(){
   limparFormulario();
   window.scrollTo({top:0,behavior:'smooth'});
 }
+// Voltar ao Topo
+(function(){
+  const btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);});
+  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
 </script>
+
+<button id="back-to-top" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 </body>
 </html>
