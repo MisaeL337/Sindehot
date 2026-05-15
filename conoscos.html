@@ -77,6 +77,8 @@ html,body{
 .header-sigla span{color:var(--gold);}
 .header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
 .header-sub{margin-left:auto;text-align:right;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+@media(max-width:767px){.nav-item-boletos{margin-left:0;margin-right:0;}}
 @media(max-width:767px){.header-sub{display:none;}}
 .header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
 .header-fone{font-size:1rem;font-weight:600;color:var(--gold);letter-spacing:.04em;}
@@ -87,7 +89,7 @@ nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position
 .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
 .nav-item{position:relative;}
 .nav-items-wrap{
-  display:flex;align-items:center;
+  display:flex;align-items:center;flex:1;
 }
 .nav-link{
   display:block;padding:15px 18px;font-size:.8rem;font-weight:600;
@@ -479,6 +481,9 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
       </div>
       <div class="nav-item">
         <a href="fale-conosco.html" class="nav-link active">Fale Conosco</a>
+      </div>
+      <div class="nav-item nav-item-boletos">
+        <a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a>
       </div>
     </div>
   </div>

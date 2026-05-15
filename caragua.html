@@ -34,6 +34,8 @@ html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);f
 .header-sigla span{color:var(--gold);}
 .header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
 .header-sub{margin-left:auto;text-align:right;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+@media(max-width:767px){.nav-item-boletos{margin-left:0;margin-right:0;}}
 @media(max-width:767px){.header-sub{display:none;}}
 .header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
 .header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
@@ -41,7 +43,7 @@ html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);f
 
 nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
 .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
-.nav-items-wrap{display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;flex:1;}
 .nav-item{position:relative;}
 .nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
 .nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
@@ -313,8 +315,7 @@ html{font-size:18px;}
           <a href="oasis.html">Oásis</a>
         </div>
       </div>
-      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
-    </div>
+      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div><div class="nav-item nav-item-boletos"><a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a></div>    </div>
   </div>
 </nav>
 

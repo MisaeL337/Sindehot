@@ -133,6 +133,8 @@ html,body{
   margin-left:auto;text-align:right;
 }
 @media(max-width:767px){.header-sub{display:none;}}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+@media(max-width:767px){.nav-item-boletos{margin-left:0;margin-right:0;}}
 .header-sub p{
   font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;
   text-transform:uppercase;margin-bottom:2px;
@@ -159,7 +161,7 @@ nav.main-nav{
   display:flex;align-items:center;
 }
 .nav-items-wrap{
-  display:flex;align-items:center;
+  display:flex;align-items:center;flex:1;
 }
 .nav-item{
   position:relative;
@@ -812,7 +814,10 @@ html{font-size:18px;}
       <div class="nav-item">
         <a href="conoscos.html" class="nav-link">Fale Conosco</a>
       </div>
- 
+      <div class="nav-item nav-item-boletos">
+        <a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a>
+      </div>
+
     </div>
   </div>
 </nav>

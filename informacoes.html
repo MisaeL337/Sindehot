@@ -36,9 +36,11 @@ html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);f
 .header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
 .header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
 .header-horario{font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+@media(max-width:767px){.nav-item-boletos{margin-left:0;margin-right:0;}}
 nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
 .nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
-.nav-items-wrap{display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;flex:1;}
 .nav-item{position:relative;}
 .nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
 .nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
@@ -213,15 +215,14 @@ html{font-size:18px;}
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner"><a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Webmail</a></div></div>
-<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Trabalhadores em Hotéis, Apart-Hotéis, Flats e Similares<br>de São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4123-5598</div><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
+<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4123-5598</div><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
 <nav class="main-nav"><div class="nav-inner"><button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="nav-items-wrap" id="navItems">
 <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
 <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
 <div class="nav-item"><a href="informacoes.html" class="nav-link active">Informações</a></div>
 <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
 <div class="nav-item"><span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span><div class="nav-dropdown"><a href="caragua.html">Caraguatatuba</a><a href="grande.html">Praia Grande</a><a href="ferthotel.html">Fetrhotel</a><a href="oasis.html">Oásis</a></div></div>
-<div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
-</div></div></nav>
+<div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div><div class="nav-item nav-item-boletos"><a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a></div></div></div></nav>
 
 <div class="page-hero"><div class="page-hero-inner"><div class="page-breadcrumb"><a href="index.html">Home</a><span>›</span><strong>Informações</strong></div><h1>Informações e <em>documentos</em></h1><p>Acesse as Convenções Coletivas, circulares, legislação trabalhista e a agenda de eventos do SINDEHOT-SBC.</p></div></div>
 
