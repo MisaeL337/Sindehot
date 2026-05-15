@@ -438,7 +438,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
@@ -713,7 +713,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="sigla">SINDEHOT<span>-SBC</span></div>
-                <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+                <p>Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
                 <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
             </div>
 
@@ -812,15 +812,15 @@ function enviarFormulario(){
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
-  fetch('https://formspree.io/f/mpqbevjz', {
+  fetch('https://formspree.io/f/meenblbn', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: JSON.stringify({
-      nome: nome,
-      email: email,
-      telefone: document.getElementById('fTel').value.trim() || '—',
-      assunto: assunto,
-      mensagem: msg
+      Nome: nome,
+      Email: email,
+      Telefone: document.getElementById('fTel').value.trim() || '—',
+      Assunto: assunto,
+      Mensagem: msg
     })
   })
   .then(res => res.json())
@@ -835,7 +835,7 @@ function enviarFormulario(){
       btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
     }
   })
-  .catch(() => {
+  .catch(()=>{
     showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
     btn.disabled = false;
     btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';

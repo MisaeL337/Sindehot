@@ -285,7 +285,7 @@ html{font-size:18px;}
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
-      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
     </div>
     <div class="header-sub">
       <p>Fale conosco</p>
@@ -627,7 +627,7 @@ html{font-size:18px;}
     <div class="footer-top">
       <div class="footer-brand">
         <div class="sigla">SINDEHOT<span>-SBC</span></div>
-        <p>Sindicato dos Empregados no Comércio Hoteleiros e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p>Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
         <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
       </div>
       <div class="footer-col">
@@ -747,41 +747,43 @@ function enviarCadastro(){
   const v=id=>(g(id)?g(id).value.trim():'') || '—';
   const solicitacao=g('solicitacaoGuias')&&g('solicitacaoGuias').checked?'Sim':'Não';
 
-  const body=new URLSearchParams({
-    _subject:'Cadastro de Empresa — SINDEHOT-SBC',
-    _captcha:'false',
-    'Razão Social':razao,
-    'Nome Fantasia':v('nomeFantasia'),
-    'CNPJ':cnpj,
-    'Data de Abertura':v('dataAbertura'),
-    'Ramo de Atividade':ramo,
-    'Endereço':end,
-    'Bairro':v('bairroEmpresa'),
-    'Cidade':cidade,
-    'CEP':v('cepEmpresa'),
-    'Telefone':tel,
-    'Qtd. Funcionários':v('qtdFuncionarios'),
-    'Responsável':v('responsavel'),
-    'Admissão do 1º Funcionário':v('admissaoPrimeiro'),
-    'Escritório Contábil':v('nomeEscritorio'),
-    'Endereço Escritório':v('enderecoEscritorio'),
-    'Tel. Escritório':v('telefoneEscritorio'),
-    'Contato Escritório':v('contatoEscritorio'),
-    'E-mail Escritório':v('emailEscritorio'),
-    'Solicitar Guias':solicitacao,
-    'Tipo de Operação':tipo.value
-  });
-
-  fetch('https://formsubmit.co/maraujolopes89@gmail.com',{
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'application/x-www-form-urlencoded'},
-    body:body.toString()
+  fetch('https://formspree.io/f/meenblbn', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+    body: JSON.stringify({
+      'Razão Social': razao,
+      'Nome Fantasia': v('nomeFantasia'),
+      'CNPJ': cnpj,
+      'Data de Abertura': v('dataAbertura'),
+      'Ramo de Atividade': ramo,
+      'Endereço': end,
+      'Bairro': v('bairroEmpresa'),
+      'Cidade': cidade,
+      'CEP': v('cepEmpresa'),
+      'Telefone': tel,
+      'Qtd. Funcionários': v('qtdFuncionarios'),
+      'Responsável': v('responsavel'),
+      'Admissão do 1º Funcionário': v('admissaoPrimeiro'),
+      'Escritório Contábil': v('nomeEscritorio'),
+      'Endereço Escritório': v('enderecoEscritorio'),
+      'Tel. Escritório': v('telefoneEscritorio'),
+      'Contato Escritório': v('contatoEscritorio'),
+      'E-mail Escritório': v('emailEscritorio'),
+      'Solicitar Guias': solicitacao,
+      'Tipo de Operação': tipo.value
+    })
   })
-  .then(()=>{
-    document.getElementById('formWrapper').style.display='none';
-    document.getElementById('formSuccess').style.display='block';
-    window.scrollTo({top:document.querySelector('.page-wrapper').offsetTop-80,behavior:'smooth'});
+  .then(res => res.json())
+  .then(data => {
+    if(data.ok){
+      document.getElementById('formWrapper').style.display='none';
+      document.getElementById('formSuccess').style.display='block';
+      window.scrollTo({top:document.querySelector('.page-wrapper').offsetTop-80,behavior:'smooth'});
+    } else {
+      showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
+      btn.disabled=false;
+      btn.textContent='Enviar Cadastro';
+    }
   })
   .catch(()=>{
     showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
