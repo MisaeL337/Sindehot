@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SINDEHOT-SBC</title>
-  <link rel="icon" href="img/logo.png" type="image/png">
+  <link rel="icon" href="img/sindehot.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -31,7 +31,7 @@ html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);f
 .site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
 .site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
 .header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
-.brasao{width:76px;height:76px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
+.brasao{width:106px;height:106px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
 .brasao:hover{transform:scale(1.04);}
 .header-sigla{font-family:var(--font-head);font-size:1.95rem;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
 .header-sigla span{color:var(--gold);}
@@ -258,7 +258,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 .rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}
 /* Aumento de 2px na fonte do corpo */
 html{font-size:18px;}
-.header-sigla{font-size:31px;}
+.header-sigla{font-size:40px;}
 .form-card-head h2{font-size:1.05rem;}
 .page-hero h1{font-size:clamp(27px,3vw,42px);}
 .footer-brand .sigla{font-size:22px;}
@@ -267,6 +267,55 @@ html{font-size:18px;}
 #back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0);}
 #back-to-top svg{width:20px;height:20px;fill:none;stroke:var(--navy-deep);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
 #back-to-top:hover{background:var(--gold-lt);transform:translateY(-2px);}
+
+/* ERRO INLINE DE CAMPO */
+.field-error{display:block;font-size:.72rem;color:#c0392b;margin-top:5px;line-height:1.4;}
+.form-input.invalid{border-color:#c0392b !important;box-shadow:0 0 0 3px rgba(192,57,43,.10) !important;}
+.form-input.valid{border-color:#1c7846 !important;box-shadow:0 0 0 3px rgba(28,120,70,.08) !important;}
+
+/* MODAL CONFIRMAÇÃO */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(13,30,53,.55);
+  backdrop-filter:blur(3px);
+  align-items:center;justify-content:center;
+}
+.modal-overlay.visible{display:flex;}
+.modal-box{
+  background:var(--white);border-radius:14px;
+  padding:36px 32px 28px;
+  max-width:400px;width:92%;
+  box-shadow:0 24px 64px rgba(0,0,0,.28);
+  border-top:4px solid var(--gold);
+  text-align:center;
+  animation:modalIn .2s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:none;}}
+.modal-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(201,162,39,.12);
+  display:grid;place-items:center;margin:0 auto 16px;
+}
+.modal-icon svg{width:24px;height:24px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
+.modal-box h3{font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:8px;}
+.modal-box p{font-size:.88rem;color:var(--muted);line-height:1.6;}
+.modal-actions{display:flex;gap:12px;justify-content:center;margin-top:24px;}
+.btn-modal-cancel{
+  padding:10px 24px;background:transparent;
+  border:1.5px solid var(--border);border-radius:8px;
+  font-family:var(--font-body);font-size:.86rem;font-weight:600;
+  color:var(--muted);cursor:pointer;
+  transition:border-color .18s,color .18s;
+}
+.btn-modal-cancel:hover{border-color:var(--navy);color:var(--navy);}
+.btn-modal-confirm{
+  padding:10px 24px;background:var(--navy);
+  border:none;border-radius:8px;
+  font-family:var(--font-body);font-size:.86rem;font-weight:700;
+  color:var(--white);cursor:pointer;
+  transition:background .18s,transform .15s;
+}
+.btn-modal-confirm:hover{background:var(--navy-dark);transform:translateY(-1px);}
 </style>
 </head>
 <body>
@@ -285,7 +334,7 @@ html{font-size:18px;}
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
-      <img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;">
+      <img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;">
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
@@ -329,8 +378,8 @@ html{font-size:18px;}
 <!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero-inner">
-    <h1>Cadastro de <em>Empresa</em></h1>
-    <p>Preencha os dados abaixo para registrar ou atualizar o cadastro da sua empresa junto ao SINDEHOT-SBC.</p>
+    <h1>Cadastro de Empresa e Escritórios <br> de Contabilidade</h1>
+    <p>Preencha o formulário e mantenha os dados atualizados.</p>
   </div>
 </div>
 
@@ -369,6 +418,7 @@ html{font-size:18px;}
           <div class="form-group">
             <label class="form-label" for="cnpj">CNPJ <span>*</span></label>
             <input type="text" class="form-input" id="cnpj" placeholder="00.000.000/0000-00" maxlength="18"/>
+            <span class="field-error" id="cnpjError"></span>
           </div>
           <div class="form-group">
             <label class="form-label" for="dataAbertura">Data de Abertura</label>
@@ -423,7 +473,7 @@ html{font-size:18px;}
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="qtdFuncionarios">Quant. de Funcionários</label>
+            <label class="form-label" for="qtdFuncionarios">Quant. de Funcionários <span>*</span></label>
             <input type="number" class="form-input" id="qtdFuncionarios" placeholder="0" min="0"/>
           </div>
         </div>
@@ -434,7 +484,7 @@ html{font-size:18px;}
             <input type="text" class="form-input" id="responsavel" placeholder="Nome do responsável pela empresa"/>
           </div>
           <div class="form-group">
-            <label class="form-label" for="admissaoPrimeiro">Admissão do 1º Funcionário</label>
+            <label class="form-label" for="admissaoPrimeiro">Admissão do 1º Funcionário <span>*</span></label>
             <input type="text" class="form-input" id="admissaoPrimeiro" placeholder="dd/mm/aaaa" maxlength="10"/>
           </div>
         </div>
@@ -454,12 +504,12 @@ html{font-size:18px;}
       <div class="form-card-body">
 
         <div class="form-group" style="margin-bottom:16px;">
-          <label class="form-label" for="nomeEscritorio">Nome do Escritório</label>
+          <label class="form-label" for="nomeEscritorio">Nome do Escritório <span>*</span></label>
           <input type="text" class="form-input" id="nomeEscritorio" placeholder="Nome do escritório contábil"/>
         </div>
 
         <div class="form-group" style="margin-bottom:16px;">
-          <label class="form-label" for="enderecoEscritorio">Endereço</label>
+          <label class="form-label" for="enderecoEscritorio">Endereço <span>*</span></label>
           <input type="text" class="form-input" id="enderecoEscritorio" placeholder="Rua, Avenida, número..."/>
         </div>
 
@@ -502,21 +552,29 @@ html{font-size:18px;}
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="telefoneEscritorio">Telefone</label>
+            <label class="form-label" for="telefoneEscritorio">Telefone <span>*</span></label>
             <div class="input-prefix-wrap">
               <span class="input-prefix">0xx</span>
               <input type="tel" class="form-input" id="telefoneEscritorio" placeholder="(11) 0000-0000" maxlength="15" oninput="maskPhone(this)"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" for="contatoEscritorio">Contato</label>
-            <input type="text" class="form-input" id="contatoEscritorio" placeholder="Nome da pessoa de contato"/>
+            <label class="form-label" for="celularEscritorio">Celular</label>
+            <div class="input-prefix-wrap">
+              <span class="input-prefix">0xx</span>
+              <input type="tel" class="form-input" id="celularEscritorio" placeholder="(11) 00000-0000" maxlength="15" oninput="maskPhone(this)"/>
+            </div>
           </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom:16px;">
+          <label class="form-label" for="contatoEscritorio">Contato</label>
+          <input type="text" class="form-input" id="contatoEscritorio" placeholder="Nome da pessoa de contato"/>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="emailEscritorio">E-mail</label>
+            <label class="form-label" for="emailEscritorio">E-mail <span>*</span></label>
             <input type="email" class="form-input" id="emailEscritorio" placeholder="email@escritorio.com.br"/>
           </div>
           <div class="form-group">
@@ -608,7 +666,7 @@ html{font-size:18px;}
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h3>Cadastro enviado!</h3>
-      <p>Recebemos as informações da sua empresa.<strong></strong> Responderemos assim que Possível.</p>
+      <p>Recebemos as informações. Caso necessário, entraremos em contato.</p>
       <button class="btn-back" onclick="voltarForm()">Fazer novo cadastro</button>
     </div>
   </div>
@@ -672,16 +730,52 @@ html{font-size:18px;}
 function toggleMenu(){document.getElementById('navItems').classList.toggle('open');}
 function toggleDropdown(el){if(window.innerWidth>768)return;el.closest('.nav-item').classList.toggle('open');}
 
+// Validação dígito verificador CNPJ
+function validarCNPJ(cnpj) {
+  cnpj = cnpj.replace(/\D/g, '');
+  if (cnpj.length !== 14) return false;
+  if (/^(\d)\1+$/.test(cnpj)) return false; // todos dígitos iguais
+  let soma = 0, peso = 5;
+  for (let i = 0; i < 12; i++) { soma += +cnpj[i] * peso; peso = peso === 2 ? 9 : peso - 1; }
+  const d1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  if (+cnpj[12] !== d1) return false;
+  soma = 0; peso = 6;
+  for (let i = 0; i < 13; i++) { soma += +cnpj[i] * peso; peso = peso === 2 ? 9 : peso - 1; }
+  const d2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+  return +cnpj[13] === d2;
+}
+
+function setCnpjStatus(valido, msg) {
+  const el = document.getElementById('cnpj');
+  const err = document.getElementById('cnpjError');
+  el.classList.toggle('invalid', !valido);
+  el.classList.toggle('valid', valido);
+  err.textContent = valido ? '' : msg;
+}
+
 // Máscara CNPJ
-document.getElementById('cnpj').addEventListener('input',function(){
-  let v=this.value.replace(/\D/g,'');
-  if(v.length<=14){
-    v=v.replace(/^(\d{2})(\d)/,'$1.$2');
-    v=v.replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3');
-    v=v.replace(/\.(\d{3})(\d)/,'.$1/$2');
-    v=v.replace(/(\d{4})(\d)/,'$1-$2');
+document.getElementById('cnpj').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g, '');
+  if (v.length <= 14) {
+    v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+    v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    v = v.replace(/(\d{4})(\d)/, '$1-$2');
   }
-  this.value=v;
+  this.value = v;
+  // Limpa erro enquanto digita; revalida só se já preencheu os 18 chars
+  if (this.classList.contains('invalid')) {
+    if (validarCNPJ(v)) setCnpjStatus(true, '');
+  }
+  if (v.length === 0) { this.classList.remove('invalid','valid'); document.getElementById('cnpjError').textContent=''; }
+});
+
+// Valida ao sair do campo
+document.getElementById('cnpj').addEventListener('blur', function() {
+  const v = this.value.trim();
+  if (!v) { this.classList.remove('invalid','valid'); document.getElementById('cnpjError').textContent=''; return; }
+  if (!validarCNPJ(v)) setCnpjStatus(false, 'CNPJ inválido. Verifique os dígitos e tente novamente.');
+  else setCnpjStatus(true, '');
 });
 
 // Máscara datas
@@ -734,12 +828,30 @@ function enviarCadastro(){
   const tel=document.getElementById('telefoneEmpresa').value.trim();
   const tipo=document.querySelector('input[name="tipoOperacao"]:checked');
 
+  const qtd=document.getElementById('qtdFuncionarios').value.trim();
+  const admissao=document.getElementById('admissaoPrimeiro').value.trim();
+  const nomeEsc=document.getElementById('nomeEscritorio').value.trim();
+  const endEsc=document.getElementById('enderecoEscritorio').value.trim();
+  const telEsc=document.getElementById('telefoneEscritorio').value.trim();
+  const emailEsc=document.getElementById('emailEscritorio').value.trim();
+
   if(!razao){showError('Por favor, informe a Razão Social.',document.getElementById('razaoSocial'));return;}
   if(!cnpj){showError('Por favor, informe o CNPJ.',document.getElementById('cnpj'));return;}
+  if(!validarCNPJ(cnpj)){
+    setCnpjStatus(false,'CNPJ inválido. Verifique os dígitos e tente novamente.');
+    showError('O CNPJ informado é inválido.',document.getElementById('cnpj'));
+    return;
+  }
   if(!ramo){showError('Por favor, informe o Ramo de Atividade.',document.getElementById('ramoAtividade'));return;}
   if(!end){showError('Por favor, informe o Endereço da empresa.',document.getElementById('enderecoEmpresa'));return;}
   if(!cidade){showError('Por favor, selecione a Cidade.',document.getElementById('cidadeEmpresa'));return;}
   if(!tel){showError('Por favor, informe o Telefone da empresa.',document.getElementById('telefoneEmpresa'));return;}
+  if(qtd===''){showError('Por favor, informe a Quantidade de Funcionários.',document.getElementById('qtdFuncionarios'));return;}
+  if(!admissao){showError('Por favor, informe a Data de Admissão do 1º Funcionário.',document.getElementById('admissaoPrimeiro'));return;}
+  if(!nomeEsc){showError('Por favor, informe o Nome do Escritório Contábil.',document.getElementById('nomeEscritorio'));return;}
+  if(!endEsc){showError('Por favor, informe o Endereço do Escritório.',document.getElementById('enderecoEscritorio'));return;}
+  if(!telEsc){showError('Por favor, informe o Telefone do Escritório.',document.getElementById('telefoneEscritorio'));return;}
+  if(!emailEsc){showError('Por favor, informe o E-mail do Escritório.',document.getElementById('emailEscritorio'));return;}
   if(!tipo){showError('Por favor, selecione o tipo de operação.');return;}
 
   const btn=document.querySelector('.btn-submit');
@@ -750,7 +862,7 @@ function enviarCadastro(){
   const v=id=>(g(id)?g(id).value.trim():'') || '—';
   const solicitacao=g('solicitacaoGuias')&&g('solicitacaoGuias').checked?'Sim':'Não';
 
-  fetch('https://formspree.io/f/meenblbn', {
+  fetch('https://formspree.io/f/xbdbokej', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: JSON.stringify({
@@ -770,6 +882,7 @@ function enviarCadastro(){
       'Escritório Contábil': v('nomeEscritorio'),
       'Endereço Escritório': v('enderecoEscritorio'),
       'Tel. Escritório': v('telefoneEscritorio'),
+      'Celular Escritório': v('celularEscritorio'),
       'Contato Escritório': v('contatoEscritorio'),
       'E-mail Escritório': v('emailEscritorio'),
       'Solicitar Guias': solicitacao,
@@ -795,15 +908,22 @@ function enviarCadastro(){
   });
 }
 
-// Limpar
+// Modal limpar
 function limparFormulario(){
-  if(!confirm('Deseja limpar todos os campos do formulário?')) return;
+  document.getElementById('modalLimpar').classList.add('visible');
+}
+function fecharModalLimpar(){
+  document.getElementById('modalLimpar').classList.remove('visible');
+}
+function confirmarLimpar(){
+  fecharModalLimpar();
   document.querySelectorAll('.form-input,.form-select').forEach(el=>{
     if(el.tagName==='SELECT') el.selectedIndex=0;
     else el.value='';
   });
   document.getElementById('solicitacaoGuias').checked=false;
   document.getElementById('soInclusao').checked=true;
+  hideError();
 }
 
 // Voltar
@@ -811,6 +931,9 @@ function voltarForm(){
   document.getElementById('formWrapper').style.display='block';
   document.getElementById('formSuccess').style.display='none';
   limparFormulario();
+  const btn=document.querySelector('.btn-submit');
+  btn.disabled=false;
+  btn.innerHTML='<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Cadastro';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 // Voltar ao Topo
@@ -820,6 +943,21 @@ function voltarForm(){
   btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
 </script>
+
+<!-- MODAL LIMPAR FORMULÁRIO -->
+<div class="modal-overlay" id="modalLimpar" role="dialog" aria-modal="true" onclick="if(event.target===this)fecharModalLimpar()">
+  <div class="modal-box">
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
+    </div>
+    <h3>Limpar formulário</h3>
+    <p>Tem certeza? Todos os campos preenchidos serão apagados.</p>
+    <div class="modal-actions">
+      <button class="btn-modal-cancel" onclick="fecharModalLimpar()">Cancelar</button>
+      <button class="btn-modal-confirm" onclick="confirmarLimpar()">Sim, limpar</button>
+    </div>
+  </div>
+</div>
 
 <button id="back-to-top" aria-label="Voltar ao topo">
   <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>

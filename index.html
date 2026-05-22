@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SINDEHOT-SBC</title>
-  <link rel="icon" href="img/logo.png" type="image/png">
+  <link rel="icon" href="img/sindehot.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -105,7 +105,7 @@ html,body{
 }
  
 .brasao{
-  width:76px;height:76px;flex-shrink:0;
+  width:106px;height:106px;flex-shrink:0;
   border-radius:50%;
   background:linear-gradient(135deg,var(--gold) 0%,#8B6914 100%);
   border:3px solid rgba(201,162,39,.35);
@@ -311,7 +311,7 @@ nav.main-nav{
 }
 .hero-title em{font-style:normal;color:var(--gold);}
 .hero-sub{
-  font-size:.97rem;font-weight:400;line-height:1.78;
+  font-size:.84rem;font-weight:400;line-height:1.78;
   color:#4a5568;margin-bottom:30px;max-width:430px;
 }
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
@@ -729,8 +729,8 @@ footer{
 }
 /* Aumento de 2px na fonte do corpo */
 html{font-size:18px;}
-.header-sigla{font-size:31px;}
-.hero-title{font-size:clamp(30px,3.8vw,50px);}
+.header-sigla{font-size:40px;}
+.hero-title{font-size:clamp(22px,3.0vw,40px);}
 .stat-num{font-size:30px;}
 .stat-card-num{font-size:35px;}
 .section-title{font-size:clamp(22px,2.5vw,32px);}
@@ -764,7 +764,7 @@ html{font-size:18px;}
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
-      <img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;">
+      <img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;">
     </a>
     <div class="header-texts">
       <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
@@ -888,6 +888,15 @@ html{font-size:18px;}
         <div>
           <div class="hc-label">Benefícios</div>
           <div class="hc-title">Convênios para Associados</div>
+        </div>
+        <div class="hc-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+      </a>
+
+      <a href="#" class="hero-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <div>
+          <div class="hc-label">REPIS</div>
+          <div class="hc-title">Saiba Mais</div>
         </div>
         <div class="hc-arrow"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
       </a>
@@ -1032,6 +1041,11 @@ html{font-size:18px;}
           <a href="docs/convenção.pdf" target="_blank" download class="quick-link">
             <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             <span>Baixar CCT 2024–2026</span>
+            <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="docs/Circular2526.pdf" target="_blank" download class="quick-link">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>Baixar CCT Econômica 2025–2026</span>
             <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
           <a href="conoscos.html" class="quick-link">

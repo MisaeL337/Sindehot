@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SINDEHOT-SBC</title>
-  <link rel="icon" href="img/logo.png" type="image/png">
+  <link rel="icon" href="img/sindehot.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -25,7 +25,7 @@ html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);f
 .site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
 .site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
 .header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
-.brasao{width:76px;height:76px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,var(--gold) 0%,#8B6914 100%);border:3px solid rgba(201,162,39,.35);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(201,162,39,.12),0 8px 24px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;}
+.brasao{width:106px;height:106px;flex-shrink:0;border-radius:50%;background:linear-gradient(135deg,var(--gold) 0%,#8B6914 100%);border:3px solid rgba(201,162,39,.35);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 4px rgba(201,162,39,.12),0 8px 24px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;}
 .brasao:hover{transform:scale(1.04);}
 .brasao svg{width:38px;height:38px;fill:none;stroke:var(--navy-deep);stroke-width:1.6;stroke-linecap:round;}
 .header-sigla{font-family:var(--font-head);font-size:1.95rem;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
@@ -202,7 +202,7 @@ footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px
 .rd1{transition-delay:.07s;}.rd2{transition-delay:.14s;}.rd3{transition-delay:.21s;}.rd4{transition-delay:.28s;}.rd5{transition-delay:.35s;}
 /* Aumento de 2px na fonte do corpo */
 html{font-size:18px;}
-.header-sigla{font-size:31px;}
+.header-sigla{font-size:40px;}
 .stat-num{font-size:30px;}
 .section-title{font-size:clamp(22px,2.5vw,32px);}
 .section-head h2{font-size:20px;}
@@ -217,7 +217,7 @@ html{font-size:18px;}
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner"><a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Webmail</a></div></div>
-<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/logo.png" alt="Logo SINDEHOT-SBC" style="width:100px;height:100px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4123-5598</div><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
+<header class="site-header"><div class="header-inner"><a href="index.html" class="brasao"><img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;"></a><div class="header-texts"><div class="header-sigla">SINDEHOT<span>-SBC</span></div><div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div></div><div class="header-sub"><p>Fale conosco</p><div class="header-fone">(11) 4123-5598</div><div class="header-fone">(11) 4122-2888</div><div class="header-horario">Seg–Sex, 9h às 17h</div></div></div></header>
 <nav class="main-nav"><div class="nav-inner"><button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="nav-items-wrap" id="navItems">
 <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
 <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
@@ -252,6 +252,7 @@ html{font-size:18px;}
 <a href="docs/convenção.pdf" target="_blank" class="btn-dl-gold" download><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar CCT</a>
 </div></div>
 <div class="doc-list">
+<a href="docs/Circular2526.pdf" target="_blank" class="doc-item reveal rd1" download><div class="doc-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">CCT Cláusulas Econômicas 2025–2026</div><div class="doc-meta"><span class="tag cct">CCT</span><span>Cláusulas Econômicas 2025–2026</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 <a href="docs/CCT 2023-2024.pdf" target="_blank" class="doc-item reveal rd2" download><div class="doc-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">CCT 2023–2024</div><div class="doc-meta"><span class="tag cct">CCT</span><span class="tag enc">Encerrada</span><span>Out/2022 a Set/2024</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 <a href="docs/CCT-SBC-19-21.pdf" target="_blank" class="doc-item reveal rd4" download><div class="doc-icon blue"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">CCT 2019–2021 — São Bernardo do Campo</div><div class="doc-meta"><span class="tag cct">CCT</span><span class="tag enc">Encerrada</span><span>Histórico</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 </div>
@@ -266,7 +267,9 @@ html{font-size:18px;}
 <p class="section-sub">Informativos emitidos pelo SINDEHOT-SBC sobre temas relevantes para a categoria.</p>
 </div>
 <div class="doc-list">
-<a href="docs/Circular22-23.pdf" target="_blank" class="doc-item reveal rd3" download><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2022–2023</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2022–2023</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+<a href="docs/Circular2526.pdf" target="_blank" class="doc-item reveal rd1"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2025–2026</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2025–2026</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+<a href="docs/Circular22-23.pdf" target="_blank" class="doc-item reveal rd2" download><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2022–2023</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2022–2023</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+<a href="docs/CircularSBC19-20.pdf" target="_blank"  class="doc-item reveal rd3"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2019–2020</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2019–2020</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
 </div>
 </section>
 
@@ -283,7 +286,7 @@ html{font-size:18px;}
 <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm" target="_blank" class="leg-link"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>CLT — Consolidação das Leis do Trabalho</span></a>
 <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm" target="_blank" class="leg-link"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>Reforma Trabalhista — Lei 13.467/2017</span></a>
 <a href="https://www.planalto.gov.br/ccivil_03/leis/l8036cons.htm" target="_blank" class="leg-link"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>Lei do FGTS — Lei 8.036/1990</span></a>
-<a href="https://www.planalto.gov.br/ccivil_03/leis/l7998.htm" target="_blank" class="leg-link"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>Seguro-Desemprego — Lei 7.998/1990</span></a>
+<a href="https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego" target="_blank" class="leg-link"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span>Seguro-Desemprego — Solicitar</span></a>
 </div>
 <div class="leg-cat">
 <div class="leg-cat-head"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><h4>Órgãos e Portais</h4></div>
