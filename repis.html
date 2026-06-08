@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>REPIS — Regime Especial de Pisos Salariais | SINDEHOT-SBC</title>
+<link rel="icon" href="img/sindehot.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1E3A6E;--navy-dark:#132847;--navy-deep:#0D1E35;
+  --gold:#C9A227;--gold-lt:#E8C547;--gold-dim:rgba(201,162,39,0.12);--gold-glow:rgba(201,162,39,0.28);
+  --cream:#F8F5EE;--white:#FFFFFF;--text:#1A1A2E;--muted:#64748b;--border:#DDE3ED;
+  --green:#1c7846;--green-dim:rgba(28,120,70,0.1);
+  --font-head:'Playfair Display',serif;--font-body:'Source Sans 3',sans-serif;
+}
+html{font-size:18px;}
+html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);font-family:var(--font-body);overflow-x:hidden;scroll-behavior:smooth;}
+.topbar{background:var(--navy-deep);padding:7px 0;z-index:200;position:relative;}
+.topbar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:flex-end;}
+.topbar-webmail{display:inline-flex;align-items:center;gap:7px;padding:5px 16px;background:var(--gold);color:var(--navy-deep);border-radius:4px;text-decoration:none;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;transition:background .2s,transform .15s;}
+.topbar-webmail:hover{background:var(--gold-lt);transform:translateY(-1px);}
+.topbar-webmail svg{width:13px;height:13px;fill:none;stroke:var(--navy-deep);stroke-width:2.2;stroke-linecap:round;}
+.site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
+.brasao{width:106px;height:106px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
+.brasao:hover{transform:scale(1.04);}
+.header-sigla{font-family:var(--font-head);font-size:40px;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
+.header-sigla span{color:var(--gold);}
+.header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
+.header-sub{margin-left:auto;text-align:right;}
+@media(max-width:767px){.header-sub{display:none;}}
+.header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
+.header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
+.header-horario{font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;}
+nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;flex:1;}
+.nav-item{position:relative;}
+.nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
+.nav-link.active::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:var(--gold);}
+.nav-caret{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:5px;vertical-align:middle;opacity:.55;transition:transform .2s;}
+.nav-item:hover .nav-caret{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:100%;left:0;background:var(--navy-dark);border:1px solid rgba(201,162,39,.18);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;min-width:210px;box-shadow:0 14px 36px rgba(0,0,0,.32);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:200;}
+.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown a{display:block;padding:11px 18px;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .15s,background .15s,padding-left .15s;}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(255,255,255,.04);padding-left:24px;}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-toggle{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;margin:5px 0;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+.nav-item-boletos .nav-link{background:var(--gold);color:var(--navy-deep);border-radius:5px;margin:8px 0;padding:8px 18px;font-weight:700;transition:background .2s,transform .15s,box-shadow .2s;}
+.nav-item-boletos .nav-link:hover{background:var(--gold-lt);color:var(--navy-deep);transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,162,39,.40);}
+@media(max-width:768px){
+  .nav-toggle{display:block;}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-items-wrap{display:none;flex-direction:column;width:100%;padding-bottom:8px;}
+  .nav-items-wrap.open{display:flex;}
+  .nav-item{width:100%;}
+  .nav-link{padding:11px 4px;}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
+  .nav-item.open .nav-dropdown{display:block;}
+  .nav-item-boletos{margin-left:0;margin-right:0;}
+}
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:44px 0 40px;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;}
+.page-hero-inner{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+.page-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.page-breadcrumb a{font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;}
+.page-breadcrumb a:hover{color:var(--gold);}
+.page-breadcrumb span{font-size:.75rem;color:rgba(255,255,255,.25);}
+.page-breadcrumb strong{font-size:.75rem;color:rgba(255,255,255,.65);}
+.page-hero h1{font-family:var(--font-head);font-size:clamp(27px,3vw,42px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.page-hero h1 em{font-style:normal;color:var(--gold);}
+.page-hero p{font-size:.95rem;color:rgba(255,255,255,.58);max-width:600px;line-height:1.7;}
+.page-wrapper{max-width:860px;margin:0 auto;padding:48px 24px 64px;}
+.section-block{padding:44px 0;border-bottom:1px solid var(--border);}
+.section-block:last-child{border-bottom:none;padding-bottom:0;}
+.section-label{display:inline-flex;align-items:center;gap:7px;padding:4px 13px;background:var(--gold-dim);border:1px solid rgba(201,162,39,.25);border-radius:999px;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.section-label svg{width:13px;height:13px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
+.section-title{font-family:var(--font-head);font-size:clamp(20px,2.2vw,28px);font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:10px;}
+.section-title em{font-style:normal;color:var(--gold);}
+.section-body{font-size:.92rem;color:var(--text);line-height:1.8;max-width:720px;}
+.section-body p{margin-bottom:14px;}
+.section-body p:last-child{margin-bottom:0;}
+.section-body strong{color:var(--navy);}
+
+/* DEFINIÇÃO EM DESTAQUE */
+.def-card{
+  background:linear-gradient(135deg,var(--navy) 0%,#1a3a7a 100%);
+  border-radius:12px;padding:28px 32px;margin:24px 0;
+  border:1px solid rgba(201,162,39,.2);position:relative;overflow:hidden;
+}
+.def-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(201,162,39,.1),transparent 60%);}
+.def-card-inner{position:relative;z-index:1;}
+.def-card-label{font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.def-card-text{font-size:.92rem;color:rgba(255,255,255,.85);line-height:1.8;}
+.def-card-text strong{color:var(--gold);}
+
+/* QUEM TEM DIREITO */
+.elegib-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+@media(max-width:560px){.elegib-grid{grid-template-columns:1fr;}}
+.elegib-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;display:flex;gap:14px;align-items:flex-start;}
+.elegib-icon{width:40px;height:40px;border-radius:9px;flex-shrink:0;display:grid;place-items:center;}
+.elegib-icon.me{background:rgba(30,58,110,.08);}
+.elegib-icon.epp{background:rgba(201,162,39,.1);}
+.elegib-icon svg{width:19px;height:19px;fill:none;stroke-width:2;stroke-linecap:round;}
+.elegib-icon.me svg{stroke:var(--navy);}
+.elegib-icon.epp svg{stroke:#8B6914;}
+.elegib-title{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.elegib-desc{font-size:.8rem;color:var(--muted);line-height:1.6;}
+
+/* PASSOS */
+.steps{display:flex;flex-direction:column;gap:0;margin:24px 0;}
+.step{display:flex;gap:18px;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--border);}
+.step:last-child{border-bottom:none;padding-bottom:0;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:var(--font-head);font-size:.95rem;font-weight:700;display:grid;place-items:center;flex-shrink:0;margin-top:2px;}
+.step-body{}
+.step-title{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:5px;}
+.step-desc{font-size:.84rem;color:var(--muted);line-height:1.65;}
+.step-desc strong{color:var(--navy);}
+
+/* AVISO */
+.aviso-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;display:flex;align-items:flex-start;gap:12px;margin-top:40px;}
+.aviso-box svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:2px;}
+.aviso-box p{font-size:.84rem;color:var(--muted);line-height:1.65;}
+.aviso-box strong{color:var(--navy);}
+
+/* LINK CCT */
+.cct-link-box{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:24px;}
+.cct-link-info{font-size:.84rem;color:var(--muted);}
+.cct-link-info strong{display:block;font-size:.9rem;color:var(--navy);margin-bottom:2px;}
+.btn-cct{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;background:var(--navy);color:var(--white);border-radius:7px;font-family:var(--font-body);font-size:.82rem;font-weight:700;text-decoration:none;transition:background .2s,transform .15s;flex-shrink:0;}
+.btn-cct:hover{background:var(--navy-dark);transform:translateY(-1px);}
+.btn-cct svg{width:14px;height:14px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round;}
+
+/* CONTACT & FOOTER */
+.contact-strip{background:var(--navy);padding:28px 0;}
+.contact-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.contact-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--white);}
+.contact-value a{color:var(--gold);text-decoration:none;}
+.contact-sub{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy-deep);border:none;border-radius:6px;font-family:var(--font-body);font-size:.86rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .18s;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px 0 0;}
+.footer-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:36px;}
+@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+.footer-brand .sigla{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--white);letter-spacing:.05em;margin-bottom:10px;}
+.footer-brand .sigla span{color:var(--gold);}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;max-width:280px;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);}
+.footer-dev{font-size:.72rem;color:rgba(255,255,255,.25);}
+.footer-dev a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-dev a:hover{color:var(--gold);}
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}.rd3{transition-delay:.24s;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Webmail
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
+      <img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;">
+    </a>
+    <div class="header-texts">
+      <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+    </div>
+    <div class="header-sub">
+      <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
+      <div class="header-fone">(11) 4122-2888</div>
+      <div class="header-horario">Seg–Sex, 9h às 17h</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-items-wrap" id="navItems">
+      <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+      <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
+      <div class="nav-item"><a href="informacoes.html" class="nav-link active">Informações</a></div>
+      <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
+      <div class="nav-item">
+        <span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span>
+        <div class="nav-dropdown">
+          <a href="caragua.html">Caraguatatuba</a>
+          <a href="grande.html">Praia Grande</a>
+          <a href="ferthotel.html">Fetrhotel</a>
+          <a href="oasis.html">Oásis</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
+      <div class="nav-item nav-item-boletos"><a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a></div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="informacoes.html">Informações</a><span>›</span>
+      <strong>REPIS</strong>
+    </div>
+    <h1>Regime Especial de <em>Pisos Salariais</em></h1>
+    <p>Entenda o que é o REPIS, quem tem direito e como obter o certificado de adesão junto ao sindicato.</p>
+  </div>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="page-wrapper">
+
+  <!-- ═══ O QUE É O REPIS ═══ -->
+  <section class="section-block" id="oque">
+
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Conceito
+      </div>
+      <h2 class="section-title">O que é o <em>REPIS</em>?</h2>
+    </div>
+
+    <div class="def-card reveal rd1">
+      <div class="def-card-inner">
+        <div class="def-card-label">Definição oficial — CCT SINDEHOT-SBC</div>
+        <p class="def-card-text">O <strong>REPIS — Regime Especial de Pisos Salariais</strong> é uma cláusula prevista na Convenção Coletiva de Trabalho (CCT) que confere às <strong>Microempresas (ME)</strong> e <strong>Empresas de Pequeno Porte (EPP)</strong> enquadradas no Simples Nacional o direito de praticarem pisos salariais diferenciados — inferiores ao piso geral da categoria —, reduzindo os custos operacionais e contribuindo para a manutenção dos postos de trabalho no setor hoteleiro e de similares.</p>
+      </div>
+    </div>
+
+    <div class="section-body reveal rd2">
+      <p>O REPIS reconhece que micro e pequenas empresas possuem capacidade econômica distinta das grandes redes hoteleiras. Por isso, a CCT negociada entre o <strong>SINDEHOT-SBC</strong> e o <strong>SEHAL</strong> (Sindicato Patronal) estabelece pisos salariais reduzidos para esse segmento, garantindo que esses estabelecimentos consigam cumprir suas obrigações trabalhistas sem comprometer sua viabilidade financeira.</p>
+      <p>É importante ressaltar que o benefício <strong>não dispensa</strong> o cumprimento de nenhum outro direito trabalhista previsto na CCT ou na CLT — vale-refeição, férias, 13º salário, FGTS e demais verbas permanecem integralmente devidos.</p>
+    </div>
+
+  </section>
+
+  <!-- ═══ QUEM TEM DIREITO ═══ -->
+  <section class="section-block" id="elegibilidade">
+
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Elegibilidade
+      </div>
+      <h2 class="section-title">Quem tem <em>direito</em>?</h2>
+    </div>
+
+    <div class="section-body reveal rd1">
+      <p>Podem aderir ao REPIS os estabelecimentos que atendam <strong>cumulativamente</strong> aos seguintes requisitos:</p>
+    </div>
+
+    <div class="elegib-grid reveal rd2">
+      <div class="elegib-item">
+        <div class="elegib-icon me">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="elegib-title">Microempresa (ME)</div>
+          <div class="elegib-desc">Receita bruta anual igual ou inferior a R$ 360.000,00, nos termos da Lei Complementar nº 123/2006.</div>
+        </div>
+      </div>
+      <div class="elegib-item">
+        <div class="elegib-icon epp">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+        </div>
+        <div>
+          <div class="elegib-title">Empresa de Pequeno Porte (EPP)</div>
+          <div class="elegib-desc">Receita bruta anual superior a R$ 360.000,00 e igual ou inferior a R$ 4.800.000,00, conforme LC 123/2006.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-body reveal rd3">
+      <p>Além do porte, a empresa deve estar <strong>regularmente optante pelo Simples Nacional</strong> e atuar em ramo de atividade abrangido pela base territorial do SINDEHOT-SBC (São Bernardo do Campo, Diadema e Rio Grande da Serra).</p>
+    </div>
+
+  </section>
+
+  <!-- ═══ COMO SOLICITAR ═══ -->
+  <section class="section-block" id="como">
+
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Solicitação
+      </div>
+      <h2 class="section-title">Como <em>solicitar</em> o REPIS?</h2>
+    </div>
+
+    <div class="section-body reveal rd1">
+      <p>Para aderir ao REPIS, a empresa precisa obter o <strong>Certificado de Adesão ao REPIS</strong>, emitido em conjunto pelo sindicato patronal (SEHAL) e pelo SINDEHOT-SBC, que comprova o enquadramento e autoriza a aplicação do piso diferenciado. O processo segue as etapas abaixo:</p>
+    </div>
+
+    <div class="steps reveal rd2">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Verificar o enquadramento</div>
+          <div class="step-desc">Confirme que a empresa está ativa no <strong>Simples Nacional</strong> e se enquadra como ME ou EPP. Consulte o portal da Receita Federal ou o contador responsável para validar a situação cadastral.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Reunir a documentação</div>
+          <div class="step-desc">Separe os documentos que comprovam o porte da empresa: <strong>Comprovante de Opção pelo Simples Nacional</strong>, CNPJ ativo, e documentação de identificação do responsável legal. Os documentos específicos exigidos seguem as regras da CCT vigente.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Contatar o SINDEHOT-SBC</div>
+          <div class="step-desc">Entre em contato com o sindicato pelos telefones <strong>(11) 4123-5598 / (11) 4122-2888</strong> ou pelo <a href="conoscos.html" style="color:var(--navy);font-weight:600;">Fale Conosco</a> para obter orientação sobre o processo e os prazos vigentes.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Obter o Certificado de Adesão</div>
+          <div class="step-desc">Com a documentação aprovada, o <strong>Certificado de Adesão ao REPIS</strong> é emitido em conjunto pelo SEHAL e pelo SINDEHOT-SBC. Esse certificado deve ser mantido em arquivo pela empresa como comprovante da adesão durante toda a vigência da CCT correspondente.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cct-link-box reveal rd3">
+      <div class="cct-link-info">
+        <strong>Consulte a CCT vigente</strong>
+        Todos os prazos, valores e procedimentos de adesão ao REPIS estão detalhados na Convenção Coletiva de Trabalho em vigor.
+      </div>
+      <a href="informacoes.html#cct" class="btn-cct">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Ver CCTs
+      </a>
+    </div>
+
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<!-- AVISO LEGAL -->
+<div style="max-width:860px;margin:0 auto;padding:0 24px 56px;">
+  <div class="aviso-box reveal">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <p><strong>Atenção:</strong> Os prazos, valores específicos e documentos necessários para a solicitação seguem as regras estabelecidas na <strong>CCT vigente</strong>. Em caso de dúvidas, consulte o SINDEHOT-SBC pelos telefones <strong>(11) 4123-5598 / (11) 4122-2888</strong>.</p>
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div>
+    <div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div></div>
+    <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="sigla">SINDEHOT<span>-SBC</span></div>
+        <p>Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="somos.html">Quem Somos</a></li>
+          <li><a href="convenios.html">Convênios</a></li>
+          <li><a href="conoscos.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
+          <li><a href="informacoes.html#circulares">Circulares</a></li>
+          <li><a href="evolucao-pisos-plr.html">Evolução Salarial e PLR</a></li>
+          <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(e=>{
+    e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('visible');obs.unobserve(i.target);}});
+  },{threshold:0.08});
+  els.forEach(el=>obs.observe(el));
+})();
+function toggleMenu(){document.getElementById('navItems').classList.toggle('open');}
+function toggleDropdown(el){if(window.innerWidth>768)return;el.closest('.nav-item').classList.toggle('open');}
+(function(){
+  const btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+})();
+</script>
+</body>
+</html>

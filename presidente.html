@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Palavra do Presidente — SINDEHOT-SBC</title>
+<link rel="icon" href="img/sindehot.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1E3A6E;--navy-dark:#132847;--navy-deep:#0D1E35;
+  --gold:#C9A227;--gold-lt:#E8C547;--gold-dim:rgba(201,162,39,0.12);--gold-glow:rgba(201,162,39,0.28);
+  --cream:#F8F5EE;--white:#FFFFFF;--text:#1A1A2E;--muted:#64748b;--border:#DDE3ED;
+  --font-head:'Playfair Display',serif;--font-body:'Source Sans 3',sans-serif;
+}
+html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);font-family:var(--font-body);overflow-x:hidden;scroll-behavior:smooth;}
+
+/* TOPBAR */
+.topbar{background:var(--navy-deep);padding:7px 0;z-index:200;position:relative;}
+.topbar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:flex-end;}
+.topbar-webmail{display:inline-flex;align-items:center;gap:7px;padding:5px 16px;background:var(--gold);color:var(--navy-deep);border-radius:4px;text-decoration:none;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;transition:background .2s,transform .15s;}
+.topbar-webmail:hover{background:var(--gold-lt);transform:translateY(-1px);}
+.topbar-webmail svg{width:13px;height:13px;fill:none;stroke:var(--navy-deep);stroke-width:2.2;stroke-linecap:round;}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
+.brasao{width:106px;height:106px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
+.brasao:hover{transform:scale(1.04);}
+.header-sigla{font-family:var(--font-head);font-size:40px;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
+.header-sigla span{color:var(--gold);}
+.header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
+.header-sub{margin-left:auto;text-align:right;}
+@media(max-width:767px){.header-sub{display:none;}}
+.header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
+.header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
+.header-horario{font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;}
+
+/* NAV */
+nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;flex:1;}
+.nav-item{position:relative;}
+.nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
+.nav-link.active::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:var(--gold);}
+.nav-caret{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:5px;vertical-align:middle;opacity:.55;transition:transform .2s;}
+.nav-item:hover .nav-caret{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:100%;left:0;background:var(--navy-dark);border:1px solid rgba(201,162,39,.18);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;min-width:210px;box-shadow:0 14px 36px rgba(0,0,0,.32);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:200;}
+.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown a{display:block;padding:11px 18px;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .15s,background .15s,padding-left .15s;}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(255,255,255,.04);padding-left:24px;}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-toggle{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;margin:5px 0;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+.nav-item-boletos .nav-link{background:var(--gold);color:var(--navy-deep);border-radius:5px;margin:8px 0;padding:8px 18px;font-weight:700;transition:background .2s,transform .15s,box-shadow .2s;}
+.nav-item-boletos .nav-link:hover{background:var(--gold-lt);color:var(--navy-deep);transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,162,39,.40);}
+@media(max-width:767px){
+  .nav-item-boletos{margin-left:0;margin-right:0;}
+  .nav-toggle{display:block;}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-items-wrap{display:none;flex-direction:column;width:100%;padding-bottom:8px;}
+  .nav-items-wrap.open{display:flex;}
+  .nav-item{width:100%;}
+  .nav-link{padding:11px 4px;}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
+  .nav-item.open .nav-dropdown{display:block;}
+}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:52px 0 46px;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;}
+.page-hero-inner{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+.page-hero h1{font-family:var(--font-head);font-size:clamp(27px,3vw,42px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.page-hero h1 em{font-style:normal;color:var(--gold);}
+.page-hero p{font-size:.95rem;color:rgba(255,255,255,.58);max-width:560px;line-height:1.7;}
+
+/* VIDEO SECTION */
+.video-section{max-width:800px;margin:56px auto;padding:0 24px 64px;}
+
+.video-wrapper{
+  position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+  border-radius:12px;
+  box-shadow:0 12px 40px rgba(30,58,110,.18);
+}
+.video-wrapper iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;border:0;
+}
+
+/* ASSINATURA */
+.assinatura{
+  display:flex;align-items:center;gap:18px;
+  margin-top:28px;
+  padding:18px 24px;
+  border-left:4px solid var(--gold);
+  background:var(--white);
+  border-radius:0 10px 10px 0;
+  box-shadow:0 2px 14px rgba(30,58,110,.08);
+}
+.assinatura-avatar{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:var(--navy);border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+}
+.assinatura-avatar span{
+  font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--gold);
+}
+.assinatura-nome{
+  font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--navy);
+}
+.assinatura-cargo{
+  font-size:.8rem;color:var(--muted);margin-top:3px;
+}
+
+/* CONTACT STRIP */
+.contact-strip{background:var(--navy);padding:28px 0;}
+.contact-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.contact-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--white);}
+.contact-value a{color:var(--gold);text-decoration:none;}
+.contact-sub{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy-deep);border:none;border-radius:6px;font-family:var(--font-body);font-size:.86rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .18s;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+
+/* FOOTER */
+footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px 0 0;}
+.footer-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:36px;}
+@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+.footer-brand .sigla{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--white);letter-spacing:.05em;margin-bottom:10px;}
+.footer-brand .sigla span{color:var(--gold);}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;max-width:280px;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);}
+.footer-dev{font-size:.72rem;color:rgba(255,255,255,.25);}
+.footer-dev a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-dev a:hover{color:var(--gold);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.08s;}
+
+/* BOTÃO VOLTAR AO TOPO */
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Webmail
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
+      <img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;">
+    </a>
+    <div class="header-texts">
+      <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+    </div>
+    <div class="header-sub">
+      <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
+      <div class="header-fone">(11) 4122-2888</div>
+      <div class="header-horario">Seg–Sex, 9h às 17h</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <div class="nav-items-wrap" id="navItems">
+      <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+      <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
+      <div class="nav-item"><a href="informacoes.html" class="nav-link">Informações</a></div>
+      <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
+      <div class="nav-item">
+        <span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span>
+        <div class="nav-dropdown">
+          <a href="caragua.html">Caraguatatuba</a>
+          <a href="grande.html">Praia Grande</a>
+          <a href="ferthotel.html">Fetrhotel</a>
+          <a href="oasis.html">Oásis</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
+      <div class="nav-item nav-item-boletos">
+        <a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a>
+      </div>
+    </div>
+    <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <h1>Palavra do <em>Presidente</em></h1>
+    <p>Acompanhe a mensagem do presidente do SINDEHOT-SBC aos trabalhadores e associados.</p>
+  </div>
+</div>
+
+<!-- VÍDEO -->
+<div class="video-section">
+
+  <div class="video-wrapper reveal">
+    <iframe
+      src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+      title="Palavra do Presidente — SINDEHOT-SBC"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div>
+      <div class="contact-label">Telefone</div>
+      <div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div>
+      <div class="contact-sub">Seg–Sex, 9h às 17h</div>
+    </div>
+    <div>
+      <div class="contact-label">E-mail</div>
+      <div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div>
+    </div>
+    <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="sigla">SINDEHOT<span>-SBC</span></div>
+        <p>Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="somos.html">Quem Somos</a></li>
+          <li><a href="convenios.html">Convênios</a></li>
+          <li><a href="conoscos.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
+          <li><a href="informacoes.html#circulares">Circulares</a></li>
+          <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
+          <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Voltar ao topo">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+// Reveal on scroll
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, {threshold:0.1});
+  els.forEach(el => obs.observe(el));
+})();
+
+// Menu mobile
+function toggleMenu(){ document.getElementById('navItems').classList.toggle('open'); }
+function toggleDropdown(el){ if(window.innerWidth > 768) return; el.closest('.nav-item').classList.toggle('open'); }
+
+// Voltar ao topo
+(function(){
+  const btn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', function(){ btn.classList.toggle('visible', window.scrollY > 300); }, {passive:true});
+  btn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
+</body>
+</html>

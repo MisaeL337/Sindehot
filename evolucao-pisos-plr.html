@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Evolução de Pisos Salariais e PLR — SINDEHOT-SBC</title>
+<link rel="icon" href="img/sindehot.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#1E3A6E;--navy-dark:#132847;--navy-deep:#0D1E35;
+  --gold:#C9A227;--gold-lt:#E8C547;--gold-dim:rgba(201,162,39,0.12);--gold-glow:rgba(201,162,39,0.28);
+  --cream:#F8F5EE;--white:#FFFFFF;--text:#1A1A2E;--muted:#64748b;--border:#DDE3ED;
+  --green:#1c7846;--green-dim:rgba(28,120,70,0.1);
+  --font-head:'Playfair Display',serif;--font-body:'Source Sans 3',sans-serif;
+}
+html{font-size:18px;}
+html,body{width:100%;min-height:100%;background:var(--cream);color:var(--text);font-family:var(--font-body);overflow-x:hidden;scroll-behavior:smooth;}
+
+/* TOPBAR */
+.topbar{background:var(--navy-deep);padding:7px 0;z-index:200;position:relative;}
+.topbar-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;justify-content:flex-end;}
+.topbar-webmail{display:inline-flex;align-items:center;gap:7px;padding:5px 16px;background:var(--gold);color:var(--navy-deep);border-radius:4px;text-decoration:none;font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;transition:background .2s,transform .15s;}
+.topbar-webmail:hover{background:var(--gold-lt);transform:translateY(-1px);}
+.topbar-webmail svg{width:13px;height:13px;fill:none;stroke:var(--navy-deep);stroke-width:2.2;stroke-linecap:round;}
+
+/* HEADER */
+.site-header{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#2a4f8f 100%);padding:22px 0 18px;position:relative;overflow:hidden;}
+.site-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,162,39,.10),transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.018) 0,rgba(255,255,255,.018) 1px,transparent 1px,transparent 60px);}
+.header-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:22px;position:relative;z-index:1;}
+.brasao{width:106px;height:106px;flex-shrink:0;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;}
+.brasao:hover{transform:scale(1.04);}
+.header-sigla{font-family:var(--font-head);font-size:40px;font-weight:700;color:var(--white);letter-spacing:.06em;line-height:1;}
+.header-sigla span{color:var(--gold);}
+.header-nome{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-top:5px;line-height:1.45;}
+.header-sub{margin-left:auto;text-align:right;}
+@media(max-width:767px){.header-sub{display:none;}}
+.header-sub p{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.09em;text-transform:uppercase;margin-bottom:2px;}
+.header-fone{font-size:1rem;font-weight:600;color:var(--gold);}
+.header-horario{font-size:.68rem;color:rgba(255,255,255,.38);margin-top:2px;}
+
+/* NAV */
+nav.main-nav{background:var(--navy);border-bottom:3px solid var(--gold);position:sticky;top:0;z-index:150;box-shadow:0 4px 20px rgba(0,0,0,.22);}
+.nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;}
+.nav-items-wrap{display:flex;align-items:center;flex:1;}
+.nav-item{position:relative;}
+.nav-link{display:block;padding:15px 18px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.72);text-decoration:none;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer;}
+.nav-link:hover,.nav-link.active{color:var(--gold);background:rgba(255,255,255,.04);}
+.nav-link.active::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:var(--gold);}
+.nav-caret{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid currentColor;margin-left:5px;vertical-align:middle;opacity:.55;transition:transform .2s;}
+.nav-item:hover .nav-caret{transform:rotate(180deg);}
+.nav-dropdown{position:absolute;top:100%;left:0;background:var(--navy-dark);border:1px solid rgba(201,162,39,.18);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;min-width:210px;box-shadow:0 14px 36px rgba(0,0,0,.32);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:200;}
+.nav-item:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-dropdown a{display:block;padding:11px 18px;font-size:.78rem;font-weight:500;color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .15s,background .15s,padding-left .15s;}
+.nav-dropdown a:hover{color:var(--gold);background:rgba(255,255,255,.04);padding-left:24px;}
+.nav-dropdown a:last-child{border-bottom:none;}
+.nav-toggle{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-toggle span{display:block;width:22px;height:2px;background:rgba(255,255,255,.8);border-radius:2px;margin:5px 0;}
+.nav-item-boletos{margin-left:auto;margin-right:-28px;}
+.nav-item-boletos .nav-link{background:var(--gold);color:var(--navy-deep);border-radius:5px;margin:8px 0;padding:8px 18px;font-weight:700;transition:background .2s,transform .15s,box-shadow .2s;}
+.nav-item-boletos .nav-link:hover{background:var(--gold-lt);color:var(--navy-deep);transform:translateY(-1px);box-shadow:0 4px 14px rgba(201,162,39,.40);}
+@media(max-width:768px){
+  .nav-toggle{display:block;}
+  .nav-inner{flex-wrap:wrap;}
+  .nav-items-wrap{display:none;flex-direction:column;width:100%;padding-bottom:8px;}
+  .nav-items-wrap.open{display:flex;}
+  .nav-item{width:100%;}
+  .nav-link{padding:11px 4px;}
+  .nav-dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;border-left:3px solid var(--gold);background:rgba(255,255,255,.04);border-radius:0;min-width:0;display:none;}
+  .nav-item.open .nav-dropdown{display:block;}
+  .nav-item-boletos{margin-left:0;margin-right:0;}
+}
+
+/* PAGE HERO */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 100%);padding:44px 0 40px;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:48px 48px;}
+.page-hero-inner{max-width:1140px;margin:0 auto;padding:0 24px;position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.page-breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+.page-breadcrumb a{font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;}
+.page-breadcrumb a:hover{color:var(--gold);}
+.page-breadcrumb span{font-size:.75rem;color:rgba(255,255,255,.25);}
+.page-breadcrumb strong{font-size:.75rem;color:rgba(255,255,255,.65);}
+.page-hero h1{font-family:var(--font-head);font-size:clamp(27px,3vw,42px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:10px;}
+.page-hero h1 em{font-style:normal;color:var(--gold);}
+.page-hero p{font-size:.95rem;color:rgba(255,255,255,.58);max-width:540px;line-height:1.7;}
+.btn-print{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.28);color:rgba(255,255,255,.88);border-radius:8px;font-family:var(--font-body);font-size:.86rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,border-color .2s,color .2s,transform .15s;flex-shrink:0;}
+.btn-print:hover{background:rgba(201,162,39,.18);border-color:var(--gold);color:var(--gold);transform:translateY(-1px);}
+.btn-print svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+
+/* ANCHOR NAV */
+.anchor-nav{background:var(--white);border-bottom:2px solid var(--border);position:sticky;top:53px;z-index:100;overflow-x:auto;}
+.anchor-nav-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;white-space:nowrap;}
+.anchor-link{padding:13px 20px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .18s,border-color .18s;display:inline-flex;align-items:center;gap:7px;}
+.anchor-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;}
+.anchor-link:hover{color:var(--navy);}
+.anchor-link.active{color:var(--navy);border-color:var(--gold);}
+
+/* PAGE WRAPPER */
+.page-wrapper{max-width:1140px;margin:0 auto;padding:0 24px 64px;}
+.section-block{padding:52px 0;border-bottom:1px solid var(--border);}
+.section-block:last-child{border-bottom:none;}
+
+/* SECTION LABELS & TITLES */
+.section-label{display:inline-flex;align-items:center;gap:7px;padding:4px 13px;background:var(--gold-dim);border:1px solid rgba(201,162,39,.25);border-radius:999px;font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.section-label svg{width:13px;height:13px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
+.section-title{font-family:var(--font-head);font-size:clamp(22px,2.5vw,32px);font-weight:700;color:var(--navy);line-height:1.25;margin-bottom:8px;}
+.section-title em{font-style:normal;color:var(--gold);}
+.section-sub{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:650px;margin-bottom:28px;}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(30,58,110,.07);margin-bottom:0;}
+.data-table{width:100%;border-collapse:collapse;background:var(--white);font-size:.84rem;}
+.data-table thead tr{background:var(--navy);}
+.data-table thead th{padding:13px 16px;text-align:left;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);white-space:nowrap;border-bottom:2px solid var(--gold);}
+.data-table tbody tr{border-bottom:1px solid var(--border);transition:background .12s;}
+.data-table tbody tr:last-child{border-bottom:none;}
+.data-table tbody tr:nth-child(even):not(.vigente){background:rgba(30,58,110,.027);}
+.data-table tbody tr:hover:not(.vigente){background:rgba(30,58,110,.055);}
+.data-table td{padding:12px 16px;color:var(--text);vertical-align:middle;}
+.data-table td.periodo{font-weight:700;color:var(--navy);white-space:nowrap;vertical-align:middle;}
+.data-table td.valor{font-weight:600;color:var(--navy-dark);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+.data-table td.dash{color:var(--muted);text-align:right;}
+.small-muted{font-size:.76em;color:var(--muted);font-weight:400;display:inline;}
+
+/* VIGENTE HIGHLIGHT */
+.data-table tr.vigente{background:rgba(201,162,39,.07)!important;}
+.data-table tr.vigente td{border-bottom-color:rgba(201,162,39,.2);}
+.data-table tr.vigente-first td{border-top:2px solid rgba(201,162,39,.55)!important;}
+.data-table tr.vigente-last td{border-bottom:2px solid rgba(201,162,39,.55)!important;}
+.badge-vigente{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:rgba(28,120,70,.12);border:1px solid rgba(28,120,70,.3);border-radius:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1c7846;margin-left:8px;vertical-align:middle;white-space:nowrap;}
+.badge-vigente svg{width:9px;height:9px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+
+/* INFO CARDS */
+.info-card{border-radius:10px;padding:16px 20px;margin-top:20px;display:flex;align-items:flex-start;gap:13px;}
+.info-card-blue{background:rgba(30,58,110,.055);border:1px solid rgba(30,58,110,.14);border-left:4px solid var(--navy);}
+.info-card-green{background:rgba(28,120,70,.06);border:1px solid rgba(28,120,70,.18);border-left:4px solid var(--green);}
+.info-card svg{width:18px;height:18px;fill:none;stroke-width:2;stroke-linecap:round;flex-shrink:0;margin-top:2px;}
+.info-card-blue svg{stroke:var(--navy);}
+.info-card-green svg{stroke:var(--green);}
+.info-card p{font-size:.84rem;line-height:1.65;}
+.info-card-blue p{color:#1a2f5e;}
+.info-card-green p{color:#14523a;}
+.info-card strong{font-weight:700;}
+
+/* TIMELINE */
+.timeline-wrap{overflow-x:auto;padding:8px 0 16px;}
+.timeline{display:flex;align-items:stretch;gap:0;min-width:fit-content;}
+.timeline-item{display:flex;align-items:center;}
+.timeline-dot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:20px 28px;background:var(--white);border:1.5px solid var(--border);border-radius:12px;min-width:130px;text-align:center;transition:box-shadow .2s,transform .2s,border-color .2s;}
+.timeline-dot:hover{box-shadow:0 6px 20px rgba(30,58,110,.1);transform:translateY(-3px);}
+.timeline-dot.current{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim);}
+.timeline-pct{font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1;}
+.timeline-year{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);margin-top:2px;}
+.timeline-label{font-size:.68rem;color:var(--muted);}
+.timeline-arrow{padding:0 10px;color:var(--gold);font-size:1.3rem;font-weight:700;flex-shrink:0;align-self:center;opacity:.7;}
+
+/* DOWNLOAD GRID */
+.download-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;}
+@media(max-width:720px){.download-grid{grid-template-columns:1fr;}}
+@media(min-width:480px) and (max-width:719px){.download-grid{grid-template-columns:repeat(2,1fr);}}
+.download-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s,transform .2s,border-color .2s;}
+.download-item:hover{box-shadow:0 8px 24px rgba(30,58,110,.11);transform:translateY(-3px);border-color:rgba(30,58,110,.2);}
+.download-icon{width:46px;height:46px;border-radius:10px;background:rgba(30,58,110,.07);display:grid;place-items:center;}
+.download-icon svg{width:22px;height:22px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;}
+.download-name{font-size:.9rem;font-weight:700;color:var(--navy);}
+.download-desc{font-size:.79rem;color:var(--muted);line-height:1.55;flex:1;}
+.btn-dl{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:var(--navy);color:var(--white);border-radius:7px;font-family:var(--font-body);font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;border:none;transition:background .2s,transform .15s;align-self:flex-start;}
+.btn-dl:hover{background:var(--navy-dark);transform:translateY(-1px);}
+.btn-dl svg{width:14px;height:14px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round;}
+
+/* CONTACT & FOOTER */
+.contact-strip{background:var(--navy);padding:28px 0;}
+.contact-inner{max-width:1140px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.contact-label{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:3px;}
+.contact-value{font-size:1rem;font-weight:600;color:var(--white);}
+.contact-value a{color:var(--gold);text-decoration:none;}
+.contact-sub{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px;}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:11px 26px;background:var(--gold);color:var(--navy-deep);border:none;border-radius:6px;font-family:var(--font-body);font-size:.86rem;font-weight:700;cursor:pointer;text-decoration:none;transition:background .2s,transform .18s;}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);}
+footer{background:var(--navy-deep);border-top:3px solid var(--gold);padding:44px 0 0;}
+.footer-inner{max-width:1140px;margin:0 auto;padding:0 24px;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:36px;}
+@media(max-width:700px){.footer-top{grid-template-columns:1fr;gap:28px;}}
+.footer-brand .sigla{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--white);letter-spacing:.05em;margin-bottom:10px;}
+.footer-brand .sigla span{color:var(--gold);}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.42);line-height:1.7;max-width:280px;}
+.footer-col h4{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{font-size:.8rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .15s;}
+.footer-col ul li a:hover{color:var(--gold);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3);}
+.footer-dev{font-size:.72rem;color:rgba(255,255,255,.25);}
+.footer-dev a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-dev a:hover{color:var(--gold);}
+#back-to-top{position:fixed;bottom:28px;right:28px;z-index:999;width:44px;height:44px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);color:var(--gold);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.3);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s,transform .25s,background .2s;}
+#back-to-top.visible{opacity:1;visibility:visible;}
+#back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
+#back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.rd1{transition-delay:.07s;}.rd2{transition-delay:.14s;}.rd3{transition-delay:.21s;}
+
+/* PRINT */
+@media print{
+  /* ── Ocultar elementos de navegação e estrutura ── */
+  .topbar,
+  .site-header,
+  nav.main-nav,
+  .anchor-nav,
+  .page-hero,
+  .contact-strip,
+  footer,
+  #back-to-top,
+  .btn-print { display:none!important; }
+
+  /* ── Ocultar seção de downloads ── */
+  #documentos { display:none!important; }
+
+  /* ── Configuração de página ── */
+  @page { margin:1.8cm 1.5cm; }
+
+  /* ── Permitir cores de fundo na impressão ── */
+  *{
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+
+  /* ── Reset geral ── */
+  html,body{ background:#fff!important; font-size:10pt!important; }
+
+  /* ── Hero simplificado ── */
+  .page-hero{
+    background:#1E3A6E!important;
+    padding:14px 0!important;
+    margin-bottom:8px;
+  }
+  .page-hero h1{ font-size:16pt!important; color:#fff!important; margin-bottom:4px!important; }
+  .page-hero h1 em{ color:#C9A227!important; }
+  .page-hero p{ font-size:9pt!important; color:rgba(255,255,255,.75)!important; }
+  .page-hero-inner{ padding:0 1cm!important; flex-direction:column!important; gap:4px!important; }
+  .page-breadcrumb{ margin-bottom:6px!important; }
+
+  /* ── Wrapper ── */
+  .page-wrapper{ padding:0!important; max-width:100%!important; }
+
+  /* ── Seções: evitar corte no meio da página ── */
+  .section-block{
+    padding:14px 0!important;
+    border-bottom:1px solid #ddd!important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .section-block:last-child{ border-bottom:none!important; }
+
+  /* ── Títulos e labels ── */
+  .section-label{
+    background:rgba(201,162,39,.15)!important;
+    border:1px solid rgba(201,162,39,.4)!important;
+    color:#8B6914!important;
+    font-size:6pt!important;
+    padding:3px 10px!important;
+  }
+  .section-label svg{ stroke:#8B6914!important; }
+  .section-title{ font-size:13pt!important; color:#1E3A6E!important; margin-bottom:4px!important; }
+  .section-title em{ color:#C9A227!important; }
+  .section-sub{ font-size:8.5pt!important; margin-bottom:12px!important; }
+
+  /* ── Tabelas: sem corte, overflow visível ── */
+  .table-wrap{
+    overflow:visible!important;
+    border:1px solid #ccc!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .data-table{ font-size:8pt!important; width:100%!important; }
+  .data-table thead tr{ background:#1E3A6E!important; }
+  .data-table thead th{
+    color:#fff!important;
+    font-size:7pt!important;
+    padding:8px 10px!important;
+    border-bottom:2px solid #C9A227!important;
+  }
+  .data-table td{ padding:7px 10px!important; font-size:8pt!important; }
+  .data-table td.valor{ color:#132847!important; }
+  .data-table tbody tr:nth-child(even):not(.vigente){ background:rgba(30,58,110,.04)!important; }
+  .data-table tr.vigente{ background:rgba(201,162,39,.1)!important; }
+  .data-table tr.vigente-first td{ border-top:2px solid rgba(201,162,39,.6)!important; }
+  .data-table tr.vigente-last td{ border-bottom:2px solid rgba(201,162,39,.6)!important; }
+  .badge-vigente{
+    background:rgba(28,120,70,.12)!important;
+    border:1px solid rgba(28,120,70,.35)!important;
+    color:#1c7846!important;
+    font-size:6pt!important;
+  }
+  .small-muted{ color:#888!important; }
+
+  /* ── Cards informativos: sem corte, cores preservadas ── */
+  .info-card{
+    break-inside:avoid;
+    page-break-inside:avoid;
+    margin-top:10px!important;
+    padding:10px 14px!important;
+  }
+  .info-card-blue{
+    background:rgba(30,58,110,.06)!important;
+    border:1px solid rgba(30,58,110,.2)!important;
+    border-left:4px solid #1E3A6E!important;
+  }
+  .info-card-green{
+    background:rgba(28,120,70,.06)!important;
+    border:1px solid rgba(28,120,70,.2)!important;
+    border-left:4px solid #1c7846!important;
+  }
+  .info-card p{ font-size:8pt!important; color:#222!important; }
+  .info-card-blue svg{ stroke:#1E3A6E!important; }
+  .info-card-green svg{ stroke:#1c7846!important; }
+
+  /* ── Timeline: sem corte, layout horizontal preservado ── */
+  .timeline-wrap{
+    overflow:visible!important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .timeline{ flex-wrap:nowrap!important; gap:0!important; }
+  .timeline-dot{
+    border:1.5px solid #ddd!important;
+    box-shadow:none!important;
+    padding:12px 18px!important;
+    min-width:100px!important;
+  }
+  .timeline-dot.current{ border-color:#C9A227!important; box-shadow:none!important; }
+  .timeline-pct{ font-size:13pt!important; color:#C9A227!important; }
+  .timeline-year{ color:#1E3A6E!important; font-size:7pt!important; }
+  .timeline-label{ font-size:6.5pt!important; color:#666!important; }
+  .timeline-arrow{ color:#C9A227!important; font-size:14pt!important; padding:0 6px!important; }
+
+  /* ── Reveal: garantir visibilidade ── */
+  .reveal{ opacity:1!important; transform:none!important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://webmail.sindehot.com.br/" target="_blank" class="topbar-webmail">
+      <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Webmail
+    </a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brasao" aria-label="Ir para a página inicial">
+      <img src="img/sindehot.png" alt="Logo SINDEHOT-SBC" style="width:140px;height:140px;object-fit:contain;">
+    </a>
+    <div class="header-texts">
+      <div class="header-sigla">SINDEHOT<span>-SBC</span></div>
+      <div class="header-nome">Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra</div>
+    </div>
+    <div class="header-sub">
+      <p>Fale conosco</p>
+      <div class="header-fone">(11) 4123-5598</div>
+      <div class="header-fone">(11) 4122-2888</div>
+      <div class="header-horario">Seg–Sex, 9h às 17h</div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="main-nav" aria-label="Navegação principal">
+  <div class="nav-inner">
+    <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="nav-items-wrap" id="navItems">
+      <div class="nav-item"><a href="index.html" class="nav-link">Home</a></div>
+      <div class="nav-item"><a href="somos.html" class="nav-link">Quem Somos</a></div>
+      <div class="nav-item"><a href="informacoes.html" class="nav-link active">Informações</a></div>
+      <div class="nav-item"><a href="convenios.html" class="nav-link">Convênios</a></div>
+      <div class="nav-item">
+        <span class="nav-link" onclick="toggleDropdown(this)">Colônias <span class="nav-caret"></span></span>
+        <div class="nav-dropdown">
+          <a href="caragua.html">Caraguatatuba</a>
+          <a href="grande.html">Praia Grande</a>
+          <a href="ferthotel.html">Fetrhotel</a>
+          <a href="oasis.html">Oásis</a>
+        </div>
+      </div>
+      <div class="nav-item"><a href="conoscos.html" class="nav-link">Fale Conosco</a></div>
+      <div class="nav-item nav-item-boletos"><a href="https://sindehot.com.br/bolassist" target="_blank" class="nav-link">Emissão de Boletos</a></div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div>
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a><span>›</span>
+        <a href="informacoes.html">Informações</a><span>›</span>
+        <strong>Evolução Salarial e PLR</strong>
+      </div>
+      <h1>Evolução de <em>Pisos Salariais</em> e PLR</h1>
+      <p>Acompanhe a evolução histórica dos salários normativos e da Participação nos Lucros e Resultados da categoria hoteleira de SBC e Região.</p>
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Imprimir página
+    </button>
+  </div>
+</div>
+
+<!-- ANCHOR NAV -->
+<div class="anchor-nav">
+  <div class="anchor-nav-inner">
+    <a href="#pisos" class="anchor-link active" id="anc-pisos">
+      <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Pisos Salariais
+    </a>
+    <a href="#plr" class="anchor-link" id="anc-plr">
+      <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      PLR
+    </a>
+    <a href="#reajustes" class="anchor-link" id="anc-reajustes">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Reajustes
+    </a>
+    <a href="#documentos" class="anchor-link" id="anc-documentos">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Documentos
+    </a>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="page-wrapper">
+
+  <!-- ═══ SEÇÃO 1: PISOS SALARIAIS ═══ -->
+  <section class="section-block" id="pisos">
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Salários Normativos
+      </div>
+      <h2 class="section-title">Evolução dos <em>Pisos Salariais</em></h2>
+      <p class="section-sub">Os valores são definidos em Convenção Coletiva de Trabalho firmada entre o SINDEHOT-SBC e o SEHAL (Sindicato de Hotéis, Restaurantes, Bares e Similares), com vigência anual a partir de outubro.</p>
+    </div>
+
+    <div class="table-wrap reveal rd1">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Período</th>
+            <th>Jornada</th>
+            <th>Com REPIS</th>
+            <th>Sem REPIS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- CCT 2019-2021 -->
+          <tr>
+            <td class="periodo" rowspan="2">CCT 2019–2021</td>
+            <td>Integral 44h <span class="small-muted">(220h/mês)</span></td>
+            <td class="valor">R$ 1.412,43</td>
+            <td class="valor">R$ 1.566,00</td>
+          </tr>
+          <tr>
+            <td>Meia Jornada <span class="small-muted">(110h/mês)</span></td>
+            <td class="valor">R$ 706,22<br><span class="small-muted">50% do piso integral</span></td>
+            <td class="valor">R$ 783,00<br><span class="small-muted">50% do piso integral</span></td>
+          </tr>
+          <!-- CCT 2023-2024 -->
+          <tr>
+            <td class="periodo" rowspan="4">CCT 2023–2024</td>
+            <td>Integral 44h <span class="small-muted">(220h/mês)</span></td>
+            <td class="valor">R$ 1.884,60</td>
+            <td class="valor">R$ 2.267,60</td>
+          </tr>
+          <tr>
+            <td>Meia Jornada <span class="small-muted">(110h/mês)</span></td>
+            <td class="valor">R$ 942,30</td>
+            <td class="valor">R$ 1.133,80</td>
+          </tr>
+          <tr>
+            <td>Jornada Especial 6h <span class="small-muted">(180h/mês)</span></td>
+            <td class="valor">R$ 1.771,70</td>
+            <td class="valor">R$ 2.133,20</td>
+          </tr>
+          <tr>
+            <td>Salário/Hora</td>
+            <td class="valor">R$ 10,20</td>
+            <td class="valor">R$ 12,02</td>
+          </tr>
+          <!-- CCT 2025-2026 — VIGENTE -->
+          <tr class="vigente vigente-first">
+            <td class="periodo" rowspan="4">
+              CCT 2025–2026
+              <span class="badge-vigente">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Vigente
+              </span>
+            </td>
+            <td>Integral 44h <span class="small-muted">(220h/mês)</span></td>
+            <td class="valor">R$ 2.098,00</td>
+            <td class="valor">R$ 2.560,00</td>
+          </tr>
+          <tr class="vigente">
+            <td>Meia Jornada <span class="small-muted">(110h/mês)</span></td>
+            <td class="valor">R$ 1.049,00</td>
+            <td class="valor">R$ 1.280,00</td>
+          </tr>
+          <tr class="vigente">
+            <td>Jornada Especial 6h <span class="small-muted">(180h/mês)</span></td>
+            <td class="valor">R$ 1.972,00</td>
+            <td class="valor">R$ 2.375,00</td>
+          </tr>
+          <tr class="vigente vigente-last">
+            <td>Salário/Hora</td>
+            <td class="valor">R$ 11,66</td>
+            <td class="valor">R$ 13,78</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-card info-card-blue reveal rd2">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p><strong>O que é o REPIS?</strong> O Regime Especial de Piso Salarial é uma cláusula que permite às micro e pequenas empresas enquadradas no <strong>Simples Nacional</strong> pagarem um piso salarial reduzido em relação ao piso padrão. Empresas não optantes pelo Simples Nacional aplicam os valores da coluna "Sem REPIS".</p>
+    </div>
+  </section>
+
+  <!-- ═══ SEÇÃO 2: PLR ═══ -->
+  <section class="section-block" id="plr">
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Participação nos Lucros e Resultados
+      </div>
+      <h2 class="section-title">Evolução da <em>PLR</em></h2>
+      <p class="section-sub">A PLR é paga em 2 parcelas anuais conforme valores e datas negociados em cada Convenção Coletiva de Trabalho.</p>
+    </div>
+
+    <div class="table-wrap reveal rd1">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Período de Referência</th>
+            <th>Com REPIS (total)</th>
+            <th>Sem REPIS (total)</th>
+            <th>Forma de Pagamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="periodo">2018 <span class="small-muted">(CCT 2019–2021)</span></td>
+            <td class="valor">R$ 500,00</td>
+            <td class="valor">R$ 500,00</td>
+            <td>2 parcelas de R$ 250,00 — maio e outubro/2020</td>
+          </tr>
+          <tr>
+            <td class="periodo">2022 <span class="small-muted">(CCT 2023–2024)</span></td>
+            <td class="valor">R$ 569,00</td>
+            <td class="valor">R$ 682,00</td>
+            <td>2 parcelas — junho e novembro/2024</td>
+          </tr>
+          <tr class="vigente vigente-first vigente-last">
+            <td class="periodo">
+              2024 <span class="small-muted">(CCT 2025–2026)</span>
+              <span class="badge-vigente">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                Vigente
+              </span>
+            </td>
+            <td class="valor">R$ 636,00</td>
+            <td class="valor">R$ 760,00</td>
+            <td>2 parcelas de R$ 318,00 ou R$ 380,00 — junho e novembro/2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-card info-card-green reveal rd2">
+      <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <p><strong>Importante:</strong> A PLR <strong>não integra o salário</strong> para efeitos trabalhistas e previdenciários (art. 3º da Lei 10.101/2000). Os valores são <strong>proporcionais ao tempo trabalhado</strong> no período de referência — funcionários admitidos durante o ano recebem valor proporcional aos meses trabalhados.</p>
+    </div>
+  </section>
+
+  <!-- ═══ SEÇÃO 3: REAJUSTES ═══ -->
+  <section class="section-block" id="reajustes">
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Histórico de reajustes
+      </div>
+      <h2 class="section-title">Reajustes <em>Aplicados</em></h2>
+      <p class="section-sub">Percentuais de reajuste salarial aplicados em cada Convenção Coletiva de Trabalho.</p>
+    </div>
+
+    <div class="timeline-wrap reveal rd1">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <div class="timeline-pct">+2,35%</div>
+            <div class="timeline-year">2019</div>
+            <div class="timeline-label">CCT 2019–2021</div>
+          </div>
+        </div>
+        <div class="timeline-arrow">→</div>
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <div class="timeline-pct">+2,0%</div>
+            <div class="timeline-year">2020</div>
+            <div class="timeline-label">CCT 2019–2021</div>
+          </div>
+        </div>
+        <div class="timeline-arrow">→</div>
+        <div class="timeline-item">
+          <div class="timeline-dot">
+            <div class="timeline-pct">+4,60%</div>
+            <div class="timeline-year">2023</div>
+            <div class="timeline-label">CCT 2023–2024</div>
+          </div>
+        </div>
+        <div class="timeline-arrow">→</div>
+        <div class="timeline-item">
+          <div class="timeline-dot current">
+            <div class="timeline-pct">+6,00%</div>
+            <div class="timeline-year">2025</div>
+            <div class="timeline-label">CCT 2025–2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SEÇÃO 4: DOCUMENTOS ═══ -->
+  <section class="section-block" id="documentos">
+    <div class="reveal">
+      <div class="section-label">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Documentos oficiais
+      </div>
+      <h2 class="section-title">Baixar <em>CCTs</em> e Circulares</h2>
+      <p class="section-sub">Acesse os documentos originais das Convenções Coletivas para consulta completa de todas as cláusulas econômicas e sociais.</p>
+    </div>
+
+    <div class="download-grid">
+      <div class="download-item reveal rd1">
+        <div class="download-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="download-name">CCT 2023–2024</div>
+        <div class="download-desc">Convenção Coletiva com vigência de outubro de 2022 a setembro de 2024. Todas as cláusulas econômicas e sociais.</div>
+        <a href="docs/CCT 2023-2024.pdf" target="_blank" download class="btn-dl">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
+      </div>
+      <div class="download-item reveal rd2">
+        <div class="download-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="download-name">CCT 2019–2021 — SBC</div>
+        <div class="download-desc">Convenção Coletiva de São Bernardo do Campo, período de 2019 a 2021. Documento histórico de referência.</div>
+        <a href="docs/CCT-SBC-19-21.pdf" target="_blank" download class="btn-dl">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
+      </div>
+      <div class="download-item reveal rd3">
+        <div class="download-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="download-name">Cláusulas Econômicas 2025–2026</div>
+        <div class="download-desc">Circular com as cláusulas econômicas vigentes para o período 2025–2026, incluindo pisos salariais e PLR.</div>
+        <a href="docs/Circular2526.pdf" target="_blank" download class="btn-dl">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-wrapper -->
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-inner">
+    <div><div class="contact-label">Telefone</div><div class="contact-value">(11) 4123-5598 / (11) 4122-2888</div><div class="contact-sub">Seg–Sex, 9h às 17h</div></div>
+    <div><div class="contact-label">E-mail</div><div class="contact-value"><a href="mailto:sindehot@uol.com.br">sindehot@uol.com.br</a></div></div>
+    <a href="conoscos.html" class="btn-gold">Fale Conosco</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="sigla">SINDEHOT<span>-SBC</span></div>
+        <p>Sindicato dos Empregados no Comércio Hoteleiro e Similares de SBC e Região.<br>Base Territorial: São Bernardo do Campo, Diadema e Rio Grande da Serra.</p>
+        <p style="margin-top:8px;font-size:.72rem;color:rgba(255,255,255,.3);letter-spacing:.04em;">CNPJ: 59.956.805/0001-56</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="somos.html">Quem Somos</a></li>
+          <li><a href="convenios.html">Convênios</a></li>
+          <li><a href="conoscos.html">Fale Conosco</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informações</h4>
+        <ul>
+          <li><a href="informacoes.html#cct">Convenções Coletivas</a></li>
+          <li><a href="informacoes.html#circulares">Circulares</a></li>
+          <li><a href="informacoes.html#legislacao">Legislação Trabalhista</a></li>
+          <li><a href="https://webmail.sindehot.com.br/" target="_blank">Webmail</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SINDEHOT-SBC. Todos os direitos reservados.</p>
+      <p class="footer-dev">Desenvolvido por <a href="https://kadosh-tech.vercel.app/" target="_blank">Kadosh Tech</a></p>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<script>
+(function(){
+  const els=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(e=>{
+    e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('visible');obs.unobserve(i.target);}});
+  },{threshold:0.08});
+  els.forEach(el=>obs.observe(el));
+})();
+function toggleMenu(){document.getElementById('navItems').classList.toggle('open');}
+function toggleDropdown(el){if(window.innerWidth>768)return;el.closest('.nav-item').classList.toggle('open');}
+(function(){
+  const secs=['pisos','plr','reajustes','documentos'];
+  function update(){
+    const pos=window.scrollY+140;
+    let cur=secs[0];
+    secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=pos)cur=id;});
+    document.querySelectorAll('.anchor-link').forEach(l=>l.classList.remove('active'));
+    const a=document.getElementById('anc-'+cur);
+    if(a)a.classList.add('active');
+  }
+  window.addEventListener('scroll',update,{passive:true});
+  update();
+})();
+(function(){
+  const btn=document.getElementById('back-to-top');
+  window.addEventListener('scroll',function(){btn.classList.toggle('visible',window.scrollY>300);},{passive:true});
+})();
+</script>
+</body>
+</html>

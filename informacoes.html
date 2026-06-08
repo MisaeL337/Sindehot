@@ -213,6 +213,30 @@ html{font-size:18px;}
 #back-to-top.visible{opacity:1;visibility:visible;}
 #back-to-top:hover{background:var(--gold);color:var(--navy-deep);transform:translateY(-3px);}
 #back-to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+/* CIRCULARES — layout com widget lateral */
+.circ-layout{display:grid;grid-template-columns:1fr 290px;gap:24px;align-items:start;}
+@media(max-width:860px){.circ-layout{grid-template-columns:1fr;}}
+.sidebar-widget{background:var(--white);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.widget-head{background:var(--navy);padding:11px 15px;display:flex;align-items:center;gap:8px;}
+.widget-head svg{width:15px;height:15px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;}
+.widget-head h3{font-family:var(--font-head);font-size:.92rem;font-weight:700;color:var(--white);line-height:1.3;}
+.widget-body{padding:16px;}
+.widget-body p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+.quick-links{display:flex;flex-direction:column;gap:5px;}
+.quick-link{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:6px;border:1px solid var(--border);background:var(--white);color:var(--text);text-decoration:none;font-size:.82rem;font-weight:500;transition:border-color .18s,background .18s,color .18s;}
+.quick-link:hover{border-color:var(--gold);background:var(--gold-dim);color:var(--navy);}
+.quick-link svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round;flex-shrink:0;transition:stroke .18s;}
+.quick-link:hover svg{stroke:var(--gold);}
+.quick-link span{flex:1;}
+.quick-link .arr{width:11px;height:11px;opacity:.35;}
+.widget-piso-preview{margin-top:14px;padding:12px;background:rgba(30,58,110,.04);border:1px solid rgba(30,58,110,.1);border-radius:8px;}
+.widget-piso-preview .wpp-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.widget-piso-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);font-size:.78rem;}
+.widget-piso-row:last-child{border-bottom:none;padding-bottom:0;}
+.widget-piso-row span{color:var(--muted);}
+.widget-piso-row strong{color:var(--navy);font-weight:700;}
+.widget-vigente-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;background:rgba(28,120,70,.1);border:1px solid rgba(28,120,70,.25);border-radius:4px;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#1c7846;margin-top:12px;}
+.widget-vigente-badge svg{width:9px;height:9px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
 </style>
 </head>
 <body>
@@ -266,11 +290,38 @@ html{font-size:18px;}
 <h2 class="section-title"><em>Circulares</em> e Comunicados</h2>
 <p class="section-sub">Informativos emitidos pelo SINDEHOT-SBC sobre temas relevantes para a categoria.</p>
 </div>
-<div class="doc-list">
-<a href="docs/Circular2526.pdf" target="_blank" class="doc-item reveal rd1"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2025–2026</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2025–2026</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
-<a href="docs/Circular22-23.pdf" target="_blank" class="doc-item reveal rd2" download><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2022–2023</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2022–2023</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
-<a href="docs/CircularSBC19-20.pdf" target="_blank"  class="doc-item reveal rd3"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2019–2020</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2019–2020</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
-</div>
+<div class="circ-layout">
+
+  <div class="doc-list">
+    <a href="docs/Circular2526.pdf" target="_blank" class="doc-item reveal rd1"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2025–2026</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2025–2026</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+    <a href="docs/Circular22-23.pdf" target="_blank" class="doc-item reveal rd2" download><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2022–2023</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2022–2023</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+    <a href="docs/CircularSBC19-20.pdf" target="_blank" class="doc-item reveal rd3"><div class="doc-icon red"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="doc-info"><div class="doc-nome">Circular 2019–2020</div><div class="doc-meta"><span class="tag circ">Circular</span><span>Período 2019–2020</span></div></div><div class="doc-btn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Baixar</div></a>
+  </div>
+
+  <!-- WIDGET: EVOLUÇÃO SALARIAL E PLR -->
+  <div class="sidebar-widget reveal rd1">
+    <div class="widget-head">
+      <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+      <h3>Evolução Salarial e PLR</h3>
+    </div>
+    <div class="widget-body">
+      <p>Acompanhe a evolução histórica dos pisos salariais e da Participação nos Lucros e Resultados da categoria hoteleira.</p>
+      <div class="quick-links">
+        <a href="evolucao-pisos-plr.html" class="quick-link">
+          <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <span>Ver histórico completo</span>
+          <svg class="arr" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+     
+      <div class="widget-vigente-badge">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Reajuste 2025: +6,00%
+      </div>
+    </div>
+  </div>
+
+</div><!-- /circ-layout -->
 </section>
 
 <!-- LEGISLAÇÃO -->
