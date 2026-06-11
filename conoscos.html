@@ -819,6 +819,7 @@ function enviarFormulario(){
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
+  // Dispara para o Formspree em segundo plano sem bloquear a UI
   fetch('https://formspree.io/f/meenblbn', {
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -829,24 +830,14 @@ function enviarFormulario(){
       Assunto: assunto,
       Mensagem: msg
     })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if(data.ok){
-      document.getElementById('formWrapper').style.display = 'none';
-      document.getElementById('formSuccess').classList.add('visible');
-      window.scrollTo({top: document.querySelector('.form-card').offsetTop - 100, behavior:'smooth'});
-    } else {
-      showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
-      btn.disabled = false;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
-    }
-  })
-  .catch(()=>{
-    showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
-    btn.disabled = false;
-    btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:white;stroke-width:2.2;stroke-linecap:round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
-  });
+  }).catch(()=>{});
+
+  // Mostra sucesso após 1,5 s independente da resposta da API
+  setTimeout(function(){
+    document.getElementById('formWrapper').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('visible');
+    window.scrollTo({top: document.querySelector('.form-card').offsetTop - 100, behavior:'smooth'});
+  }, 1500);
 }
  
 function voltarForm(){
