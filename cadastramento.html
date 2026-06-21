@@ -885,6 +885,8 @@ function enviarCadastro(){
     method: 'POST',
     headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
     body: JSON.stringify({
+      '_subject': 'Cadastro de Empresa — SINDEHOT-SBC',
+      '_replyto': emailEsc,
       'Razão Social': razao,
       'Nome Fantasia': v('nomeFantasia'),
       'CNPJ': cnpj,
@@ -903,7 +905,7 @@ function enviarCadastro(){
       'Tel. Escritório': v('telefoneEscritorio'),
       'Celular Escritório': v('celularEscritorio'),
       'Contato Escritório': v('contatoEscritorio'),
-      'E-mail Escritório': v('emailEscritorio'),
+      'E-mail Escritório': emailEsc,
       'Solicitar Guias': solicitacao,
       'Tipo de Operação': tipo.value
     })
@@ -917,13 +919,13 @@ function enviarCadastro(){
     } else {
       showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
       btn.disabled=false;
-      btn.textContent='Enviar Cadastro';
+      btn.innerHTML='<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Cadastro';
     }
   })
   .catch(()=>{
     showError('Não foi possível enviar. Tente novamente ou ligue: (11) 4123-5598.');
     btn.disabled=false;
-    btn.textContent='Enviar Cadastro';
+    btn.innerHTML='<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Cadastro';
   });
 }
 

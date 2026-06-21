@@ -834,6 +834,8 @@ function enviarFormulario(){
 
   // Mostra sucesso após 1,5 s independente da resposta da API
   setTimeout(function(){
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
     document.getElementById('formWrapper').style.display = 'none';
     document.getElementById('formSuccess').classList.add('visible');
     window.scrollTo({top: document.querySelector('.form-card').offsetTop - 100, behavior:'smooth'});
@@ -849,6 +851,9 @@ function voltarForm(){
   document.getElementById('fAssunto').value = '';
   document.getElementById('fMsg').value = '';
   document.getElementById('fPriv').checked = false;
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = false;
+  btn.innerHTML = '<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Enviar Mensagem';
 }
 </script>
 <button id="back-to-top" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
